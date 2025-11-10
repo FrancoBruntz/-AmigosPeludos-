@@ -1,0 +1,42 @@
+header {
+  background-color: #5ed6e9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  padding: 5px 10px;
+  gap: 15px; /* Espacio entre el título y los botones */
+}
+
+header h1 {
+  color: #080808;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  cursor: pointer;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start; /* Alinea los botones a la izquierda */
+  align-items: center;         /* Centra verticalmente el contenido */
+  gap: 10px;                   /* Espacio entre los botones */
+}
+
+
+a{
+    background-color: transparent;
+    color: #060606;
+    padding : 8px 16px;
+    text-align: end;
+    text-decoration: none;
+
+}
+
+a:hover {
+  background-color:#5e8cf7 ;
+  color:#2a2a2a;
+  border-color: #5e8cf7;
+}
+ul{
+  list-style: none;
+}

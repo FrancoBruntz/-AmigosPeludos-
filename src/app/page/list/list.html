@@ -1,0 +1,16 @@
+<h2>Nuestros animalitos del refugio</h2>
+
+<ul>
+    @for (pet of pets; track $index) {
+        <li>
+           
+            {{pet.name}} <p>quiere ser parte de tu familia!❤</p>
+            <a [routerLink]="['/details', pet.id]">Detalles</a>
+            @if (this.auth.isAdmin()) {
+             <a [routerLink]="['/edit', pet.id]">Editar</a>
+            <a (click)="eliminarPet(pet.id)">Eliminar</a>   
+            }
+            
+        </li>
+    }
+</ul>

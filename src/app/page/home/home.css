@@ -1,0 +1,187 @@
+/* ===== FONDO GENERAL ===== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('https://cdn.pixabay.com/photo/2016/02/19/10/00/dog-1209621_1280.jpg') center/cover no-repeat fixed;
+  color: #fff;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+  backdrop-filter: brightness(0.8);
+}
+
+/* ===== HERO (PORTADA PRINCIPAL) ===== */
+.hero {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 900px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  margin-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.hero-text {
+  flex: 1 1 350px;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 2rem;
+  color: #ffcc70;
+  margin-bottom: 15px;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  color: #f1f1f1;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.hero-text button {
+  background-color: #ffcc70;
+  color: #333;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-text button:hover {
+  background-color: #ffd98c;
+}
+
+.hero-img img {
+  width: 320px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== SECCIÓN DE INFORMACIÓN ===== */
+.info {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  margin-bottom: 50px;
+}
+
+.info h2 {
+  color: #ffcc70;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+.info p {
+  font-size: 1rem;
+  color: #f1f1f1;
+  line-height: 1.6;
+}
+
+/* ===== GALERÍA ===== */
+.gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 60px;
+}
+
+.gallery img {
+  width: 240px;
+  height: 170px;
+  border-radius: 12px;
+  object-fit: cover;
+  background-color: rgba(0,0,0,0.6);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== SECCIÓN DE DONACIONES ===== */
+.donaciones {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  margin-bottom: 60px;
+}
+
+.donaciones h2 {
+  color: #ffcc70;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+
+.donaciones p {
+  color: #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.donaciones button {
+  background-color: #ffcc70;
+  border: none;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.donaciones button:hover {
+  background-color: #ffd98c;
+}
+
+/* ===== MENSAJE FINAL ===== */
+.mensaje-final {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 700px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.mensaje-final h3 {
+  color: #ffdca8;
+  font-style: italic;
+  font-size: 1.3rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-img img {
+    width: 100%;
+    height: auto;
+  }
+
+  .gallery img {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+

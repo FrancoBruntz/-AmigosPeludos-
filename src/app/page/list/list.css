@@ -1,0 +1,86 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: #333;
+  min-height: 100vh;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* ===== TÍTULO PRINCIPAL ===== */
+h2 {
+  color: #4a7dcf;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* ===== LISTA DE ANIMALES ===== */
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  max-width: 700px;
+}
+
+/* ===== CADA ANIMAL ===== */
+li {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== NOMBRE DE MASCOTA ===== */
+li > span,
+li > strong,
+li {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4a7dcf;
+}
+
+/* ===== TEXTO SECUNDARIO ===== */
+li p {
+  color: #faf7f7;
+  font-size: 1rem;
+  margin: 8px 0 16px;
+}
+
+/* ===== ENLACES ===== */
+li a {
+  text-decoration: none;
+  background-color: #4a7dcf;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 0 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+li a:hover {
+  background-color: #3b6ab5;
+  transform: scale(1.05);
+}
+
+/* Botón eliminar */
+li a:last-child {
+  background-color: #e76f51;
+}
+
+li a:last-child:hover {
+  background-color: #d65c3e;
+}

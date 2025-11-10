@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+}
+/* ===== Fondo general de toda la página (blur) ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+:root{
+  /* cambiá la ruta al archivo que quieras usar */
+  --page-bg: url("assets/fondo.webp");
+}
+
+body::before{
+  content: "";
+  position: fixed;         /* cubre todo y no se mueve al hacer scroll */
+  inset: 0;
+  background-image: var(--page-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(2px);      /* nivel de desenfoque del fondo */
+  transform: scale(1.08);  /* evita bordes duros del blur */
+  z-index: -1;             /* queda detrás de TODO el contenido */
+  pointer-events: none;    /* no bloquea clics */
+}
+
+/* (opcional) si querés asegurar la superposición del contenido */
+header, footer, main { position: relative; z-index: 1; }
+
+
+#contenedor{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}

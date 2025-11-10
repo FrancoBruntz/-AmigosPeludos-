@@ -1,0 +1,75 @@
+<div id="contenedorForm">
+
+<h2>{{petId? 'Editar animal' : 'Agregar animal'}} </h2>
+
+<form [formGroup]="petForm" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label for="name">Nombre (*)</label>
+        <input type="text" id="name" formControlName="name" placeholder="Ingresa el nombre">
+        @if (petForm.controls['name'].errors?.['required'] && petForm.get('name')?.touched) {
+            <p>El campo es obligatorio</p>
+        }
+    </div>
+
+    <div>
+        <label for="type" >Tipo de animal (*)</label> <!-- menu desplegable -->
+            <select name="type" id="type" formControlName="type">
+            <option value="" selected disabled>Seleccione una opcion</option>
+            @for (t of types; track $index) {
+                <option [value]="t">{{t}}</option>
+            }
+        </select>
+        @if (petForm.controls['type'].errors?.['required'] && petForm.get('type')?.touched) {
+            <p>El campo es obligatorio</p>
+        }
+    </div>
+
+    <div>
+         <label for="age">Edad (*)</label>
+    <input type="number" id="age" formControlName="age" placeholder="Ingrese la edad">
+    @if(petForm.controls['age'].errors?.['required'] && petForm.get('age')?.touched){
+        <p>El campo es obligatorio</p>
+    }
+    </div>
+
+    <div>
+       <li>Tamaño (*)</li>
+        @for (size of sizes; track $index) {
+          <input type="radio" [id]="`size-${size}`" [value]="size" formControlName="size">
+          <label [for]="`size-${size}`">{{size}}</label>  
+        }
+        @if (petForm.controls['size'].errors?.['required'] && petForm.get('size')?.touched) {
+            <p>El campo el obligatorio</p>
+        }
+
+    </div>
+
+    <div>
+        <label for="color">Color (*)</label>
+        <input type="text" id="color" formControlName="color" placeholder="Ingresa el color">
+        @if (petForm.controls['color'].errors?.['required'] && petForm.get('color')?.touched) {
+            <p>El campo es obligatorio</p>
+        }
+    </div>
+
+    <div>
+        <label for="castrado">El animal esta castrado</label>
+        <input type="checkbox" name="castrado" id="castrado" formControlName="castrado">
+        @if (petForm.controls['castrado'].errors?.['required'] && petForm.get('castrado')?.touched) {
+            <p>El campo es obligatorio</p>
+        }
+    </div>
+
+    <div>
+        <label for="notes">Obeservaciones </label>
+        <textarea type="notes" id="notes" formControlName="notes" rows="4"></textarea>
+    </div>
+
+    <div class="actions">
+        <button type="submit" [disabled]="petForm.invalid">GUARDAR FORMULARIO</button>
+        <button type="reset">LIMPIAR FORMULARIO</button>
+    </div>
+
+</form>
+</div>

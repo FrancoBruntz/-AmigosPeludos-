@@ -1,0 +1,65 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Bienvenido</h1>
+      <p>Ingresa tus datos para continuar</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="dni">DNI</label>
+        <input 
+          type="text" 
+          id="dni" 
+          formControlName="dni" 
+          placeholder="Ingresa tu DNI"
+          maxlength="8">
+        <p class="error-message" *ngIf="loginForm.controls['dni'].errors?.['required'] && loginForm.get('dni')?.touched">
+          El DNI es obligatorio
+        </p>
+        <p class="error-message" *ngIf="loginForm.controls['dni'].errors?.['pattern'] && loginForm.get('dni')?.touched">
+          El DNI debe contener solo números
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <div class="password-wrapper">
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            id="password" 
+            formControlName="password" 
+            placeholder="Ingresa tu contraseña">
+          <button 
+            type="button" 
+            class="toggle-password" 
+            (click)="togglePasswordVisibility()">
+            {{ showPassword ? '👁️' : '👁️‍🗨️' }}
+          </button>
+        </div>
+        <p class="error-message" *ngIf="loginForm.controls['password'].errors?.['required'] && loginForm.get('password')?.touched">
+          La contraseña es obligatoria
+        </p>
+        <p class="error-message" *ngIf="loginForm.controls['password'].errors?.['minlength'] && loginForm.get('password')?.touched">
+          La contraseña debe tener al menos 6 caracteres
+        </p>
+      </div>
+
+      <!-- <div class="form-group remember-me">
+        <input type="checkbox" id="remember" formControlName="rememberMe">
+        <label for="remember">Recordarme</label>
+      </div> -->
+
+      <button 
+        type="submit" 
+        class="btn-login" 
+        [disabled]="loginForm.invalid">
+        Registrase e iniciar sesion
+      </button>
+    </form>
+
+    <!-- <div class="login-footer">
+      <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+    </div> -->
+  </div>
+</div>

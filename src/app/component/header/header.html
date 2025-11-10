@@ -1,0 +1,23 @@
+<header>
+    <h1>Amigos Peludos</h1>
+    <nav>
+      <ul>
+        <li>
+            <a routerLink="/">Inicio</a>
+            @if (auth.isLogIn() && auth.isAdmin()) {
+                <a routerLink="/agregarpets">Cargar animal</a>
+                <a routerLink="/sobreellos">Sobre ellos</a>
+            }
+            
+            <a routerLink="/sobrenosotros">Sobre nosotros</a> 
+            @if (auth.isLogIn()) {
+                <a (click)="logout()">Cerrar sesion</a>    
+            } @else {
+                <a routerLink="/login">Inciar Sesion</a>
+            }
+            
+            
+        </li>
+    </ul>  
+    </nav>
+</header>

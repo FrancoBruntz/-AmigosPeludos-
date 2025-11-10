@@ -1,0 +1,44 @@
+{
+  "usuarios": [
+    {
+      "user": "admin",
+      "password": "admin1234",
+      "isAdmin": true,
+      "id": "22bf"
+    },
+    {
+      "user": "46112136",
+      "password": "sofiatorti",
+      "isAdmin": false,
+      "id": "c016"
+    },
+    {
+      "id": "93d6",
+      "user": "47068044",
+      "password": "edumango",
+      "isAdmin": false
+    }
+  ],
+  "pets": [
+    {
+      "id": "1",
+      "name": "Xica",
+      "type": "Perro",
+      "age": 15,
+      "size": "Mediano",
+      "color": "Negro",
+      "castrado": true,
+      "notes": "Amigable con niños y otros perros"
+    },
+    {
+      "id": "085f",
+      "name": "Luna",
+      "type": "Gato",
+      "age": 7,
+      "size": "Pequeño",
+      "color": "gris",
+      "castrado": true,
+      "notes": ""
+    }
+  ]
+}

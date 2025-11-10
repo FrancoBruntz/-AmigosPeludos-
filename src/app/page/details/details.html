@@ -1,0 +1,21 @@
+@if (pets) {
+
+    <div class="container">
+    <h3>{{pets.name}}</h3>
+    <p>Es un {{pets.type}}</p>
+    <p>Tiene {{pets.age}} años</p>
+    <p>Tamaño: {{pets.size}}</p>
+    <p>Color: {{pets.color}}</p>
+    <p>{{pets.castrado? 'Esta castrado':'NO esta castrado'}}</p>
+
+    <h3>Observaciones</h3>
+    <p>{{pets.notes}}</p>
+
+    <div class="actions">
+        <button [routerLink]="['/edit', pets.id]">EDITAR</button>
+        <button (click)="borrarPets(pets.id)">BORRAR</button>
+    </div>
+    
+    
+    </div>
+}
