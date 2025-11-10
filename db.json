@@ -17,6 +17,12 @@
       "user": "47068044",
       "password": "edumango",
       "isAdmin": false
+    },
+    {
+      "id": "5381",
+      "user": "39555661",
+      "password": "soypri123",
+      "isAdmin": false
     }
   ],
   "pets": [
@@ -28,7 +34,8 @@
       "size": "Mediano",
       "color": "Negro",
       "castrado": true,
-      "notes": "Amigable con niños y otros perros"
+      "notes": "Amigable con niños y otros perros",
+      "activo": true
     },
     {
       "id": "085f",
@@ -38,7 +45,8 @@
       "size": "Pequeño",
       "color": "gris",
       "castrado": true,
-      "notes": ""
+      "notes": "",
+      "activo": false
     }
   ]
 }

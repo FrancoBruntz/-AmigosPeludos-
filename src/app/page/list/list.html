@@ -1,7 +1,23 @@
-<h2>Nuestros animalitos del refugio</h2>
+@if(!showOnlyAvailable){
+    <h2>Nuestros animalitos del refugio</h2>
+}@else {
+     <h2>Nuestro historial de animalitos</h2>
+}
+
+<!-- Toggle de filtro -->
+<div class="filter-bar">
+  <label class="switch">
+    <input type="checkbox" [(ngModel)]="showOnlyAvailable"  (ngModelChange)="onToggle($event)" />
+    <span class="slider"></span>
+  </label>
+  <span class="filter-label">
+    Historial
+  </span>
+</div>
+
 
 <ul>
-    @for (pet of pets; track $index) {
+    @for (pet of pets(); track $index) {
         <li>
            
             {{pet.name}} <p>quiere ser parte de tu familia!❤</p>

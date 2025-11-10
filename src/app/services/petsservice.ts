@@ -11,7 +11,11 @@ export class Petsservice {
   constructor(private http: HttpClient){}
 
   getPet(){ //devuelve la lsita completa de animales =>METODO GET
-    return this.http.get<Pets[]>(this.url);
+   return this.http.get<Pets[]>(`${this.url}?activo=true`);
+  }
+
+  getPetInactives(){ //devuelve la lsita completa de animales inactivos
+    return this.http.get<Pets[]>(`${this.url}?activo=false`);
   }
 
   getPetByID(id: string){ //devuelve un animal especifico

@@ -6,5 +6,6 @@ export default interface Pets{
     size: string,
     color: string,
     castrado: boolean,
-    notes:string
+    notes:string, 
+    activo : boolean
 }
