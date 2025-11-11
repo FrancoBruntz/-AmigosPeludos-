@@ -1,0 +1,20 @@
+<section class="container">
+
+    <h1>Solicitar adopción</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <label>Mensaje para el refugio</label>
+        <textarea rows="4" formControlName="mensaje"
+            placeholder="Contanos por que queres adoptar">
+        </textarea>
+
+        <!-- feedback en tiempo real (control flow nuevo) -->
+        @if ( form.controls.mensaje.invalid && form.controls.mensaje.touched){ 
+            <div>Mensaje requerido (minimo 10 caracteres).</div>
+        }
+
+        <button type="submit" [disabled]="form.invalid">Enviar Solicitud</button>
+
+    </form>
+
+</section>
