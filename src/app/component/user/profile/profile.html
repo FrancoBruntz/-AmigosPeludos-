@@ -1,0 +1,25 @@
+<section class="profile-card" *ngIf="user()">
+  <h2>Perfil de {{ user()?.nombre }} {{ user()?.apellido }}</h2>
+
+  <div class="row">
+    <label>DNI</label><span>{{ user()?.dni }}</span>
+  </div>
+  <div class="row">
+    <label>Email</label><span>{{ user()?.email || 'No informado' }}</span>
+  </div>
+  <div class="row">
+    <label>Teléfono</label><span>{{ user()?.telefono || 'No informado' }}</span>
+  </div>
+  <div class="row">
+    <label>Dirección</label><span>{{ user()?.direccion || 'No informada' }}</span>
+  </div>
+
+  <div class="buttons">
+    <a routerLink="/user/edit">Editar perfil</a>
+    <button (click)="logout()">Cerrar sesión</button>
+  </div>
+</section>
+
+<div *ngIf="!user()">
+  <p>No hay usuario logueado. <a routerLink="/login">Iniciá sesión</a></p>
+</div>
