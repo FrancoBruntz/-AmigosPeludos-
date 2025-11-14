@@ -4,8 +4,8 @@ import { UserService, UserProfile } from '../user.service';
 
 @Component({
   selector: 'app-profile',
-  standalone: true,          // ✅ le decimos a Angular que es standalone
-  imports: [CommonModule],   // ✅ importamos CommonModule para usar *ngIf
+  standalone: true,         
+  imports: [CommonModule],   
   templateUrl: './profile.html',
   styleUrls: ['./profile.css']
 })
