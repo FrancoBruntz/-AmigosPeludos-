@@ -1,6 +1,5 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment.development';
 import Solicitud, { EstadoSolicitud } from '../models/solicitud';
 
 
@@ -12,18 +11,18 @@ export class Solicitudesservice {
   private http = inject(HttpClient);
   private base = 'http://localhost:3000/solicitudes';
 
-  // Trae todas las solicitudes de un usuario (por username como clave)
-  listByUser(username: string){
+  // Trae todas las solicitudes de un usuario (por dni como clave)
+  listByUser(dni: string){
     return this.http.get<Solicitud[]>(
-      `${this.base}?solicitanteUser=${encodeURIComponent(username)}}` // encodeURIComponent() asegura que la URL no se rompa con espacio/acentos
+      `${this.base}?solicitanteUser=${encodeURIComponent(dni)}` // encodeURIComponent() asegura que la URL no se rompa con espacio/acentos
     );
   }
 
-  // Crear solicitud nueva para un animal dado y un username
-  create(animalId: string, username: string) {
+  // Crear solicitud nueva para un animal dado y un user
+  create(animalId: string, dni: string) {
     const body: Omit<Solicitud, 'id'> = {
       animalId,
-      solicitanteUSer: username,
+      solicitanteUser: dni,
       fecha: new Date().toISOString(),
       estado: 'pendiente'
     };
@@ -31,9 +30,9 @@ export class Solicitudesservice {
   }
 
   // Consultar si el usuario ya tiene solicitudes (cualquier estado) para ese animal
-  fetchUserRequestForAnimal(animalId: string, username: string){
+  fetchUserRequestForAnimal(animalId: string, dni: string){
     return this.http.get<Solicitud[]>(
-      `${this.base}?animalId=${encodeURIComponent(animalId)}&solicitanteUser=${encodeURIComponent(username)}`
+      `${this.base}?animalId=${encodeURIComponent(animalId)}&solicitanteUser=${encodeURIComponent(dni)}`
     );
   }
 
@@ -41,6 +40,27 @@ export class Solicitudesservice {
   cambiarEstado(id: string, estado: EstadoSolicitud, comentarios?: string) {
     return this.http.patch<Solicitud>(`${this.base}/${id}`, {estado, comentarios}); 
     // patch: actualizacion parcial (solo 'estado' y 'comentarios'), no reemplaza todo el recurso
+  }
+
+
+  listAll() {
+    return this.http.get<Solicitud[]>(this.base);
+  }
+
+  list(params: {dni?: string; estado?: EstadoSolicitud} ) {
+    
+    const q: string[] = [];
+
+    if (params.dni){
+      q.push(`solicitanteUser=${encodeURIComponent(params.dni)}`);
+    }
+    if (params.estado) {
+      q.push(`estado=${encodeURIComponent(params.estado)}`);
+    }
+
+    const url = q.length ? `${this.base}?${q.join('&')}` : this.base;
+
+    return this.http.get<Solicitud[]>(url);
   }
 
 

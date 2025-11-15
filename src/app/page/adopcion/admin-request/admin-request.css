@@ -1,0 +1,18 @@
+/* Contenedor de filtros: inputs alineados en fila con separación */
+.filters {
+  display: flex;
+  gap: .5rem;
+  margin: .5rem 0 1rem;
+}
+
+/* Tabla básica full-width */
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .5rem; border-bottom: 1px solid #ddd; }
+
+/* Ejemplos de estilos por estado (podés personalizar) */
+.estado.pendiente { font-weight: 600; }
+.estado.aprobada  { color: green; }
+.estado.rechazada { color: #c00; }
+.estado.cancelada { color: #999; }
+
+.acciones button { margin-right: .5rem; }
