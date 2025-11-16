@@ -19,7 +19,7 @@
             <p>Es un {{pets.type}}</p>
             <p>Tiene {{pets.age}} años</p>
             <p>Tamaño: {{pets.size}}</p>
-            <p>Género: {{pets.sexo}}</p>
+            @if (pets && pets.sexo) { <p>Género: {{pets.sexo}}</p> }
             <p>Color: {{pets.color}}</p>
             <p>{{pets.castrado ? 'Está castrado' : 'NO está castrado'}}</p>
 
@@ -28,8 +28,12 @@
 
             <!-- BOTONES -->
             <div class="det-actions">
-                <a [routerLink]="['/edit', pets.id]">EDITAR</a>
-                <button (click)="borrarPets(pets.id)">BORRAR</button>
+                @if (auth.isAdmin()) {
+                    <a [routerLink]="['/edit', pets.id]">EDITAR</a>
+                    <button (click)="borrarPets(pets.id)">BORRAR</button>
+                } @else {
+                    <a [routerLink]="['/solicitar', pets.id]">SOLICITAR ADOPCIÓN</a>
+                }
             </div>
 
         </div>

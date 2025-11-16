@@ -1,18 +1,348 @@
-/* Contenedor de filtros: inputs alineados en fila con separación */
-.filters {
-  display: flex;
-  gap: .5rem;
-  margin: .5rem 0 1rem;
+/* Contenedor principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-/* Tabla básica full-width */
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: .5rem; border-bottom: 1px solid #ddd; }
+h1 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
 
-/* Ejemplos de estilos por estado (podés personalizar) */
-.estado.pendiente { font-weight: 600; }
-.estado.aprobada  { color: green; }
-.estado.rechazada { color: #c00; }
-.estado.cancelada { color: #999; }
+/* Contenedor de filtros */
+.filters {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
 
-.acciones button { margin-right: .5rem; }
+.filters input,
+.filters select,
+.filters button {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.filters input,
+.filters select {
+  flex: 1;
+  min-width: 150px;
+}
+
+.filters button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: none;
+  font-weight: 500;
+}
+
+.filters button:hover {
+  background-color: #0056b3;
+}
+
+/* Estados de carga y error */
+.loading {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
+  font-style: italic;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #f5c6cb;
+  margin: 1rem 0;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 2rem;
+}
+
+/* Tabla de solicitudes */
+.solicitudes-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.solicitudes-table thead {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.solicitudes-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.solicitudes-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Filas por estado */
+.solicitudes-table tbody tr {
+  transition: background-color 0.15s;
+}
+
+.solicitudes-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.solicitudes-table tbody tr.estado-pendiente {
+  background-color: #fff8e1;
+}
+
+.solicitudes-table tbody tr.estado-aprobada {
+  background-color: #e8f5e9;
+}
+
+.solicitudes-table tbody tr.estado-rechazada {
+  background-color: #ffebee;
+}
+
+/* Badge de estado */
+.estado-badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.estado-badge.pendiente {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.estado-badge.aprobada {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.estado-badge.rechazada {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.estado-badge.cancelada {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+/* Acciones (botones) */
+.acciones {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.acciones button {
+  padding: 0.5rem 0.8rem;
+  margin: 0 0.3rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.btn-aprobar {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-aprobar:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-rechazar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-rechazar:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* MODAL DE COMENTARIOS */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content h2 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.modal-info {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #007bff;
+}
+
+.modal-info p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.modal-form {
+  margin-bottom: 1.5rem;
+}
+
+.modal-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.modal-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.modal-form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.modal-actions button {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+}
+
+.btn-aprobar {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-aprobar:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-rechazar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-rechazar:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters input,
+  .filters select {
+    min-width: auto;
+  }
+
+  .solicitudes-table {
+    font-size: 0.85rem;
+  }
+
+  .solicitudes-table th,
+  .solicitudes-table td {
+    padding: 0.6rem;
+  }
+
+  .acciones button {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+}

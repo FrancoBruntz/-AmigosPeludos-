@@ -58,8 +58,42 @@
       "sexo": "Hembra",
       "color": "gris",
       "castrado": true,
-      "notes": ""
+      "notes": "",
+      "activo": false
     }
   ],
-  "solicitudes": []
+  "solicitudes": [
+    {
+      "id": "b1f5",
+      "animalId": "d6f7",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-11-16T19:41:51.062Z",
+      "estado": "aprobada",
+      "mensaje": "Quiero un gato",
+      "comentarios": ""
+    }
+  ],
+  "notificaciones": [
+    {
+      "id": "37e6",
+      "usuarioDNI": "admin",
+      "solicitudId": "b1f5",
+      "animalId": "d6f7",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para animal #d6f7",
+      "leida": true,
+      "fechaCreacion": "2025-11-16T19:41:51.072Z"
+    },
+    {
+      "id": "908e",
+      "usuarioDNI": "46112136",
+      "solicitudId": "b1f5",
+      "animalId": "d6f7",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "",
+      "leida": false,
+      "fechaCreacion": "2025-11-16T19:48:45.885Z"
+    }
+  ]
 }

@@ -4,7 +4,10 @@ export default interface Pets{
     type: string,
     age: number,
     size: string,
+    sexo?: string,
     color: string,
     castrado: boolean,
-    notes:string
+    notes:string,
+    image?: string,
+    activo?: boolean
 }

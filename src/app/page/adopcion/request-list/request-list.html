@@ -1,43 +1,33 @@
 <section class="container">
-    <h1>Mis solicitudes</h1>
+    <h1>Mis Solicitudes de Adopción</h1>
 
-    <!-- Mostrar “Cargando…” mientras esperamos -->
-    @if (loading) {
-     <p>Cargando...</p>
-    }
+    <p class="loading" *ngIf="loading">Cargando solicitudes...</p>
+    <p class="error" *ngIf="!loading && error">{{ error }}</p>
 
-    <!-- Mostrar error si ocurrió -->
-    @if (!loading && error) {
-        <p>{{ error }}</p>
-    }
-
-    <!-- tabla cuando hay datos y no hay error -->
-    @if (!loading && !error && data.length > 0){
-
-        <table>
-            <thead>
-              <tr>
+    <table class="solicitudes-table" *ngIf="!loading && !error && data.length > 0">
+        <thead>
+            <tr>
                 <th>Fecha</th>
                 <th>Animal</th>
                 <th>Estado</th>
-              </tr>  
-            </thead>
+                <th>Comentarios</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let s of data; trackBy: trackById" [class]="getEstadoClase(s.estado)">
+                <td>{{ s.fecha | date: 'short' }}</td>
+                <td><strong>{{ getNombreAnimal(s.animalId) }}</strong></td>
+                <td><span class="estado-badge" [class]="s.estado">{{ s.estado | uppercase }}</span></td>
+                <td class="comentarios">{{ s.comentarios || '-' }}</td>
+                <td class="acciones">
+                    <a [routerLink]="['/details', s.animalId]">Ver animal</a>
+                    <button *ngIf="s.estado === 'pendiente'" (click)="cancelarSolicitud(s)">Cancelar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-            <tbody>
-                @for (s of data; track s.id) {
-                    <tr>
-                        <td>{{ s.fecha | date:'short ' }}</td>
-                        <td>#{{ s.animalId }}</td>
-                        <td>{{ s.estado }}</td>
-                    </tr>
-                }
-            </tbody>            
-        </table>
-    }
-
-    <!-- vacio -->
-     @if (!loading && !error && data.length === 0){
-        <p>No tenes solicitudes.</p>
-     }
+    <p class="empty" *ngIf="!loading && !error && data.length === 0">No tenes solicitudes.</p>
 
 </section>
