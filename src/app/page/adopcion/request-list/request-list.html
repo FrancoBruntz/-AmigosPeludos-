@@ -1,0 +1,43 @@
+<section class="container">
+    <h1>Mis solicitudes</h1>
+
+    <!-- Mostrar “Cargando…” mientras esperamos -->
+    @if (loading) {
+     <p>Cargando...</p>
+    }
+
+    <!-- Mostrar error si ocurrió -->
+    @if (!loading && error) {
+        <p>{{ error }}</p>
+    }
+
+    <!-- tabla cuando hay datos y no hay error -->
+    @if (!loading && !error && data.length > 0){
+
+        <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Animal</th>
+                <th>Estado</th>
+              </tr>  
+            </thead>
+
+            <tbody>
+                @for (s of data; track s.id) {
+                    <tr>
+                        <td>{{ s.fecha | date:'short ' }}</td>
+                        <td>#{{ s.animalId }}</td>
+                        <td>{{ s.estado }}</td>
+                    </tr>
+                }
+            </tbody>            
+        </table>
+    }
+
+    <!-- vacio -->
+     @if (!loading && !error && data.length === 0){
+        <p>No tenes solicitudes.</p>
+     }
+
+</section>

@@ -1,0 +1,65 @@
+{
+  "usuarios": [
+    {
+      "user": "admin",
+      "password": "admin1234",
+      "isAdmin": true,
+      "id": "22bf"
+    },
+    {
+      "user": "46112136",
+      "password": "sofiatorti",
+      "isAdmin": false,
+      "id": "c016"
+    },
+    {
+      "id": "93d6",
+      "user": "47068044",
+      "password": "edumango",
+      "isAdmin": false
+    },
+    {
+      "id": "5381",
+      "user": "39555661",
+      "password": "soypri123",
+      "isAdmin": false
+    }
+  ],
+  "pets": [
+    {
+      "id": "1",
+      "name": "Xica",
+      "type": "Perro",
+      "age": 15,
+      "size": "Mediano",
+      "sexo": "Hembra",
+      "color": "Negro",
+      "castrado": true,
+      "notes": "Amigable con niños y otros perros"
+    },
+    {
+      "id": "42dc",
+      "name": "Kobu",
+      "type": "Perro",
+      "age": 1,
+      "size": "Pequeño",
+      "sexo": "Macho",
+      "color": "Chocolate con leche",
+      "castrado": false,
+      "notes": "Muy mimoso, ama los besitos",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261352/wmdqgalhuuw6e6v7lunv.jpg"
+    },
+    {
+      "id": "d6f7",
+      "name": "Atenea",
+      "type": "Gato",
+      "age": 5,
+      "size": "Mediano",
+      "sexo": "Hembra",
+      "color": "gris",
+      "castrado": true,
+      "notes": ""
+    }
+  ],
+  "solicitudes": []
+}

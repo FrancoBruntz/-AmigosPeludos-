@@ -1,0 +1,19 @@
+.note {
+  padding: 10px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.note.read {
+  background: #e0e0e0;
+}
+.clear-btn {
+  margin-top: 12px;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}

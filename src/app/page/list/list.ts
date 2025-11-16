@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, Signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import Pets from '../../models/pets';
@@ -12,7 +12,7 @@ import { AuthService } from '../../auth/auth-service';
   styleUrl: './list.css',
 })
 export class List implements OnInit{
-  pets: Pets[]=[];
+  pets= signal <Pets[]>([]);
 
   constructor(private listaPets: Petsservice, private router: Router, protected auth:AuthService){};
 
@@ -23,7 +23,7 @@ export class List implements OnInit{
   cargarPet(){
     this.listaPets.getPet().subscribe({
       next: (data) => {
-        this.pets = data;
+        this.pets.update(pets => [...data]);
       },
       error:(e) =>{
         alert("Algo salio mal" + e);
@@ -44,4 +44,27 @@ export class List implements OnInit{
     }) 
     }  
   } 
+
+
+  protected showOnlyAvailable = false;
+
+  // Se llama cuando cambia el toggle
+  onToggle(checked: boolean) {
+    if (checked) {
+      this.filteredPets();
+    } else {
+      this.cargarPet();
+    }
+  }
+
+  filteredPets() {
+     this.listaPets.getPetInactives().subscribe({
+      next: (data) => {
+        this.pets.update(pets => [...data]);
+      },
+      error:(e) =>{
+        alert("Algo salio mal" + e);
+      }
+    })
+  }
 }

@@ -1,12 +1,10 @@
-export default interface Pets {
-  id: string;
-  name: string;
-  type: string;
-  age: number;
-  size: string;
-  sexo: string,
-  color: string;
-  castrado: boolean;
-  notes: string;
-  image?: string;
+export default interface Pets{
+    id: string,
+    name:string,
+    type: string,
+    age: number,
+    size: string,
+    color: string,
+    castrado: boolean,
+    notes:string
 }
