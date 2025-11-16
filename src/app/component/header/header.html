@@ -11,6 +11,10 @@
             
             <a routerLink="/sobrenosotros">Sobre nosotros</a> 
             @if (auth.isLogIn()) {
+                <li><a routerLink="/user/profile">Mi Perfil</a></li>
+                <li><a routerLink="/user/favorites">Favoritos</a></li>
+                <li><a routerLink="/user/notifications">Notificaciones</a></li>
+
                 <a (click)="logout()">Cerrar sesion</a>    
             } @else {
                 <a routerLink="/login">Inciar Sesion</a>

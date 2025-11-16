@@ -10,6 +10,9 @@ import { RequestList } from './page/adopcion/request-list/request-list';
 import { RequestForm } from './page/adopcion/request-form/request-form';
 import { AdminRequest } from './page/adopcion/admin-request/admin-request';
 import { adminGuard } from './guards/admin-guard';
+import { ProfileComponent } from './component/user/profile/profile';
+import { FavoritesComponent } from './component/user/favorites/favorites';
+import { NotificationsComponent } from './component/user/notifications/notifications';
 
 export const routes: Routes = [
     {path:'', component: Home},
@@ -23,5 +26,8 @@ export const routes: Routes = [
     {path:'mis-solicitudes', component: RequestList},
     {path:'solicitar/:animalId', component: RequestForm},
     {path:'admin/solicitudes', component: AdminRequest, canMatch: [adminGuard] },
+    {path:'user/profile', component: ProfileComponent },
+    {path:'user/favorites', component: FavoritesComponent },
+    {path:'user/notifications', component: NotificationsComponent },
     {path: '**', component: Home}
 ];
