@@ -1,21 +1,39 @@
 @if (pets) {
 
-    <div class="container">
-    <h3>{{pets.name}}</h3>
-    <p>Es un {{pets.type}}</p>
-    <p>Tiene {{pets.age}} años</p>
-    <p>Tamaño: {{pets.size}}</p>
-    <p>Color: {{pets.color}}</p>
-    <p>{{pets.castrado? 'Esta castrado':'NO esta castrado'}}</p>
+    <div class="det-container">
 
-    <h3>Observaciones</h3>
-    <p>{{pets.notes}}</p>
+        <div class="det-card">
 
-    <div class="actions">
-        <button [routerLink]="['/edit', pets.id]">EDITAR</button>
-        <button (click)="borrarPets(pets.id)">BORRAR</button>
+            <!-- FOTO DEL ANIMAL -->
+            <div class="det-photo">
+                @if (pets.image) {
+                    <img [src]="pets.image" alt="Foto de {{ pets.name }}" />
+                } @else {
+                    <div class="placeholder">Sin foto</div>
+                }
+            </div>
+
+            <!-- INFORMACIÓN -->
+            <h3>{{pets.name}}</h3>
+
+            <p>Es un {{pets.type}}</p>
+            <p>Tiene {{pets.age}} años</p>
+            <p>Tamaño: {{pets.size}}</p>
+            <p>Género: {{pets.sexo}}</p>
+            <p>Color: {{pets.color}}</p>
+            <p>{{pets.castrado ? 'Está castrado' : 'NO está castrado'}}</p>
+
+            <h3>Observaciones</h3>
+            <p>{{pets.notes}}</p>
+
+            <!-- BOTONES -->
+            <div class="det-actions">
+                <a [routerLink]="['/edit', pets.id]">EDITAR</a>
+                <button (click)="borrarPets(pets.id)">BORRAR</button>
+            </div>
+
+        </div>
+
     </div>
-    
-    
-    </div>
+
 }

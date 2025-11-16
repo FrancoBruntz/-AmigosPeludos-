@@ -7,8 +7,6 @@
   font-family: 'Poppins', system-ui, sans-serif;
   color: #333;
   box-sizing: border-box;
-
-  /* clave: no recortar el dropdown */
   overflow: visible;
 }
 
@@ -21,10 +19,8 @@
   width: 100%;
   max-width: 600px;
   padding: 32px;
-
-  /* clave: permitir que el menú salga del card */
   overflow: visible;
-  position: relative; /* para z-index locales si hiciera falta */
+  position: relative;
 }
 
 /* ===== TÍTULO ===== */
@@ -37,7 +33,6 @@
 
 /* ===== CAMPOS DEL FORMULARIO ===== */
 form {
-  /* clave: no recortar elementos hijos (select abierto) */
   overflow: visible;
 }
 
@@ -45,8 +40,8 @@ form div {
   display: flex;
   flex-direction: column;
   margin-bottom: 18px;
-  position: relative;   /* base para z-index del select */
-  overflow: visible;    /* no recortar el dropdown */
+  position: relative;
+  overflow: visible;
 }
 
 label {
@@ -67,7 +62,6 @@ textarea {
   transition: border-color 0.2s ease;
 }
 
-/* clave: aseguro que el select quede por encima de overlays decorativos */
 select {
   position: relative;
   z-index: 10;
@@ -82,45 +76,50 @@ textarea:focus {
   background-color: #fff;
 }
 
-/* ===== RADIO BUTTONS ===== */
-div li {
+/* ===== RADIO BUTTONS (TAMAÑO) ===== */
+.size-group {
+  margin-bottom: 18px;
+}
+
+.size-label {
   color: #ddd;
-  list-style: none;
   margin-bottom: 8px;
+  font-weight: 600;
 }
 
-/* contenedor de los radios */
-div:has(input[type="radio"]) {
+.size-options {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-div:has(input[type="radio"]) input[type="radio"],
-div:has(input[type="radio"]) label {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 10px;
-}
-
-/* Agrupamos radios en una sola línea */
-div:has(input[type="radio"]) {
-  flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-input[type="radio"] {
+.size-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fafafa;
+}
+
+.size-option input[type="radio"] {
   accent-color: #4a7dcf;
   transform: scale(1.2);
 }
 
 /* ===== CHECKBOX ===== */
+.check-group {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.check-group label {
+  margin-bottom: 0;
+}
+
 input[type="checkbox"] {
   accent-color: #4a7dcf;
   transform: scale(1.2);
-  margin-top: 4px;
 }
 
 /* ===== MENSAJES DE ERROR ===== */
@@ -166,6 +165,93 @@ textarea {
 
 .actions button:nth-of-type(2):hover {
   background-color: #d65c3e;
+}
+
+/* ===================================================== */
+/* ================== SECCIÓN IMAGEN =================== */
+/* ===================================================== */
+
+.image-section {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.image-section label {
+  margin-bottom: 4px;
+}
+
+/* Recuadro de carga */
+.drop-zone {
+  width: 100%;
+  max-width: 100%;
+  height: 160px;
+  border: 2px dashed #4a7dcf;
+  border-radius: 10px;
+  background-color: rgba(250, 250, 250, 0.9);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 12px;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.drop-zone.hovering {
+  background-color: #e3efff;
+  border-color: #3b6ab5;
+  transform: scale(1.01);
+}
+
+.drop-text p {
+  color: #333;
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+}
+
+.drop-text small {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+/* Vista previa */
+.preview-container {
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-remove {
+  margin-top: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #e76f51;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-remove:hover {
+  background-color: #d65c3e;
+  transform: scale(1.03);
 }
 
 /* ===== RESPONSIVE ===== */

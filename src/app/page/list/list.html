@@ -1,16 +1,32 @@
 <h2>Nuestros animalitos del refugio</h2>
 
-<ul>
-    @for (pet of pets; track $index) {
-        <li>
-           
-            {{pet.name}} <p>quiere ser parte de tu familia!❤</p>
-            <a [routerLink]="['/details', pet.id]">Detalles</a>
-            @if (this.auth.isAdmin()) {
-             <a [routerLink]="['/edit', pet.id]">Editar</a>
-            <a (click)="eliminarPet(pet.id)">Eliminar</a>   
-            }
-            
-        </li>
-    }
+<ul class="pet-grid">
+  @for (pet of pets; track $index) {
+    <li class="pet-card">
+
+      <!-- FOTO DEL ANIMAL -->
+      <div class="pet-image">
+        @if (pet.image) {
+          <img [src]="pet.image" alt="Foto de {{ pet.name }}" />
+        } @else {
+          <div class="pet-image placeholder">Sin foto</div>
+        }
+      </div>
+
+      <!-- INFO -->
+      <h3 class="pet-name">{{ pet.name }}</h3>
+      <p class="pet-desc">quiere ser parte de tu familia! ❤</p>
+
+      <!-- BOTONES -->
+      <div class="pet-actions">
+        <a [routerLink]="['/details', pet.id]">Detalles</a>
+
+        @if (this.auth.isAdmin()) {
+          <a [routerLink]="['/edit', pet.id]">Editar</a>
+          <a (click)="eliminarPet(pet.id)">Eliminar</a>
+        }
+      </div>
+
+    </li>
+  }
 </ul>

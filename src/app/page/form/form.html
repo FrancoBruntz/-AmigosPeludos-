@@ -1,75 +1,183 @@
 <div id="contenedorForm">
 
-<h2>{{petId? 'Editar animal' : 'Agregar animal'}} </h2>
+  <h2>{{ petId ? 'Editar animal' : 'Agregar animal' }}</h2>
 
-<form [formGroup]="petForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="petForm" (ngSubmit)="onSubmit()">
 
+    <!-- NOMBRE -->
     <div>
-        <label for="name">Nombre (*)</label>
-        <input type="text" id="name" formControlName="name" placeholder="Ingresa el nombre">
-        @if (petForm.controls['name'].errors?.['required'] && petForm.get('name')?.touched) {
-            <p>El campo es obligatorio</p>
-        }
-    </div>
-
-    <div>
-        <label for="type" >Tipo de animal (*)</label> <!-- menu desplegable -->
-            <select name="type" id="type" formControlName="type">
-            <option value="" selected disabled>Seleccione una opcion</option>
-            @for (t of types; track $index) {
-                <option [value]="t">{{t}}</option>
-            }
-        </select>
-        @if (petForm.controls['type'].errors?.['required'] && petForm.get('type')?.touched) {
-            <p>El campo es obligatorio</p>
-        }
-    </div>
-
-    <div>
-         <label for="age">Edad (*)</label>
-    <input type="number" id="age" formControlName="age" placeholder="Ingrese la edad">
-    @if(petForm.controls['age'].errors?.['required'] && petForm.get('age')?.touched){
+      <label for="name">Nombre (*)</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        placeholder="Ingresa el nombre" />
+      @if (petForm.controls['name'].errors?.['required'] && petForm.get('name')?.touched) {
         <p>El campo es obligatorio</p>
-    }
+      }
     </div>
 
+    <!-- TIPO -->
     <div>
-       <li>Tamaño (*)</li>
+      <label for="type">Tipo de animal (*)</label>
+      <select
+        name="type"
+        id="type"
+        formControlName="type">
+        <option value="" selected disabled>Seleccione una opcion</option>
+        @for (t of types; track $index) {
+          <option [value]="t">{{ t }}</option>
+        }
+      </select>
+      @if (petForm.controls['type'].errors?.['required'] && petForm.get('type')?.touched) {
+        <p>El campo es obligatorio</p>
+      }
+    </div>
+
+    <!-- EDAD -->
+    <div>
+      <label for="age">Edad (*)</label>
+      <input
+        type="number"
+        id="age"
+        formControlName="age"
+        placeholder="Ingrese la edad" />
+      @if (petForm.controls['age'].errors?.['required'] && petForm.get('age')?.touched) {
+        <p>El campo es obligatorio</p>
+      }
+    </div>
+
+    <!-- TAMAÑO (RADIOS) -->
+    <div class="size-group">
+      <span class="size-label">Tamaño (*)</span>
+      <div class="size-options">
         @for (size of sizes; track $index) {
-          <input type="radio" [id]="`size-${size}`" [value]="size" formControlName="size">
-          <label [for]="`size-${size}`">{{size}}</label>  
+          <label class="size-option">
+            <input
+              type="radio"
+              [value]="size"
+              formControlName="size" />
+            <span>{{ size }}</span>
+          </label>
         }
-        @if (petForm.controls['size'].errors?.['required'] && petForm.get('size')?.touched) {
-            <p>El campo el obligatorio</p>
-        }
-
+      </div>
+      @if (petForm.controls['size'].errors?.['required'] && petForm.get('size')?.touched) {
+        <p>El campo es obligatorio</p>
+      }
     </div>
 
+    <!-- SEXO -->
     <div>
-        <label for="color">Color (*)</label>
-        <input type="text" id="color" formControlName="color" placeholder="Ingresa el color">
-        @if (petForm.controls['color'].errors?.['required'] && petForm.get('color')?.touched) {
-            <p>El campo es obligatorio</p>
+      <label for="sexo">Sexo (*)</label>
+      <select
+        name="sexo"
+        id="sexo"
+        formControlName="sexo">
+        <option value="" selected disabled>Seleccione una opcion</option>
+        @for (s of sexo; track $index) {
+          <option [value]="s">{{ s }}</option>
         }
+      </select>
+      @if (petForm.controls['sexo']?.errors?.['required'] && petForm.get('sexo')?.touched) {
+        <p>El campo es obligatorio</p>
+      }
     </div>
 
+    <!-- COLOR -->
     <div>
-        <label for="castrado">El animal esta castrado</label>
-        <input type="checkbox" name="castrado" id="castrado" formControlName="castrado">
-        @if (petForm.controls['castrado'].errors?.['required'] && petForm.get('castrado')?.touched) {
-            <p>El campo es obligatorio</p>
+      <label for="color">Color (*)</label>
+      <input
+        type="text"
+        id="color"
+        formControlName="color"
+        placeholder="Ingresa el color" />
+      @if (petForm.controls['color'].errors?.['required'] && petForm.get('color')?.touched) {
+        <p>El campo es obligatorio</p>
+      }
+    </div>
+
+    <!-- CASTRADO -->
+    <div class="check-group">
+      <label for="castrado">El animal está castrado</label>
+      <input
+        type="checkbox"
+        name="castrado"
+        id="castrado"
+        formControlName="castrado" />
+      @if (petForm.controls['castrado'].errors?.['required'] && petForm.get('castrado')?.touched) {
+        <p>El campo es obligatorio</p>
+      }
+    </div>
+
+    <!-- OBSERVACIONES -->
+    <div>
+      <label for="notes">Observaciones</label>
+      <textarea
+        id="notes"
+        formControlName="notes"
+        rows="4"></textarea>
+    </div>
+
+    <!-- ================== SECCIÓN IMAGEN ================== -->
+    <div class="image-section">
+      <label>Foto del animal</label>
+
+      <div
+        class="drop-zone"
+        [class.hovering]="isHovering"
+        (click)="fileInput.click()"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)"
+      >
+
+        <input
+          type="file"
+          #fileInput
+          (change)="onFileSelected($event)"
+          style="display: none"
+          accept="image/*" />
+
+        @if (!imagePreview) {
+          <div class="drop-text">
+            <p>Arrastrá la foto aquí o hacé clic para subir</p>
+            <small>JPG, PNG, WEBP</small>
+          </div>
+        } @else {
+          <div class="preview-container">
+            <img
+              [src]="imagePreview"
+              alt="Vista previa"
+              class="preview-img" />
+            <button
+              type="button"
+              (click)="clearImage(); $event.stopPropagation()"
+              class="btn-remove">
+              Cambiar imagen
+            </button>
+          </div>
         }
-    </div>
+      </div>
 
-    <div>
-        <label for="notes">Obeservaciones </label>
-        <textarea type="notes" id="notes" formControlName="notes" rows="4"></textarea>
+      <!-- para ligar el control 'image' del formulario -->
+      <input type="hidden" formControlName="image" />
     </div>
+    <!-- ==================================================== -->
 
+    <!-- BOTONES -->
     <div class="actions">
-        <button type="submit" [disabled]="petForm.invalid">GUARDAR FORMULARIO</button>
-        <button type="reset">LIMPIAR FORMULARIO</button>
+      <button
+        type="submit"
+        [disabled]="petForm.invalid || isUploading">
+        @if (isUploading) {
+          GUARDANDO...
+        } @else {
+          GUARDAR FORMULARIO
+        }
+      </button>
+
+      <button type="reset">LIMPIAR FORMULARIO</button>
     </div>
 
-</form>
+  </form>
 </div>
