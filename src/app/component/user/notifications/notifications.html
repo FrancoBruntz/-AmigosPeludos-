@@ -1,0 +1,17 @@
+<div class="notifications-container">
+  <h2>Notificaciones</h2>
+
+  <!-- Mostrar mensaje si no hay notificaciones -->
+  <p *ngIf="notifications.length === 0">No tienes notificaciones.</p>
+
+  <!-- Lista de notificaciones -->
+  <ul>
+    <li *ngFor="let notification of notifications">
+      <span [class.read]="notification.read">{{ notification.text }}</span>
+      <button *ngIf="!notification.read" (click)="markAsRead(notification)">Marcar como leída</button>
+    </li>
+  </ul>
+
+  <!-- Botón para limpiar todas las notificaciones -->
+  <button *ngIf="notifications.length > 0" (click)="clearNotifications()">Borrar todas</button>
+</div>
