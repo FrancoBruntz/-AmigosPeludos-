@@ -1,8 +1,8 @@
 import { CommonModule, DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Solicitudesservice } from '../../../services/solicitudesservice';
-import { AuthService } from '../../../auth/auth-service';
 import Solicitud from '../../../models/solicitud';
+import { UserService } from '../../../component/user/user.service';
 
 @Component({
   selector: 'app-request-list',
@@ -13,7 +13,9 @@ import Solicitud from '../../../models/solicitud';
 })
 export class RequestList implements OnInit {
   private solicitudes = inject(Solicitudesservice);
-  private auth = inject(AuthService);
+
+  private userService = inject(UserService);
+  //private auth = inject(AuthService);
   
   // Estado de la vista
   loading = true; // para mosrtar "cargando..." mientras llega la data
@@ -22,18 +24,18 @@ export class RequestList implements OnInit {
 
   ngOnInit(): void {
     
-    // Obtenemos el username actual desde AuthService
-    const username = this.auth.getCurrentUsername();
+    // Leer dni desde el UserService
+    const dni  = this.userService.getUser()?.dni ?? null;
 
-    // Si no hay usuario en sesion, informamo y salimos
-    if(!username){
+    // Si no hay usuario en sesion, informamos y salimos
+    if(!dni){
       this.error = 'Inicia sesion para ver tus solicitudes';
       this.loading = false;
       return; // Si no el username del listByUser tira error porque no asegura que no esa null
     }
 
     // Pedimos al json-server las solicitudes de este usuario
-    this.solicitudes.listByUser(username).subscribe({
+    this.solicitudes.listByUser(dni).subscribe({
       // onNext: guardamos y apagamos el loading
       next: list => { this.data = list; 
         this.loading = false; },
