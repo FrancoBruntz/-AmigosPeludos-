@@ -11,6 +11,9 @@ import { RequestForm } from './page/adopcion/request-form/request-form';
 import { AdminRequest } from './page/adopcion/admin-request/admin-request';
 import { NotificationsComponent } from './component/user/notifications/notifications';
 import { adminGuard } from './guards/admin-guard';
+import { DonationForm } from './component/donations/donation-form/donation-form';
+import { DonationList } from './component/donations/donation-list/donation-list';
+import { DonationDetails } from './component/donations/donation-details/donation-details';
 
 export const routes: Routes = [
     {path:'', component: Home},
@@ -25,5 +28,9 @@ export const routes: Routes = [
     {path:'solicitar/:animalId', component: RequestForm},
     {path:'admin/solicitudes', component: AdminRequest, canMatch: [adminGuard] },
     {path:'notifications', component: NotificationsComponent},
+    {path: 'donar' , component: DonationForm},
+    {path: 'mis-donaciones', component: DonationList}, //?????
+    {path: 'admin/donaciones', component: DonationList},
+    {path: 'admin/donaciones/:id', component: DonationDetails},
     {path: '**', component: Home}
 ];

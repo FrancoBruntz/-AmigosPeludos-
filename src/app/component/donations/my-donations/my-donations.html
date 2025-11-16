@@ -1,0 +1,16 @@
+<h2>Mis donaciones</h2>
+
+@if (myDonations.length === 0) {
+  <p>No realizaste ninguna donación aún.</p>
+} @else {
+  <ul>
+    @for (d of myDonations; track d.id) {
+      <li>
+        ${{ d.amount }} — {{ d.method }} — {{ d.date | date :'dd/MM/yyyy HH:mm' }}
+        @if (d.message) {
+          <p>"{{ d.message }}"</p>
+        }
+      </li>
+    }
+  </ul>
+}

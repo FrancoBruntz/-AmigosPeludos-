@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
 import { Donationsservice } from '../../../services/donationsservice';
 import { Router } from '@angular/router';
 import { Donation } from '../../../models/donation';
@@ -7,7 +7,7 @@ import { AuthService } from '../../../auth/auth-service';
 
 @Component({
   selector: 'app-donation-form',
-  imports: [],
+  imports: [ReactiveFormsModule,ɵInternalFormsSharedModule],
   templateUrl: './donation-form.html',
   styleUrl: './donation-form.css',
 })
@@ -62,7 +62,7 @@ export class DonationForm implements OnInit{
     this.donationsServ.addDonation(donation).subscribe({
       next: () => {
         alert('¡Gracias por tu donación! 💚');
-        this.router.navigate(['/mis-donaciones']); // o donde quieras redirigir
+        this.router.navigate(['/mis-donaciones']); //
       },
       error: () => {
         alert('Ocurrió un error al registrar la donación.');
