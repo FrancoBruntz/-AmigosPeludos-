@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Solicitudesservice } from '../../../services/solicitudesservice';
+import { NotificacionService } from '../../../services/notificacionservice';
 import { AuthService } from '../../../auth/auth-service';
 import { UserService } from '../../../component/user/user.service';
 
@@ -18,6 +19,7 @@ export class RequestForm {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private solicitudes = inject(Solicitudesservice);
+  private notifService = inject(NotificacionService);
   private auth = inject(AuthService);
 
   private userService = inject(UserService);
@@ -57,8 +59,16 @@ export class RequestForm {
         }
 
         // Crear la solicitud (POST). fecha/estado los setea el servicio
-        this.solicitudes.create(this.animalId, dni).subscribe({
-          next: () => {
+        const mensaje: string | undefined = this.form.value.mensaje || undefined;
+        this.solicitudes.create(this.animalId, dni, mensaje).subscribe({
+          next: (created) => {
+            // Crear notificación para admin(s)
+            const adminMsg = `Nueva solicitud de ${dni} para animal #${this.animalId}`;
+            // En json-server no hay lógica para múltiples admins; creamos una notificación dirigida a 'admin'
+            this.notifService.send('admin', created.id, this.animalId, 'comentario' as any, adminMsg).subscribe({
+              error: () => console.warn('No se pudo notificar al admin')
+            });
+
             alert('Solicitud enviada.');
             this.router.navigateByUrl('/mis-solicitudes');
           },

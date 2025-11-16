@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Pets from '../../models/pets';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Petsservice } from '../../services/petsservice';
+import { AuthService } from '../../auth/auth-service';
 
 @Component({
   selector: 'app-details',
@@ -14,7 +15,8 @@ export class Details implements OnInit{
   pets?: Pets;
 
   constructor(private petsService: Petsservice,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              protected auth: AuthService
   ){}
 
   ngOnInit(): void {

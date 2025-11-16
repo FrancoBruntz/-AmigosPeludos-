@@ -114,7 +114,6 @@ h2 {
   background-color: #d65c3e;
 }
 
-<<<<<<< HEAD
 /* RESPONSIVE: EN CELU SE VEN 1 O 2 POR FILA SEGÚN ANCHO */
 @media (max-width: 600px) {
   .pet-grid {
@@ -126,8 +125,6 @@ h2 {
     height: 200px;
   }
 }
-
-=======
 
 /* Barra del filtro */
 .filter-bar {
@@ -186,4 +183,3 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(24px);
 }
->>>>>>> 470aa20e347d3dda28e37b533d706caf2e788ce6

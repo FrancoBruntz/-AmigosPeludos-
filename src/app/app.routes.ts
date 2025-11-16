@@ -9,6 +9,7 @@ import { Registro } from './component/registro/registro';
 import { RequestList } from './page/adopcion/request-list/request-list';
 import { RequestForm } from './page/adopcion/request-form/request-form';
 import { AdminRequest } from './page/adopcion/admin-request/admin-request';
+import { NotificationsComponent } from './component/user/notifications/notifications';
 import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
@@ -23,5 +24,6 @@ export const routes: Routes = [
     {path:'mis-solicitudes', component: RequestList},
     {path:'solicitar/:animalId', component: RequestForm},
     {path:'admin/solicitudes', component: AdminRequest, canMatch: [adminGuard] },
+    {path:'notifications', component: NotificationsComponent},
     {path: '**', component: Home}
 ];

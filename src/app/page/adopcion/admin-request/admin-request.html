@@ -1,5 +1,5 @@
 <section class="container">
-  <h1>Solicitudes (Admin)</h1>
+  <h1>Solicitudes de Adopción (Admin)</h1>
 
   <!-- Filtros: DNI y Estado. (ngSubmit) llama a buscar().  -->
   <form class="filters" (ngSubmit)="buscar()">
@@ -20,16 +20,16 @@
   </form>
 
   <!-- Estados de carga y error -->
-  @if (loading) { <p>Cargando…</p> }
-  @if (!loading && error) { <p>{{ error }}</p> }
+  @if (loading) { <p class="loading">Cargando…</p> }
+  @if (!loading && error) { <p class="error">{{ error }}</p> }
 
   <!-- Tabla principal: se muestra solo si hay datos y no hay error -->
   @if (!loading && !error && data.length > 0) {
-    <table>
+    <table class="solicitudes-table">
       <thead>
         <tr>
           <th>Fecha</th>
-          <th>DNI</th>
+          <th>DNI Solicitante</th>
           <th>Animal</th>
           <th>Estado</th>
           <th>Acciones</th>
@@ -38,22 +38,26 @@
       <tbody>
         <!-- Recorremos solicitudes con el control flow nuevo (@for) -->
         @for (s of data; track s.id) {
-          <tr>
+          <tr [class]="'estado-' + s.estado">
             <!-- DatePipe formatea ISO a legible -->
             <td>{{ s.fecha | date:'short' }}</td>
             <!-- En solicitanteUser guardamos el DNI -->
             <td>{{ s.solicitanteUser }}</td>
-            <!-- Mostramos el id del animal; más adelante podés joinear para ver el nombre -->
-            <td>#{{ s.animalId }}</td>
+            <!-- Mostramos el nombre del animal -->
+            <td><strong>{{ getNombreAnimal(s.animalId) }}</strong></td>
 
             <!-- Clase por estado para estilizar con CSS -->
-            <td class="estado {{s.estado}}">{{ s.estado }}</td>
+            <td>
+              <span class="estado-badge" [class]="s.estado">
+                {{ s.estado | uppercase }}
+              </span>
+            </td>
 
             <td class="acciones">
               <!-- Solo si está 'pendiente' mostramos los botones de moderación -->
               @if (s.estado === 'pendiente') {
-                <button (click)="aprobar(s)">Aprobar</button>
-                <button (click)="rechazar(s)">Rechazar</button>
+                <button class="btn-aprobar" (click)="aprobar(s)">✓ Aprobar</button>
+                <button class="btn-rechazar" (click)="rechazar(s)">✕ Rechazar</button>
               }
             </td>
           </tr>
@@ -64,6 +68,40 @@
 
   <!-- Estado vacío -->
   @if (!loading && !error && data.length === 0) {
-    <p>Sin resultados.</p>
+    <p class="empty">Sin resultados.</p>
   }
 </section>
+
+<!-- MODAL DE COMENTARIOS -->
+@if (showComentariosModal && selectedSolicitud) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2>{{ modalAccion === 'aprobar' ? 'Aprobar Solicitud' : 'Rechazar Solicitud' }}</h2>
+      
+      <div class="modal-info">
+        <p><strong>Solicitante (DNI):</strong> {{ selectedSolicitud.solicitanteUser }}</p>
+        <p><strong>Animal:</strong> {{ getNombreAnimal(selectedSolicitud.animalId) }}</p>
+        <p><strong>Fecha Solicitud:</strong> {{ selectedSolicitud.fecha | date:'short' }}</p>
+      </div>
+
+      <div class="modal-form">
+        <label for="comentarios">Comentarios (opcional):</label>
+        <textarea 
+          id="comentarios"
+          [(ngModel)]="comentariosText" 
+          placeholder="Agrega comentarios para el adoptante..."
+          rows="4">
+        </textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+        <button 
+          [class]="'btn-' + modalAccion" 
+          (click)="confirmarAccion()">
+          {{ modalAccion === 'aprobar' ? 'Aprobar' : 'Rechazar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

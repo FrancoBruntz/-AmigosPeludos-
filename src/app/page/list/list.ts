@@ -17,13 +17,21 @@ export class List implements OnInit{
   constructor(private listaPets: Petsservice, private router: Router, protected auth:AuthService){};
 
   ngOnInit() {
-   this.cargarPet();
+   // Por defecto cargar solo animales activos (disponibles)
+   this.listaPets.getPetActivos().subscribe({
+     next: (data) => {
+       this.pets.set([...data]);
+     },
+     error:(e) =>{
+       alert("Algo salio mal" + e);
+     }
+   });
   }
 
   cargarPet(){
-    this.listaPets.getPet().subscribe({
+    this.listaPets.getPetActivos().subscribe({
       next: (data) => {
-        this.pets.update(pets => [...data]);
+        this.pets.set([...data]);
       },
       error:(e) =>{
         alert("Algo salio mal" + e);
@@ -50,6 +58,7 @@ export class List implements OnInit{
 
   // Se llama cuando cambia el toggle
   onToggle(checked: boolean) {
+    this.showOnlyAvailable = checked;
     if (checked) {
       this.filteredPets();
     } else {
@@ -58,9 +67,11 @@ export class List implements OnInit{
   }
 
   filteredPets() {
+     // Mostrar todos los animales inactivos (adoptados)
      this.listaPets.getPetInactives().subscribe({
       next: (data) => {
-        this.pets.update(pets => [...data]);
+        console.log('Animales inactivos:', data);
+        this.pets.set([...data]);
       },
       error:(e) =>{
         alert("Algo salio mal" + e);

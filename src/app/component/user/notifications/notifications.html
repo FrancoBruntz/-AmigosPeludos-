@@ -1,17 +1,49 @@
 <div class="notifications-container">
   <h2>Notificaciones</h2>
 
-  <!-- Mostrar mensaje si no hay notificaciones -->
-  <p *ngIf="notifications.length === 0">No tienes notificaciones.</p>
+  <!-- Cargando -->
+  @if (loading) {
+    <p>Cargando notificaciones...</p>
+  }
+
+  <!-- Error -->
+  @if (!loading && error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  <!-- Sin notificaciones -->
+  @if (!loading && !error && notifications.length === 0) {
+    <p>No tienes notificaciones.</p>
+  }
 
   <!-- Lista de notificaciones -->
-  <ul>
-    <li *ngFor="let notification of notifications">
-      <span [class.read]="notification.read">{{ notification.text }}</span>
-      <button *ngIf="!notification.read" (click)="markAsRead(notification)">Marcar como leída</button>
-    </li>
-  </ul>
+  @if (!loading && !error && notifications.length > 0) {
+    <ul class="notifications-list">
+      @for (notification of notifications; track notification.id) {
+        <li [class.unread]="!notification.leida" class="notification-item">
+          <div class="notification-content">
+            <strong class="notification-type" [class]="notification.tipo">
+              {{ notification.tipo | uppercase }}
+            </strong>
+            <p class="notification-message">{{ notification.mensaje }}</p>
+            @if (notification.comentarios) {
+              <p class="notification-comments">Comentarios: {{ notification.comentarios }}</p>
+            }
+            <small class="notification-date">{{ notification.fechaCreacion | date:'short' }}</small>
+          </div>
+          <div class="notification-actions">
+            @if (!notification.leida) {
+              <button (click)="markAsRead(notification)" class="btn-mark">Marcar como leída</button>
+            }
+            <button (click)="deleteNotification(notification)" class="btn-delete">Eliminar</button>
+          </div>
+        </li>
+      }
+    </ul>
 
-  <!-- Botón para limpiar todas las notificaciones -->
-  <button *ngIf="notifications.length > 0" (click)="clearNotifications()">Borrar todas</button>
+    <!-- Botón para borrar todas -->
+    @if (notifications.length > 0) {
+      <button (click)="clearAllNotifications()" class="btn-clear-all">Borrar todas</button>
+    }
+  }
 </div>

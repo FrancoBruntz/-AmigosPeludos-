@@ -19,12 +19,13 @@ export class Solicitudesservice {
   }
 
   // Crear solicitud nueva para un animal dado y un user
-  create(animalId: string, dni: string) {
+  create(animalId: string, dni: string, mensaje?: string) {
     const body: Omit<Solicitud, 'id'> = {
       animalId,
       solicitanteUser: dni,
       fecha: new Date().toISOString(),
-      estado: 'pendiente'
+      estado: 'pendiente',
+      mensaje
     };
     return this.http.post<Solicitud>(this.base, body as any);
   }
@@ -45,6 +46,11 @@ export class Solicitudesservice {
 
   listAll() {
     return this.http.get<Solicitud[]>(this.base);
+  }
+
+  // Eliminar/Cancelar una solicitud por id
+  delete(id: string) {
+    return this.http.delete<void>(`${this.base}/${id}`);
   }
 
   list(params: {dni?: string; estado?: EstadoSolicitud} ) {
