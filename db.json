@@ -199,7 +199,7 @@
       "castrado": true,
       "notes": "Ama salir a pasear",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262915/fiopausijsditkgcyk1t.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "dea6",
@@ -243,8 +243,18 @@
       "animalId": "1",
       "solicitanteUser": "11111111",
       "fecha": "2025-11-17T01:21:00.496Z",
-      "estado": "pendiente",
-      "mensaje": "Amo los animales"
+      "estado": "rechazada",
+      "mensaje": "Amo los animales",
+      "comentarios": "Xica esta bajo control medico, por el momento no puede ser adoptada"
+    },
+    {
+      "id": "9e7e",
+      "animalId": "a394",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-11-17T12:00:38.570Z",
+      "estado": "aprobada",
+      "mensaje": "Toda la vida quise tener un salchicha y esta es mi oportunidad para poder darle una mejor vida a el y que me acompañe a mi",
+      "comentarios": "Felicitaciones! Ya son familia"
     }
   ],
   "notificaciones": [
@@ -276,8 +286,40 @@
       "animalId": "1",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para animal #1",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-11-17T01:21:00.528Z"
+    },
+    {
+      "id": "1185",
+      "usuarioDNI": "admin",
+      "solicitudId": "9e7e",
+      "animalId": "a394",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para animal #a394",
+      "leida": true,
+      "fechaCreacion": "2025-11-17T12:00:38.586Z"
+    },
+    {
+      "id": "f0ea",
+      "usuarioDNI": "11111111",
+      "solicitudId": "e5a1",
+      "animalId": "1",
+      "tipo": "rechazada",
+      "mensaje": "Lamentablemente, tu solicitud fue rechazada.",
+      "comentarios": "Xica esta bajo control medico, por el momento no puede ser adoptada",
+      "leida": false,
+      "fechaCreacion": "2025-11-17T12:04:24.819Z"
+    },
+    {
+      "id": "d6ca",
+      "usuarioDNI": "46112136",
+      "solicitudId": "9e7e",
+      "animalId": "a394",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "Felicitaciones! Ya son familia",
+      "leida": false,
+      "fechaCreacion": "2025-11-17T12:05:06.189Z"
     }
   ],
   "donations": [
@@ -288,6 +330,14 @@
       "method": "Transferencia",
       "message": "",
       "date": "2025-11-17T02:28:12.821Z"
+    },
+    {
+      "id": "8986",
+      "userId": "46112136",
+      "amount": 10000,
+      "method": "Transferencia",
+      "message": "Espero que los animalitos puedan comer un rico pollito con esta donacion",
+      "date": "2025-11-17T11:58:10.649Z"
     }
   ]
 }
