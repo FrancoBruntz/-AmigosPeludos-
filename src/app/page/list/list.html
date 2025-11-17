@@ -1,10 +1,10 @@
-@if (!showOnlyAvailable) {
+@if(!showOnlyAvailable){
   <h2>Nuestros animalitos del refugio</h2>
-} @else {
+}@else {
   <h2>Nuestro historial de animalitos</h2>
 }
 
-<!-- Toggle historial (solo admin) -->
+<!-- Toggle de filtro - solo para admin -->
 @if (auth.isAdmin()) {
   <div class="filter-bar">
     <label class="switch">
@@ -15,36 +15,28 @@
   </div>
 }
 
-<!-- FILTRO POR TIPO (perro/gato) -->
-<div class="type-filter">
-  <label>Filtrar por tipo:</label>
-  <select [(ngModel)]="filterType" (change)="applyTypeFilter()">
-    <option value="Todos">Todos</option>
-    <option value="Perro">Perros</option>
-    <option value="Gato">Gatos</option>
-  </select>
-</div>
-
 <!-- LISTA DE TARJETAS -->
-<div class="cards-grid">
+<div class="cards">
   @for (pet of pets(); track $index) {
+
     <div class="card">
 
-      <img class="pet-img" [src]="pet.img" alt="Imagen de {{ pet.name }}">
+      <img [src]="pet.img" alt="{{ pet.name }}" class="pet-img">
 
-      <h3>{{ pet.name }}</h3>
+      <h3>{{pet.name}}</h3>
 
-      <p class="love-msg">❤ ¡Quiere ser parte de tu familia!</p>
+      <p class="family-msg">Quiere ser parte de tu familia ❤</p>
 
-      <div class="actions">
-        <a class="btn-details" [routerLink]="['/details', pet.id]">Detalles</a>
+      <div class="card-actions">
+        <a class="btn details" [routerLink]="['/details', pet.id]">Detalles</a>
 
         @if (auth.isAdmin()) {
-          <a class="btn-edit" [routerLink]="['/edit', pet.id]">Editar</a>
-          <button class="btn-delete" (click)="eliminarPet(pet.id)">Eliminar</button>
+          <a class="btn edit" [routerLink]="['/edit', pet.id]">Editar</a>
+          <button class="btn delete" (click)="eliminarPet(pet.id)">Eliminar</button>
         }
       </div>
 
     </div>
+
   }
 </div>
