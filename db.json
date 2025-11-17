@@ -23,6 +23,12 @@
       "user": "39555661",
       "password": "soypri123",
       "isAdmin": false
+    },
+    {
+      "id": "aea5",
+      "user": "11111111",
+      "password": "karina1",
+      "isAdmin": false
     }
   ],
   "pets": [
@@ -58,8 +64,60 @@
       "sexo": "Hembra",
       "color": "gris",
       "castrado": true,
-      "notes": ""
+      "notes": "",
+      "activo": false
     }
   ],
-  "solicitudes": []
+  "solicitudes": [
+    {
+      "id": "b1f5",
+      "animalId": "d6f7",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-11-16T19:41:51.062Z",
+      "estado": "aprobada",
+      "mensaje": "Quiero un gato",
+      "comentarios": ""
+    },
+    {
+      "id": "e5a1",
+      "animalId": "1",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-11-17T01:21:00.496Z",
+      "estado": "pendiente",
+      "mensaje": "Amo los animales"
+    }
+  ],
+  "notificaciones": [
+    {
+      "id": "37e6",
+      "usuarioDNI": "admin",
+      "solicitudId": "b1f5",
+      "animalId": "d6f7",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para animal #d6f7",
+      "leida": true,
+      "fechaCreacion": "2025-11-16T19:41:51.072Z"
+    },
+    {
+      "id": "908e",
+      "usuarioDNI": "46112136",
+      "solicitudId": "b1f5",
+      "animalId": "d6f7",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "",
+      "leida": false,
+      "fechaCreacion": "2025-11-16T19:48:45.885Z"
+    },
+    {
+      "id": "00d6",
+      "usuarioDNI": "admin",
+      "solicitudId": "e5a1",
+      "animalId": "1",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para animal #1",
+      "leida": false,
+      "fechaCreacion": "2025-11-17T01:21:00.528Z"
+    }
+  ]
 }

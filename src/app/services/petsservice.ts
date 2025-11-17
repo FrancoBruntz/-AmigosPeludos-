@@ -10,11 +10,15 @@ export class Petsservice {
 
   constructor(private http: HttpClient){}
 
-  getPet(){ //devuelve la lsita completa de animales =>METODO GET
-   return this.http.get<Pets[]>(`${this.url}?activo=true`);
+  getPet(){ //devuelve la lista completa de animales (activos e inactivos)
+   return this.http.get<Pets[]>(this.url);
   }
 
-  getPetInactives(){ //devuelve la lsita completa de animales inactivos
+  getPetActivos(){ //devuelve solo animales activos (disponibles)
+    return this.http.get<Pets[]>(`${this.url}?activo=true`);
+  }
+
+  getPetInactives(){ //devuelve la lista completa de animales inactivos (adoptados)
     return this.http.get<Pets[]>(`${this.url}?activo=false`);
   }
 

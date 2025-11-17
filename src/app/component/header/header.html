@@ -7,15 +7,21 @@
             @if (auth.isLogIn() && auth.isAdmin()) {
                 <a routerLink="/agregarpets">Cargar animal</a>
                 <a routerLink="/sobreellos">Sobre ellos</a>
+                <a routerLink="/admin/solicitudes">Solicitudes</a>
+            }
+            
+            @if (auth.isLogIn() && !auth.isAdmin()) {
+                <a routerLink="/sobreellos">Animales disponibles</a>
+                <a routerLink="/mis-solicitudes">Mis solicitudes</a>
             }
             
             <a routerLink="/sobrenosotros">Sobre nosotros</a> 
+            <!-- Link a notificaciones (muestra badge si hay no-leídas) -->
             @if (auth.isLogIn()) {
+                <a routerLink="/notifications">Notificaciones @if (unread > 0) { <span class="badge">{{ unread }}</span> }</a>
                 <li><a routerLink="/user/profile">Mi Perfil</a></li>
                 <li><a routerLink="/user/favorites">Favoritos</a></li>
-                <li><a routerLink="/user/notifications">Notificaciones</a></li>
-
-                <a (click)="logout()">Cerrar sesion</a>    
+                <li><a (click)="logout()">Cerrar sesion</a> </li>   
             } @else {
                 <a routerLink="/login">Inciar Sesion</a>
             }

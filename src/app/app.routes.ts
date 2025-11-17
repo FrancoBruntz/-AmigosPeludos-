@@ -10,6 +10,9 @@ import { RequestList } from './page/adopcion/request-list/request-list';
 import { RequestForm } from './page/adopcion/request-form/request-form';
 import { AdminRequest } from './page/adopcion/admin-request/admin-request';
 import { adminGuard } from './guards/admin-guard';
+import { DonationForm } from './component/donations/donation-form/donation-form';
+import { DonationList } from './component/donations/donation-list/donation-list';
+import { DonationDetails } from './component/donations/donation-details/donation-details';
 import { ProfileComponent } from './component/user/profile/profile';
 import { FavoritesComponent } from './component/user/favorites/favorites';
 import { NotificationsComponent } from './component/user/notifications/notifications';
@@ -29,5 +32,10 @@ export const routes: Routes = [
     {path:'user/profile', component: ProfileComponent },
     {path:'user/favorites', component: FavoritesComponent },
     {path:'user/notifications', component: NotificationsComponent },
+    {path:'notifications', component: NotificationsComponent},
+    {path: 'donar' , component: DonationForm},
+    {path: 'mis-donaciones', component: DonationList}, //?????
+    {path: 'admin/donaciones', component: DonationList},
+    {path: 'admin/donaciones/:id', component: DonationDetails},
     {path: '**', component: Home}
 ];

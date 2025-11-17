@@ -3,6 +3,7 @@ import { Injectable, signal } from '@angular/core';
 import usuarios from '../models/user';
 import { environment } from '../../environments/environment.development';
 import { Router } from '@angular/router';
+import { UserService } from '../component/user/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private url = environment.urlUser;
   
-  constructor(private http: HttpClient, private router: Router){}
+  constructor(private http: HttpClient, private router: Router, private userService: UserService){}
 
   public readonly isLogIn=signal(false);
   public readonly isAdmin=signal(false);
@@ -29,6 +30,14 @@ export class AuthService {
           next:(data)=>{
             console.log(data);
             if(data[0].user){
+            // Guardar en UserService para sincronizar con notificaciones
+            this.userService.saveCurrent({
+              dni: data[0].user,
+              nombre: data[0].user,
+              apellido: '',
+              isAdmin: data[0].isAdmin
+            });
+            
             localStorage.setItem("user", data[0].user)
             this.isLogIn.set(true);
             this.isAdmin.update(value=> data[0].isAdmin);
@@ -48,6 +57,7 @@ export class AuthService {
     logOut(){
       this.isLogIn.set(false);
       this.isAdmin.set(false);
+      this.userService.logout();
       localStorage.removeItem("user")
     }
 

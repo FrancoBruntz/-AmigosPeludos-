@@ -7,5 +7,6 @@ export default interface Solicitud {
     solicitanteUser: string, // dni del solicitante , tomado de UserService
     fecha: string,
     estado: EstadoSolicitud,
-    comentarios?: string // Opcional 
+    comentarios?: string, // Opcional (comentarios del admin)
+    mensaje?: string // Mensaje del solicitante (opcional)
 }
