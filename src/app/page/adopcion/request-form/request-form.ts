@@ -86,7 +86,7 @@ export class RequestForm {
           extraDatos
         ).subscribe({
           next: (created) => {
-            const adminMsg = `Nueva solicitud de ${dni} para animal #${this.animalId}`;
+            const adminMsg = `Nueva solicitud de ${dni} para  #${this.animalId}`;
             this.notifService
               .send('admin', created.id, this.animalId, 'comentario' as any, adminMsg)
               .subscribe({

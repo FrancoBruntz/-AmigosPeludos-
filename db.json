@@ -232,6 +232,45 @@
       "notes": "Ama estar tirado al sol",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262995/b2zxumyjfqikdbhqxyat.jpg",
       "activo": true
+    },
+    {
+      "id": "8974",
+      "name": "Mantecol",
+      "type": "Gato",
+      "age": 1,
+      "size": "Pequeño",
+      "sexo": "Hembra",
+      "color": "Naranja y negro",
+      "castrado": false,
+      "notes": "Muy juguetona",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763386377/gapdlmcyalzijqwguwac.jpg",
+      "activo": true
+    },
+    {
+      "id": "1f4f",
+      "name": "Lobito",
+      "type": "Perro",
+      "age": 3,
+      "size": "Mediano",
+      "sexo": "Macho",
+      "color": "Marron clarito",
+      "castrado": true,
+      "notes": "",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763386449/gboe6bi80dwpvueo88nz.jpg",
+      "activo": true
+    },
+    {
+      "id": "0bcb",
+      "name": "Firulais",
+      "type": "Perro",
+      "age": 5,
+      "size": "Grande",
+      "sexo": "Macho",
+      "color": "Marron clarito",
+      "castrado": true,
+      "notes": "Muy cuidadoso y amoroso con los niños",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763386740/kihiz5bysulu8yojsbnt.jpg",
+      "activo": true
     }
   ],
   "solicitudes": [
