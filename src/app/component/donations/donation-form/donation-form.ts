@@ -90,6 +90,7 @@ export class DonationForm implements OnInit {
     // Obtener usuario logueado
     const currentUserId = this.authService.getCurrentUsername();
 
+    // Seguridad extra: si por alguna razón no hay usuario, mando a login
     if (!currentUserId) {
       alert('Debés iniciar sesión para realizar una donación.');
       this.router.navigate(['/login']);
@@ -111,7 +112,7 @@ export class DonationForm implements OnInit {
     this.donationsServ.addDonation(donation).subscribe({
       next: () => {
         alert('Donación confirmada con éxito. ¡Gracias por tu donación! 🐶💛');
-        this.router.navigate(['/']);  // volver al inicio
+        this.router.navigate(['/mis-donaciones']);  // ir a donaciones
       },
       error: () => {
         alert('Ocurrió un error al registrar la donación.');

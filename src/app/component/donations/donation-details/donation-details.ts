@@ -10,11 +10,12 @@ import { DatePipe } from '@angular/common';
   templateUrl: './donation-details.html',
   styleUrl: './donation-details.css',
 })
+
 export class DonationDetails implements OnInit {
 
   donation?: Donation;
-  errorMessage = '';
   isLoading = true;
+  errorMessage = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +23,7 @@ export class DonationDetails implements OnInit {
     private donationsServ: Donationsservice
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
     if (!id) {
@@ -46,5 +47,4 @@ export class DonationDetails implements OnInit {
   goBack(): void {
     this.router.navigate(['/admin/donaciones']);
   }
-
 }

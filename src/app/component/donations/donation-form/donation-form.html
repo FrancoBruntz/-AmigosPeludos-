@@ -1,3 +1,4 @@
+<div id="contenedorForm">
 <h2>Realizar donación</h2>
 
 <div class="info-banner">
@@ -12,7 +13,6 @@
     <li>🏠 Mantenimiento del refugio</li>
   </ul>
 </div>
-
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
@@ -103,31 +103,24 @@
   }
 
   <!-- TRANSFERENCIA -->
-  @if (isTransferMethod()) {
-    <fieldset class="section">
-      <legend>Datos para transferencia</legend>
+ @if (isTransferMethod()) {
+  <fieldset class="section">
+    <legend>Datos para transferencia</legend>
 
-      <div class="form-group">
-        <label for="alias">Alias</label>
-        <input 
-          id="alias"
-          type="text"
-          formControlName="alias"
-          placeholder="alias.refugio.banco"
-        >
-      </div>
+    <p>
+      Realizá tu transferencia utilizando los siguientes datos del refugio:
+    </p>
 
-      <div class="form-group">
-        <label for="cbu">CBU</label>
-        <input 
-          id="cbu"
-          type="text"
-          formControlName="cbu"
-          placeholder="0000000000000000000000"
-        >
-      </div>
-    </fieldset>
-  }
+    <div class="transfer-info-box">
+      <p><strong>Alias:</strong> animales.peludos.refugio</p>
+      <p><strong>CBU:</strong> 0000003100045678912345</p>
+    </div>
+
+    <p>
+      Una vez realizada la transferencia, no olvides guardar el comprobante.
+    </p>
+  </fieldset>
+}
 
   <!-- MENSAJE -->
   <div class="form-group" [class.invalid]="isInvalid('message')">
@@ -209,3 +202,5 @@
     }
   </section>
 }
+
+</div>

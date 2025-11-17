@@ -5,26 +5,49 @@
 } @else {
 
   @if (errorMessage) {
+
     <p>{{ errorMessage }}</p>
-    <button (click)="goBack()">Volver al listado</button>
+    <button (click)="goBack()">⬅ Volver al historial</button>
+
   } @else if (donation) {
 
     <section class="detail-card">
 
       <p><strong>ID donación:</strong> {{ donation.id }}</p>
       <p><strong>Usuario (userId):</strong> {{ donation.userId }}</p>
+
       <p><strong>Monto:</strong> ${{ donation.amount }}</p>
       <p><strong>Método de pago:</strong> {{ donation.method }}</p>
-      <p><strong>Fecha:</strong> {{ donation.date | date:'dd/MM/yyyy HH:mm' }}</p>
+
+     
+      <p>
+        <strong>Fecha:</strong> 
+        {{ donation.date | date:'dd/MM/yyyy HH:mm' }}
+      </p>
 
       @if (donation.message) {
         <p><strong>Mensaje del donante:</strong></p>
         <p>"{{ donation.message }}"</p>
       }
 
+      <!-- Mensaje extra según método -->
+      @if (donation.method === 'Transferencia') {
+        <p class="hint">
+          Esta donación fue registrada como transferencia bancaria. 
+          Recordá verificar el comprobante correspondiente si es necesario.
+        </p>
+      }
+
+      @if (donation.method === 'Efectivo') {
+        <p class="hint">
+          Esta donación fue registrada como donación en efectivo
+          en el refugio o en algún evento solidario.
+        </p>
+      }
+
     </section>
 
-    <button (click)="goBack()">⬅Volver al listado</button>
+    <button (click)="goBack()">⬅ Volver al historial</button>
 
   }
 

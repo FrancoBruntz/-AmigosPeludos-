@@ -8,21 +8,25 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-donation-list',
-  imports: [FormsModule, DatePipe, FormsModule, RouterModule],
+  imports: [FormsModule, DatePipe, RouterModule],
   templateUrl: './donation-list.html',
   styleUrl: './donation-list.css',
 })
 export class DonationList  implements OnInit{
-  donations: Donation[] = [];
-  filteredDonations: Donation[] = [];
+  
+   donations: Donation[] = [];          // todas las donaciones (backup)
+  filteredDonations: Donation[] = [];  // lo que se muestra en la tabla
   errorMessage = '';
 
+  // filtros
   selectedMethod = 'Todas';
   minAmount?: number;
-  userIdFilter = ''; 
+  userIdFilter = '';
 
-  constructor(private donationsServ: Donationsservice, 
-              private location: Location) {}
+  dateFrom?: string; // formato yyyy-MM-dd (del input type="date")
+  dateTo?: string;   // formato yyyy-MM-dd
+
+  constructor(private donationsServ: Donationsservice) {}
 
   ngOnInit(): void {
     this.loadDonations();
@@ -40,13 +44,13 @@ export class DonationList  implements OnInit{
     });
   }
 
-   applyFilter(): void {
+  applyFilter(): void {
     const hasMethod = this.selectedMethod !== 'Todas';
     const hasUserId = this.userIdFilter.trim() !== '';
 
-    // Si no hay filtros por método ni userId → trabajo sobre el array completo
+    // Si no hay filtros por método ni userId → trabajo solo en el front
     if (!hasMethod && !hasUserId) {
-      this.filteredDonations = this.applyMinAmount(this.donations);
+      this.filteredDonations = this.applyClientFilters(this.donations);
       return;
     }
 
@@ -60,11 +64,12 @@ export class DonationList  implements OnInit{
       params.userId = this.userIdFilter.trim();
     }
 
-    // Llamo al back (json-server) con filtro de método / userId
+    // Filtro por método / userId usando json-server
     this.donationsServ.filter(params).subscribe({
       next: (data) => {
         const ordered = data.sort((a, b) => b.date.localeCompare(a.date));
-        this.filteredDonations = this.applyMinAmount(ordered);
+        // Después aplico filtros de monto y fechas en el cliente
+        this.filteredDonations = this.applyClientFilters(ordered);
       },
       error: () => {
         this.errorMessage = 'No se pudieron aplicar los filtros.';
@@ -72,17 +77,30 @@ export class DonationList  implements OnInit{
     });
   }
 
-  // Aplico filtro de monto mínimo en el front
-  private applyMinAmount(list: Donation[]): Donation[] {
-    if (!this.minAmount) return list;
-    return list.filter(d => d.amount >= this.minAmount!);
+  // Aplica monto mínimo + rango de fechas (cliente)
+  private applyClientFilters(list: Donation[]): Donation[] {
+    return list.filter(d => {
+
+      // monto mínimo
+      const amountOk = this.minAmount ? d.amount >= this.minAmount! : true;
+
+      // fecha
+      const donationDate = d.date?.slice(0, 10); // "YYYY-MM-DD"
+      let dateOk = true;
+
+      if (this.dateFrom) {
+        dateOk = dateOk && (!!donationDate && donationDate >= this.dateFrom);
+      }
+      if (this.dateTo) {
+        dateOk = dateOk && (!!donationDate && donationDate <= this.dateTo);
+      }
+
+      return amountOk && dateOk;
+    });
   }
 
   getTotal(): number {
     return this.filteredDonations.reduce((acc, d) => acc + d.amount, 0);
   }
 
-  goBack() {
-    this.location.back();           
-  }
 }

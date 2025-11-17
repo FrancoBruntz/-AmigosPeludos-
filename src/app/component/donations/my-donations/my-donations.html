@@ -4,34 +4,28 @@
   <p>{{ errorMessage }}</p>
 } @else {
 
-  @if (myDonations.length === 0) {
-    <p>Todavía no realizaste ninguna donación.</p>
-  } @else {
+  <p>Total donado: <strong>${{ getTotal() }}</strong></p>
 
-    <p>Total donado: <strong>${{ getTotal() }}</strong></p>
-
-    <table>
-      <thead>
+  <table>
+    <thead>
+      <tr>
+        <th>Monto</th>
+        <th>Método</th>
+        <th>Destino</th>
+        <th>Fecha</th>
+        <th>Mensaje</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (d of myDonations; track d.id) {
         <tr>
-          <th>Monto</th>
-          <th>Método</th>
-          <th>Fecha</th>
-          <th>Mensaje</th>
+          <td>${{ d.amount }}</td>
+          <td>{{ d.method }}</td>
+          <td>{{ d.date | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ d.message }}</td>
         </tr>
-      </thead>
-      <tbody>
-        @for (d of myDonations; track d.id) {
-          <tr>
-            <td>${{ d.amount }}</td>
-            <td>{{ d.method }}</td>
-            <td>{{ d.date | date:'dd/MM/yyyy HH:mm' }}</td>
-            <td>{{ d.message }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-    <button class="btn-back" (click)="goBack()">⬅ Volver</button>
-
-  }
+      }
+    </tbody>
+  </table>
 
 }
