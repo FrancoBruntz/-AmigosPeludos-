@@ -1,23 +1,26 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Necesario para *ngIf y *ngFor
+import { CommonModule } from '@angular/common';
+import { FavoriteService } from '../../../services/favorite.service';
+import Pets from '../../../models/pets';
 
 @Component({
   selector: 'app-favorites',
+  imports: [CommonModule],
   templateUrl: './favorites.html',
-  styleUrls: ['./favorites.css'],
-  standalone: true,
-  imports: [CommonModule]
+  styleUrls: ['./favorites.css']
 })
 export class FavoritesComponent {
-  // Lista de favoritos
-  favorites = [
-    { id: 1, name: 'Dog Park', type: 'Park', description: 'A nice place for dogs to play.' },
-    { id: 2, name: 'Pet Store', type: 'Shop', description: 'All pet supplies you need.' },
-    { id: 3, name: 'Vet Clinic', type: 'Clinic', description: 'Professional veterinary care.' }
-  ];
 
-  // Método para eliminar un favorito
-  remove(id: number) {
-    this.favorites = this.favorites.filter(fav => fav.id !== id);
+  favorites: Pets[] = [];
+
+  constructor(private favoriteService: FavoriteService) {}
+
+  ngOnInit() {
+    this.favorites = this.favoriteService.getFavorites();
+  }
+
+  remove(id: string) {
+    this.favoriteService.removeFavorite(id);
+    this.favorites = this.favoriteService.getFavorites();
   }
 }

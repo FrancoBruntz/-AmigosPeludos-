@@ -24,6 +24,7 @@
            
             {{pet.name}} <p>quiere ser parte de tu familia!❤</p>
             <a [routerLink]="['/details', pet.id]">Detalles</a>
+            <button (click)="agregarFavorito(pet)">❤️ Favorito</button>
             @if (this.auth.isAdmin()) {
              <a [routerLink]="['/edit', pet.id]">Editar</a>
             <a (click)="eliminarPet(pet.id)">Eliminar</a>   

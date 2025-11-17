@@ -4,6 +4,8 @@ import { Router, RouterLink } from '@angular/router';
 import Pets from '../../models/pets';
 import { Petsservice } from '../../services/petsservice';
 import { AuthService } from '../../auth/auth-service';
+import { FavoriteService } from '../../services/favorite.service';
+
 
 @Component({
   selector: 'app-list',
@@ -14,7 +16,7 @@ import { AuthService } from '../../auth/auth-service';
 export class List implements OnInit{
   pets= signal <Pets[]>([]);
 
-  constructor(private listaPets: Petsservice, private router: Router, protected auth:AuthService){};
+  constructor(private listaPets: Petsservice, private router: Router, protected auth:AuthService, private favoriteService: FavoriteService){};
 
   ngOnInit() {
    // Por defecto cargar solo animales activos (disponibles)
@@ -78,4 +80,10 @@ export class List implements OnInit{
       }
     })
   }
+
+  agregarFavorito(pet: Pets) {
+  this.favoriteService.addFavorite(pet);
+  alert(pet.name + " fue agregado a favoritos 🩷");
+}
+
 }
