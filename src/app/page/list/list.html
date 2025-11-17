@@ -1,6 +1,6 @@
-@if(!showOnlyAvailable){
+@if (!showOnlyAvailable) {
   <h2>Nuestros animalitos del refugio</h2>
-}@else {
+} @else {
   <h2>Nuestro historial de animalitos</h2>
 }
 
@@ -8,7 +8,11 @@
 @if (auth.isAdmin()) {
   <div class="filter-bar">
     <label class="switch">
-      <input type="checkbox" [(ngModel)]="showOnlyAvailable" (ngModelChange)="onToggle($event)" />
+      <input
+        type="checkbox"
+        [(ngModel)]="showOnlyAvailable"
+        (ngModelChange)="onToggle($event)"
+      />
       <span class="slider"></span>
     </label>
     <span class="filter-label">Historial</span>
@@ -21,18 +25,30 @@
 
     <div class="card">
 
-      <img [src]="pet.img" alt="{{ pet.name }}" class="pet-img">
+      <!-- Imagen -->
+      <img [src]="pet.image" alt="{{ pet.name }}" class="pet-img">
 
-      <h3>{{pet.name}}</h3>
+      <!-- Nombre -->
+      <h3>{{ pet.name }}</h3>
 
+      <!-- Mensaje -->
       <p class="family-msg">Quiere ser parte de tu familia ❤</p>
 
+      <!-- Acciones -->
       <div class="card-actions">
-        <a class="btn details" [routerLink]="['/details', pet.id]">Detalles</a>
+        <a class="btn details" [routerLink]="['/details', pet.id]">
+          Detalles
+        </a>
+
+        <button class="btn fav" (click)="agregarFavorito(pet)">
+          ❤️ Favorito
+        </button>
 
         @if (auth.isAdmin()) {
           <a class="btn edit" [routerLink]="['/edit', pet.id]">Editar</a>
-          <button class="btn delete" (click)="eliminarPet(pet.id)">Eliminar</button>
+          <button class="btn delete" (click)="eliminarPet(pet.id)">
+            Eliminar
+          </button>
         }
       </div>
 
