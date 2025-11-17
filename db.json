@@ -272,6 +272,58 @@
       "notes": "Tiene cara de malo pero le gusta mucho jugar",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763400311/ov95rmtysylmi1w96rqx.jpg",
       "activo": true
+    },
+    {
+      "id": "1552",
+      "name": "Quesito",
+      "type": "Gato",
+      "age": 2,
+      "size": "Mediano",
+      "sexo": "Hembra",
+      "color": "gris",
+      "castrado": false,
+      "notes": "Le gusta mucho dormir",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763405457/flsywgmdkakaa56tmpsl.jpg",
+      "activo": true
+    },
+    {
+      "id": "198b",
+      "name": "Timba",
+      "type": "Perro",
+      "age": 6,
+      "size": "Grande",
+      "sexo": "Hembra",
+      "color": "Marron ",
+      "castrado": false,
+      "notes": "",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763405702/sp0sxweyzrgiefcd1fqk.jpg",
+      "activo": true
+    },
+    {
+      "id": "4d64",
+      "name": "Peluche",
+      "type": "Perro",
+      "age": 5,
+      "size": "Grande",
+      "sexo": "Macho",
+      "color": "Marron y negro",
+      "castrado": false,
+      "notes": "",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763405740/gslhdvtpipvtkdubpo2e.jpg",
+      "activo": true
+    },
+    {
+      "id": "e0ba",
+      "name": "Lassie",
+      "type": "Perro",
+      "age": 7,
+      "size": "Grande",
+      "sexo": "Hembra",
+      "color": "Blanco y marron",
+      "castrado": false,
+      "notes": "",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763405768/twuxcw0e4cyzbtw9cget.jpg",
+      "activo": true
     }
   ],
   "solicitudes": [
