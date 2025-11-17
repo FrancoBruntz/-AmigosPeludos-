@@ -12,70 +12,69 @@ import { AuthService } from '../../auth/auth-service';
   styleUrl: './list.css',
 })
 export class List implements OnInit{
-  pets= signal <Pets[]>([]);
-
-  constructor(private listaPets: Petsservice, private router: Router, protected auth:AuthService){};
-
-  ngOnInit() {
-   // Por defecto cargar solo animales activos (disponibles)
-   this.listaPets.getPetActivos().subscribe({
-     next: (data) => {
-       this.pets.set([...data]);
-     },
-     error:(e) =>{
-       alert("Algo salio mal" + e);
-     }
-   });
-  }
-
-  cargarPet(){
-    this.listaPets.getPetActivos().subscribe({
-      next: (data) => {
-        this.pets.set([...data]);
-      },
-      error:(e) =>{
-        alert("Algo salio mal" + e);
-      }
-    })
-  }
-
-  eliminarPet(id: string){
-    if(confirm("Desea eliminar este animal?")){
-     this.listaPets.deletePet(id).subscribe({
-      next: ()=>{
-        this.cargarPet();
-        this.router.navigateByUrl("/sobreellos");
-      },
-      error:(e)=>{
-        alert("Algo salio mal" + e);
-      }
-    }) 
-    }  
-  } 
-
-
+   pets = signal<Pets[]>([]);
+  allPets: Pets[] = [];   // respaldo para filtrar
   protected showOnlyAvailable = false;
 
-  // Se llama cuando cambia el toggle
+  filterType: string = 'Todos'; // 🐶🐱 TODOS / PERRO / GATO
+
+  constructor(
+    private listaPets: Petsservice,
+    private router: Router,
+    protected auth: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.loadActivePets();
+  }
+
+  loadActivePets() {
+    this.listaPets.getPetActivos().subscribe({
+      next: (data) => {
+        this.allPets = data;
+        this.applyTypeFilter();
+      },
+      error: (e) => alert("Algo salió mal: " + e)
+    });
+  }
+
+  loadInactivePets() {
+    this.listaPets.getPetInactives().subscribe({
+      next: (data) => {
+        this.allPets = data;
+        this.applyTypeFilter();
+      },
+      error: (e) => alert("Algo salió mal: " + e)
+    });
+  }
+
+  // 🐾 Toggle historial (solo admin)
   onToggle(checked: boolean) {
     this.showOnlyAvailable = checked;
-    if (checked) {
-      this.filteredPets();
+    checked ? this.loadInactivePets() : this.loadActivePets();
+  }
+
+  // 🐕🐈 Filtrar por tipo
+  applyTypeFilter() {
+    if (this.filterType === 'Todos') {
+      this.pets.set([...this.allPets]);
     } else {
-      this.cargarPet();
+      this.pets.set(
+        this.allPets.filter(p => p.type?.toLowerCase() === this.filterType.toLowerCase())
+      );
     }
   }
 
-  filteredPets() {
-     // Mostrar todos los animales inactivos (adoptados)
-     this.listaPets.getPetInactives().subscribe({
-      next: (data) => {
-        console.log('Animales inactivos:', data);
-        this.pets.set([...data]);
-      },
-      error:(e) =>{
-        alert("Algo salio mal" + e);
-      }
-    })
+  // 🗑 Eliminar
+  eliminarPet(id: string) {
+    if (confirm("¿Desea eliminar este animal?")) {
+      this.listaPets.deletePet(id).subscribe({
+        next: () => {
+          this.showOnlyAvailable ? this.loadInactivePets() : this.loadActivePets();
+          this.router.navigateByUrl("/sobreellos");
+        },
+        error: (e) => alert("Algo salió mal: " + e)
+      });
+    }
   }
 }

@@ -33,7 +33,8 @@ export class DonationList  implements OnInit{
   }
 
   loadDonations(): void {
-    this.donationsServ.getAllDonations().subscribe({
+
+      this.donationsServ.getAllDonations().subscribe({
       next: (data) => {
         this.donations = data.sort((a, b) => b.date.localeCompare(a.date));
         this.filteredDonations = [...this.donations];

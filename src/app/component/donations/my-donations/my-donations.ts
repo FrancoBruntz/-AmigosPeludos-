@@ -15,6 +15,7 @@ export class MyDonations implements OnInit {
 
   myDonations: Donation[] = [];
   errorMessage = '';
+  isLoading = true;
 
   constructor(
     private donationsServ: Donationsservice,
@@ -37,9 +38,11 @@ export class MyDonations implements OnInit {
         } else {
           this.myDonations = data.sort((a, b) => b.date.localeCompare(a.date));
         }
+        this.isLoading = false;
       },
       error: () => {
         this.errorMessage = 'No se pudieron cargar tus donaciones.';
+        this.isLoading = false;
       }
     });
   }

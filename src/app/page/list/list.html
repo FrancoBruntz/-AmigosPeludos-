@@ -1,34 +1,50 @@
-@if(!showOnlyAvailable){
-    <h2>Nuestros animalitos del refugio</h2>
-}@else {
-     <h2>Nuestro historial de animalitos</h2>
+@if (!showOnlyAvailable) {
+  <h2>Nuestros animalitos del refugio</h2>
+} @else {
+  <h2>Nuestro historial de animalitos</h2>
 }
 
-<!-- Toggle de filtro - solo para admin -->
+<!-- Toggle historial (solo admin) -->
 @if (auth.isAdmin()) {
   <div class="filter-bar">
     <label class="switch">
-      <input type="checkbox" [(ngModel)]="showOnlyAvailable"  (ngModelChange)="onToggle($event)" />
+      <input type="checkbox" [(ngModel)]="showOnlyAvailable" (ngModelChange)="onToggle($event)" />
       <span class="slider"></span>
     </label>
-    <span class="filter-label">
-      Historial
-    </span>
+    <span class="filter-label">Historial</span>
   </div>
 }
 
+<!-- FILTRO POR TIPO (perro/gato) -->
+<div class="type-filter">
+  <label>Filtrar por tipo:</label>
+  <select [(ngModel)]="filterType" (change)="applyTypeFilter()">
+    <option value="Todos">Todos</option>
+    <option value="Perro">Perros</option>
+    <option value="Gato">Gatos</option>
+  </select>
+</div>
 
-<ul>
-    @for (pet of pets(); track $index) {
-        <li>
-           
-            {{pet.name}} <p>quiere ser parte de tu familia!❤</p>
-            <a [routerLink]="['/details', pet.id]">Detalles</a>
-            @if (this.auth.isAdmin()) {
-             <a [routerLink]="['/edit', pet.id]">Editar</a>
-            <a (click)="eliminarPet(pet.id)">Eliminar</a>   
-            }
-            
-        </li>
-    }
-</ul>
+<!-- LISTA DE TARJETAS -->
+<div class="cards-grid">
+  @for (pet of pets(); track $index) {
+    <div class="card">
+
+      <img class="pet-img" [src]="pet.img" alt="Imagen de {{ pet.name }}">
+
+      <h3>{{ pet.name }}</h3>
+
+      <p class="love-msg">❤ ¡Quiere ser parte de tu familia!</p>
+
+      <div class="actions">
+        <a class="btn-details" [routerLink]="['/details', pet.id]">Detalles</a>
+
+        @if (auth.isAdmin()) {
+          <a class="btn-edit" [routerLink]="['/edit', pet.id]">Editar</a>
+          <button class="btn-delete" (click)="eliminarPet(pet.id)">Eliminar</button>
+        }
+      </div>
+
+    </div>
+  }
+</div>
