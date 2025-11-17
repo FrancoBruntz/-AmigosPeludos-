@@ -29,6 +29,12 @@
       "user": "11111111",
       "password": "karina1",
       "isAdmin": false
+    },
+    {
+      "id": "b908",
+      "user": "45131280",
+      "password": "aloha987",
+      "isAdmin": false
     }
   ],
   "pets": [
@@ -255,19 +261,6 @@
       "estado": "aprobada",
       "mensaje": "Toda la vida quise tener un salchicha y esta es mi oportunidad para poder darle una mejor vida a el y que me acompañe a mi",
       "comentarios": "Felicitaciones! Ya son familia"
-    },
-    {
-      "id": "37da",
-      "animalId": "42f4",
-      "solicitanteUser": "46112136",
-      "fecha": "2025-11-17T12:41:26.747Z",
-      "estado": "pendiente",
-      "mensaje": "Vivo en una casa con un patio muy grande, tiene mucho verde",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true
     }
   ],
   "notificaciones": [
@@ -333,16 +326,6 @@
       "comentarios": "Felicitaciones! Ya son familia",
       "leida": false,
       "fechaCreacion": "2025-11-17T12:05:06.189Z"
-    },
-    {
-      "id": "1e05",
-      "usuarioDNI": "admin",
-      "solicitudId": "37da",
-      "animalId": "42f4",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 46112136 para animal #42f4",
-      "leida": false,
-      "fechaCreacion": "2025-11-17T12:41:26.771Z"
     }
   ],
   "donations": [

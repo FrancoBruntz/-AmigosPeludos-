@@ -1,28 +1,92 @@
 import { Injectable } from '@angular/core';
 import Pets from '../models/pets';
+import { UserService } from '../component/user/user.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoriteService {
 
-  private storageKey = 'favoritePets';
+ private storagePrefix = 'favoritePets_';
 
+  constructor(private userService: UserService) {}
+
+  /**
+   * Obtiene la clave de localStorage correspondiente al usuario actual.
+   * Ejemplo: favoritePets_12345678
+   */
+  private getStorageKey(): string | null {
+    const user = this.userService.getUser(); // { dni, nombre, apellido, isAdmin }
+
+    if (!user || !user.dni) return null;
+
+    return this.storagePrefix + user.dni;
+  }
+
+  /**
+   * Devuelve los favoritos del usuario actual.
+   */
   getFavorites(): Pets[] {
-    const stored = localStorage.getItem(this.storageKey);
+    const key = this.getStorageKey();
+    if (!key) return [];
+
+    const stored = localStorage.getItem(key);
     return stored ? JSON.parse(stored) : [];
   }
 
-  addFavorite(pet: Pets) {
+  /**
+   * Guarda la lista actualizada de favoritos del usuario actual.
+   */
+  private saveFavorites(list: Pets[]): void {
+    const key = this.getStorageKey();
+    if (!key) return;
+
+    localStorage.setItem(key, JSON.stringify(list));
+  }
+
+  /**
+   * Agrega un favorito al usuario actual, sin duplicados.
+   */
+  addFavorite(pet: Pets): void {
+    const key = this.getStorageKey();
+    if (!key) return; // si no hay usuario logueado, no hacer nada
+
     const current = this.getFavorites();
+
+    // evitar duplicados
     if (!current.some(f => f.id === pet.id)) {
       current.push(pet);
-      localStorage.setItem(this.storageKey, JSON.stringify(current));
+      this.saveFavorites(current);
     }
   }
 
-  removeFavorite(id: string) {
-    const current = this.getFavorites().filter(f => f.id !== id);
-    localStorage.setItem(this.storageKey, JSON.stringify(current));
+  /**
+   * Elimina un favorito del usuario actual.
+   */
+  removeFavorite(id: string): void {
+    const key = this.getStorageKey();
+    if (!key) return;
+
+    const filtered = this.getFavorites().filter(f => f.id !== id);
+    this.saveFavorites(filtered);
   }
+
+  /**
+   * Verifica si un pet ya es favorito del usuario actual.
+   */
+  isFavorite(id: string): boolean {
+    return this.getFavorites().some(f => f.id === id);
+  }
+
+  /**
+   * Limpia todos los favoritos del usuario actual.
+   */
+  clearFavorites(): void {
+    const key = this.getStorageKey();
+    if (!key) return;
+
+    localStorage.removeItem(key);
+  }
+
 }
