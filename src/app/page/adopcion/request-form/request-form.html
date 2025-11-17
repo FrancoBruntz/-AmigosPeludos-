@@ -1,20 +1,93 @@
 <section class="container">
 
-    <h1>Solicitar adopción</h1>
+  <h1>Solicitar adopción</h1>
 
-    <form [formGroup]="form" (ngSubmit)="submit()">
-        <label>Mensaje para el refugio</label>
-        <textarea rows="4" formControlName="mensaje"
-            placeholder="Contanos por que queres adoptar">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- Tipo de vivienda -->
+    <div class="form-field">
+      <label for="tipoVivienda">¿Dónde vivís? *</label>
+      <select id="tipoVivienda" formControlName="tipoVivienda">
+        <option value="" disabled>Seleccioná una opción</option>
+        <option value="casa">Casa</option>
+        <option value="departamento">Departamento</option>
+      </select>
+
+      @if (form.controls['tipoVivienda'].invalid && form.controls['tipoVivienda'].touched) {
+        <p class="error-msg">Este campo es obligatorio.</p>
+      }
+    </div>
+
+    <!-- Patio -->
+    <div class="form-field checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="tienePatio">
+        Mi vivienda tiene patio
+      </label>
+    </div>
+
+    <!-- Otras mascotas -->
+    <div class="form-field checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="tieneMascotas">
+        Actualmente tengo otras mascotas
+      </label>
+    </div>
+
+    @if (form.controls['tieneMascotas'].value) {
+      <div class="form-field">
+        <label for="detalleMascotas">Contanos cuántas y qué tipo (opcional)</label>
+        <textarea
+          id="detalleMascotas"
+          rows="2"
+          formControlName="detalleMascotas"
+          placeholder="Ej: 1 perro mediano, 1 gato adulto">
         </textarea>
+      </div>
+    }
 
-        <!-- feedback en tiempo real (control flow nuevo) -->
-        @if ( form.controls.mensaje.invalid && form.controls.mensaje.touched){ 
-            <div>Mensaje requerido (minimo 10 caracteres).</div>
-        }
+    <!-- Niños -->
+    <div class="form-field checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="viveConNinos">
+        Vivo con niños menores de 10 años
+      </label>
+    </div>
 
-        <button type="submit" [disabled]="form.invalid">Enviar Solicitud</button>
+    <!-- Mensaje principal -->
+    <div class="form-field">
+      <label for="mensaje">Mensaje para el refugio *</label>
+      <textarea
+        id="mensaje"
+        rows="4"
+        formControlName="mensaje"
+        placeholder="Contanos por qué querés adoptar y cómo sería su nueva vida con vos">
+      </textarea>
 
-    </form>
+      @if (form.controls['mensaje'].invalid && form.controls['mensaje'].touched) {
+        <p class="error-msg">
+          Mensaje requerido (mínimo 10 caracteres).
+        </p>
+      }
+    </div>
+
+    <!-- Compromiso -->
+    <div class="form-field checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="aceptaCompromiso">
+        Me comprometo a brindar cuidado responsable, vacunación y no abandonar a la mascota *
+      </label>
+
+      @if (form.controls['aceptaCompromiso'].invalid && form.controls['aceptaCompromiso'].touched) {
+        <p class="error-msg">Debés aceptar este compromiso para continuar.</p>
+      }
+    </div>
+
+    <!-- Botón -->
+    <button type="submit" [disabled]="form.invalid">
+      Enviar Solicitud
+    </button>
+
+  </form>
 
 </section>

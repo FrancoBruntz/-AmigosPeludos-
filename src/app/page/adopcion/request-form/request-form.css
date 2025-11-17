@@ -1,4 +1,4 @@
-/* ===== SECCIÓN GENERAL ===== */
+/* ===== CONTENEDOR GENERAL ===== */
 .container {
   max-width: 520px;
   margin: 2rem auto;
@@ -13,7 +13,7 @@
   color: #222;
 }
 
-/* ===== FORMULARIO ===== */
+/* ===== FORMULARIO (tarjeta) ===== */
 .container form {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 14px;
@@ -21,48 +21,71 @@
   box-shadow: 0 3px 12px rgba(0,0,0,0.15);
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
-/* ===== LABEL ===== */
-.container form label {
+/* ===== CAMPOS ===== */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Labels */
+.form-field label {
   font-weight: 600;
   font-size: 0.95rem;
   color: #222;
-  margin-bottom: 0.2rem;
 }
 
-/* ===== TEXTAREA ===== */
-.container form textarea {
+/* Selects y textareas */
+.form-field select,
+.form-field textarea {
   width: 100%;
-  resize: vertical;
-  min-height: 120px;
-  padding: 0.7rem 0.8rem;
   border-radius: 10px;
   border: 1px solid #ccc;
+  padding: 0.7rem 0.8rem;
   font-family: inherit;
   font-size: 0.95rem;
   outline: none;
   box-sizing: border-box;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #fff;
 }
 
-.container form textarea:focus {
+.form-field select:focus,
+.form-field textarea:focus {
   border-color: #457b9d;
   box-shadow: 0 0 0 2px rgba(69, 123, 157, 0.15);
 }
 
-/* ===== MENSAJE DE ERROR ===== */
-.container form div {
+/* Checkbox group */
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox-group label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* Mensajes de error */
+.error-msg {
   font-size: 0.85rem;
   color: #e63946;
 }
 
 /* ===== BOTÓN ENVIAR ===== */
-.container form button[type="submit"] {
+button[type="submit"] {
   margin-top: 0.5rem;
   align-self: center;
-  padding: 0.6rem 1.6rem;
+  padding: 0.6rem 1.8rem;
   border-radius: 8px;
   border: none;
   font-weight: 600;
@@ -74,14 +97,14 @@
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.container form button[type="submit"]:hover:not(:disabled) {
+button[type="submit"]:hover:not(:disabled) {
   background: #356384;
   transform: translateY(-2px);
   box-shadow: 0 5px 16px rgba(0,0,0,0.25);
 }
 
-/* ===== BOTÓN DESHABILITADO ===== */
-.container form button[type="submit"]:disabled {
+/* Botón deshabilitado */
+button[type="submit"]:disabled {
   background: #b0bec5;
   cursor: not-allowed;
   box-shadow: none;

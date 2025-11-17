@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import Solicitud, { EstadoSolicitud } from '../models/solicitud';
-
+import Solicitud, { EstadoSolicitud, TipoVivienda } from '../models/solicitud';
 
 @Injectable({
   providedIn: 'root',
@@ -11,23 +10,59 @@ export class Solicitudesservice {
   private http = inject(HttpClient);
   private base = 'http://localhost:3000/solicitudes';
 
-  // Trae todas las solicitudes de un usuario (por dni como clave)
-  listByUser(dni: string){
-    return this.http.get<Solicitud[]>(
-      `${this.base}?solicitanteUser=${encodeURIComponent(dni)}` // encodeURIComponent() asegura que la URL no se rompa con espacio/acentos
-    );
-  }
-
-  // Crear solicitud nueva para un animal dado y un user
-  create(animalId: string, dni: string, mensaje?: string) {
-    const body: Omit<Solicitud, 'id'> = {
+  // Tipo auxiliar para los datos extra del formulario
+  private buildBody(
+    animalId: string,
+    dni: string,
+    mensaje: string | undefined,
+    extraDatos: {
+      tipoVivienda: TipoVivienda;
+      tienePatio: boolean;
+      tieneMascotas: boolean;
+      detalleMascotas?: string;
+      viveConNinos: boolean;
+      aceptaCompromiso: boolean;
+    }
+  ): Omit<Solicitud, 'id'> {
+    return {
       animalId,
       solicitanteUser: dni,
       fecha: new Date().toISOString(),
       estado: 'pendiente',
-      mensaje
+      mensaje,
+
+      tipoVivienda: extraDatos.tipoVivienda,
+      tienePatio: extraDatos.tienePatio,
+      tieneMascotas: extraDatos.tieneMascotas,
+      detalleMascotas: extraDatos.detalleMascotas,
+      viveConNinos: extraDatos.viveConNinos,
+      aceptaCompromiso: extraDatos.aceptaCompromiso
     };
-    return this.http.post<Solicitud>(this.base, body as any);
+  }
+
+  // Trae todas las solicitudes de un usuario (por dni como clave)
+  listByUser(dni: string){
+    return this.http.get<Solicitud[]>(
+      `${this.base}?solicitanteUser=${encodeURIComponent(dni)}`
+    );
+  }
+
+  // Crear solicitud nueva para un animal dado y un user
+  create(
+    animalId: string,
+    dni: string,
+    mensaje: string | undefined,
+    extraDatos: {
+      tipoVivienda: TipoVivienda;
+      tienePatio: boolean;
+      tieneMascotas: boolean;
+      detalleMascotas?: string;
+      viveConNinos: boolean;
+      aceptaCompromiso: boolean;
+    }
+  ) {
+    const body = this.buildBody(animalId, dni, mensaje, extraDatos);
+    return this.http.post<Solicitud>(this.base, body);
   }
 
   // Consultar si el usuario ya tiene solicitudes (cualquier estado) para ese animal
@@ -40,9 +75,7 @@ export class Solicitudesservice {
   // Moderar solicitud (para Admin)
   cambiarEstado(id: string, estado: EstadoSolicitud, comentarios?: string) {
     return this.http.patch<Solicitud>(`${this.base}/${id}`, {estado, comentarios}); 
-    // patch: actualizacion parcial (solo 'estado' y 'comentarios'), no reemplaza todo el recurso
   }
-
 
   listAll() {
     return this.http.get<Solicitud[]>(this.base);
@@ -68,6 +101,5 @@ export class Solicitudesservice {
 
     return this.http.get<Solicitud[]>(url);
   }
-
 
 }
