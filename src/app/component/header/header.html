@@ -6,19 +6,22 @@
         <li>
 
           <!-- INICIO -->
-          <a routerLink="/">Inicio</a>
+          <a routerLink="/" routerLinkActive="active-link"> Inicio</a>
+
+          <!-- DONAR: SIEMPRE VISIBLE -->
+          <a routerLink="/donar"   routerLinkActive="active-link">Donar</a>
 
           <!-- ========================= -->
           <!--     MENÚ ADMINISTRADOR    -->
           <!-- ========================= -->
           @if (auth.isLogIn() && auth.isAdmin()) {
             
-            <a routerLink="/agregarpets">Cargar animal</a>
-            <a routerLink="/sobreellos">Sobre ellos</a>
-            <a routerLink="/admin/solicitudes">Solicitudes</a>
+            <a routerLink="/agregarpets"  routerLinkActive="active-link">Cargar animal</a>
+            <a routerLink="/sobreellos"   routerLinkActive="active-link">Sobre ellos</a>
+            <a routerLink="/admin/solicitudes" routerLinkActive="active-link">Solicitudes</a>
 
             <!-- HISTORIAL DE DONACIONES (ADMIN) -->
-            <a routerLink="/admin/donaciones">Historial donaciones</a>
+            <a routerLink="/admin/donaciones"   routerLinkActive="active-link">Historial donaciones</a>
 
           }
 
@@ -27,23 +30,23 @@
           <!-- ========================= -->
           @if (auth.isLogIn() && !auth.isAdmin()) {
 
-            <a routerLink="/sobreellos">Animales disponibles</a>
-            <a routerLink="/mis-solicitudes">Mis solicitudes</a>
+            <a routerLink="/sobreellos"   routerLinkActive="active-link">Animales disponibles</a>
+            <a routerLink="/mis-solicitudes"   routerLinkActive="active-link">Mis solicitudes</a>
 
             <!-- MENÚ DONACIONES USUARIO -->
-            <a routerLink="/donar">Donar</a>
-            <a routerLink="/mis-donaciones">Mis donaciones</a>
+
+            <a routerLink="/mis-donaciones"   routerLinkActive="active-link">Mis donaciones</a>
 
           }
 
           <!-- SOBRE NOSOTROS -->
-          <a routerLink="/sobrenosotros">Sobre nosotros</a>
+          <a routerLink="/sobrenosotros"   routerLinkActive="active-link">Sobre nosotros</a>
 
           <!-- ========================= -->
           <!--       NOTIFICACIONES       -->
           <!-- ========================= -->
           @if (auth.isLogIn()) {
-            <a routerLink="/notifications">
+            <a routerLink="/notifications"  routerLinkActive="active-link">
               Notificaciones 
               @if (unread > 0) { 
                 <span class="badge">{{ unread }}</span> 
@@ -57,7 +60,7 @@
           @if (auth.isLogIn()) {
             <a (click)="logout()">Cerrar sesión</a>
           } @else {
-            <a routerLink="/login">Iniciar sesión</a>
+            <a routerLink="/login"   routerLinkActive="active-link">Iniciar sesión</a>
           }
 
         </li>

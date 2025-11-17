@@ -1,49 +1,63 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
-import { Donationsservice } from '../../../services/donationsservice';
 import { Router } from '@angular/router';
+
+import { Donationsservice } from '../../../services/donationsservice';
 import { Donation } from '../../../models/donation';
 import { AuthService } from '../../../auth/auth-service';
 
 @Component({
   selector: 'app-donation-form',
-  imports: [ReactiveFormsModule,ɵInternalFormsSharedModule],
+  standalone: true,
+  imports: [ReactiveFormsModule, ɵInternalFormsSharedModule],
   templateUrl: './donation-form.html',
-  styleUrl: './donation-form.css',
+  styleUrls: ['./donation-form.css'],
 })
+export class DonationForm implements OnInit {
 
-export class DonationForm implements OnInit{
-
-   form!: FormGroup;
+  form!: FormGroup;
 
   methods = ['Tarjeta', 'Transferencia', 'Efectivo'];
+
+  readonly transferAlias = 'animales.peludos.refugio';
+  readonly transferCbu = '0000003100045678912345';
 
   constructor(
     private fb: FormBuilder,
     private donationsServ: Donationsservice,
-    private router: Router, 
-     private authService: AuthService,
+    private router: Router,
+    private authService: AuthService,
   ) {}
 
-   ngOnInit(): void {
+  ngOnInit(): void {
+
+    // Chequeo de login
+    if (!this.authService.isLogIn()) {
+      alert('Para realizar una donación debés iniciar sesión.');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // Crear formulario
     this.form = this.fb.group({
       amount: [null, [Validators.required, Validators.min(100)]],
       method: ['', [Validators.required]],
       message: ['', [Validators.maxLength(200)]],
 
-    // Campos extra para TARJETA
-    cardNumber: [''],
-    cardHolder: [''],
-    expiration: [''],
-    cvv: [''],
+      // TARJETA
+      cardNumber: [''],
+      cardHolder: [''],
+      expiration: [''],
+      cvv: [''],
 
-    // Campos extra para TRANSFERENCIA
-    alias: [''],
-    cbu: ['']
+      // TRANSFERENCIA
+      alias: [this.transferAlias],
+      cbu: [this.transferCbu]
     });
+
   }
 
-  // Helpers para el template
+  // Helpers
   isCardMethod(): boolean {
     return this.form.get('method')?.value === 'Tarjeta';
   }
@@ -52,31 +66,29 @@ export class DonationForm implements OnInit{
     return this.form.get('method')?.value === 'Transferencia';
   }
 
-  // Helper: obtengo el control por nombre
   getControl(name: string) {
     return this.form.get(name);
   }
 
-  // Helper: el control es inválido y ya fue tocado
   isInvalid(name: string): boolean {
     const control = this.form.get(name);
     return !!(control && control.touched && control.invalid);
   }
 
-  // Helper: el control tiene un error específico y fue tocado
   hasError(name: string, error: string): boolean {
     const control = this.form.get(name);
     return !!(control && control.touched && control.hasError(error));
   }
 
   onSubmit(): void {
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-  // Tomamos el usuario logueado desde AuthService
-  const currentUserId = this.authService.getCurrentUsername();
+    // Obtener usuario logueado
+    const currentUserId = this.authService.getCurrentUsername();
 
     if (!currentUserId) {
       alert('Debés iniciar sesión para realizar una donación.');
@@ -84,28 +96,28 @@ export class DonationForm implements OnInit{
       return;
     }
 
-  const { amount, method, message } = this.form.value;
+    // Valores del formulario
+    const { amount, method, message } = this.form.value;
 
-  const donation: Donation = {
-      // id lo genera json-server, por eso no lo seteamos
+    const donation: Donation = {
       userId: currentUserId,
       amount,
       method,
       message,
       date: new Date().toISOString()
-  };
+    };
 
-
-
-  this.donationsServ.addDonation(donation).subscribe({
+    // Registrar donación
+    this.donationsServ.addDonation(donation).subscribe({
       next: () => {
-        alert('¡Gracias por tu donación! 💚');
-        this.router.navigate(['/mis-donaciones']); //
+        alert('Donación confirmada con éxito. ¡Gracias por tu donación! 🐶💛');
+        this.router.navigate(['/']);  // volver al inicio
       },
       error: () => {
         alert('Ocurrió un error al registrar la donación.');
       }
     });
+
   }
 
 }
