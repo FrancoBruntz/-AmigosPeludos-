@@ -29,6 +29,12 @@
       "user": "11111111",
       "password": "karina1",
       "isAdmin": false
+    },
+    {
+      "id": "b908",
+      "user": "45131280",
+      "password": "aloha987",
+      "isAdmin": false
     }
   ],
   "pets": [
@@ -245,6 +251,14 @@
       "fecha": "2025-11-17T01:21:00.496Z",
       "estado": "pendiente",
       "mensaje": "Amo los animales"
+    },
+    {
+      "id": "2634",
+      "animalId": "3266",
+      "solicitanteUser": "39555661",
+      "fecha": "2025-11-17T11:43:01.493Z",
+      "estado": "pendiente",
+      "mensaje": "Ganas de tener un perro "
     }
   ],
   "notificaciones": [
@@ -278,6 +292,16 @@
       "mensaje": "Nueva solicitud de 11111111 para animal #1",
       "leida": false,
       "fechaCreacion": "2025-11-17T01:21:00.528Z"
+    },
+    {
+      "id": "81a6",
+      "usuarioDNI": "admin",
+      "solicitudId": "2634",
+      "animalId": "3266",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 39555661 para animal #3266",
+      "leida": false,
+      "fechaCreacion": "2025-11-17T11:43:01.514Z"
     }
   ],
   "donations": [

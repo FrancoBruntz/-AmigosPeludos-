@@ -40,9 +40,12 @@
           Detalles
         </a>
 
-        <button class="btn fav" (click)="agregarFavorito(pet)">
-          ❤️ Favorito
-        </button>
+
+      @if (!auth.isAdmin()) {
+    <button class="btn fav" (click)="agregarFavorito(pet)">
+      ❤️ Favorito
+    </button>
+    }
 
         @if (auth.isAdmin()) {
           <a class="btn edit" [routerLink]="['/edit', pet.id]">Editar</a>
