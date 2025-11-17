@@ -1,0 +1,107 @@
+<div class="container">
+  <h2>Detalle de solicitud</h2>
+
+  <!-- Cargando -->
+  @if (isLoading) {
+    <p class="loading">Cargando datos de la solicitud...</p>
+  } @else {
+
+    <!-- Error -->
+    @if (errorMessage) {
+
+      <p class="error">{{ errorMessage }}</p>
+      <button class="btn-back" (click)="goBack()">
+        ⬅ Volver al listado
+      </button>
+
+    } @else if (solicitud) {
+
+      <section class="detail-card">
+
+        <!-- INFO GENERAL -->
+        <div class="detail-block">
+          <h3>Información general</h3>
+
+          <p><strong>ID solicitud:</strong> {{ solicitud.id }}</p>
+          <p><strong>ID animal:</strong> {{ solicitud.animalId }}</p>
+          <p><strong>DNI solicitante:</strong> {{ solicitud.solicitanteUser }}</p>
+
+          <p>
+            <strong>Fecha:</strong>
+            {{ solicitud.fecha | date:'dd/MM/yyyy HH:mm' }}
+          </p>
+
+          <p>
+            <strong>Estado:</strong>
+            <span class="estado-badge {{ solicitud.estado }}">
+              {{ solicitud.estado }}
+            </span>
+          </p>
+        </div>
+
+        <!-- DATOS DE ADOPCIÓN (LO QUE LLENÓ EN EL FORM) -->
+        <div class="detail-block">
+          <h3>Datos de adopción</h3>
+
+          <p>
+            <strong>Tipo de vivienda:</strong>
+            {{ viviendaLabel(solicitud.tipoVivienda) }}
+          </p>
+
+          <p>
+            <strong>¿Tiene patio?</strong>
+            {{ boolToText(solicitud.tienePatio) }}
+          </p>
+
+          <p>
+            <strong>¿Tiene otras mascotas?</strong>
+            {{ boolToText(solicitud.tieneMascotas) }}
+          </p>
+
+          @if (solicitud.tieneMascotas && solicitud.detalleMascotas) {
+            <p>
+              <strong>Detalle de mascotas:</strong>
+              {{ solicitud.detalleMascotas }}
+            </p>
+          }
+
+          <p>
+            <strong>¿Vive con niños?</strong>
+            {{ boolToText(solicitud.viveConNinos) }}
+          </p>
+
+          <p>
+            <strong>¿Acepta compromiso de cuidado?</strong>
+            {{ boolToText(solicitud.aceptaCompromiso) }}
+          </p>
+        </div>
+
+        <!-- MENSAJE DEL SOLICITANTE -->
+        @if (solicitud.mensaje) {
+          <div class="detail-block">
+            <h3>Mensaje del solicitante</h3>
+            <p>{{ solicitud.mensaje }}</p>
+          </div>
+        }
+
+        <!-- COMENTARIOS DEL ADMIN -->
+        <div class="detail-block">
+          <h3>Comentarios del administrador</h3>
+
+          @if (solicitud.comentarios) {
+            <p>{{ solicitud.comentarios }}</p>
+          } @else {
+            <p><em>Sin comentarios registrados.</em></p>
+          }
+        </div>
+
+      </section>
+
+      <button class="btn-back" (click)="goBack()">
+        ⬅ Volver al listado
+      </button>
+
+    }
+
+  }
+</div>

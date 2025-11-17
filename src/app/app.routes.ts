@@ -19,6 +19,7 @@ import { FavoritesComponent } from './component/user/favorites/favorites';
 import { NotificationsComponent } from './component/user/notifications/notifications';
 
 import { MyDonations } from './component/donations/my-donations/my-donations';
+import { RequestDetails } from './page/adopcion/request-details/request-details';
 
 export const routes: Routes = [
     { path:'', component: Home },
@@ -31,7 +32,10 @@ export const routes: Routes = [
     { path:'registro', component: Registro },
     { path:'mis-solicitudes', component: RequestList },
     { path:'solicitar/:animalId', component: RequestForm },
+
     { path:'admin/solicitudes', component: AdminRequest, canMatch: [adminGuard] },
+    { path: 'admin/solicitudes/:id', component: RequestDetails },
+  
 
     { path:'user/profile', component: ProfileComponent },
     { path:'user/favorites', component: FavoritesComponent },

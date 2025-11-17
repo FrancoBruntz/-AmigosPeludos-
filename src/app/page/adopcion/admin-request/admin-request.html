@@ -20,8 +20,12 @@
   </form>
 
   <!-- Estados de carga y error -->
-  @if (loading) { <p class="loading">Cargando…</p> }
-  @if (!loading && error) { <p class="error">{{ error }}</p> }
+  @if (loading) { 
+    <p class="loading">Cargando…</p> 
+  }
+  @if (!loading && error) { 
+    <p class="error">{{ error }}</p> 
+  }
 
   <!-- Tabla principal: se muestra solo si hay datos y no hay error -->
   @if (!loading && !error && data.length > 0) {
@@ -41,8 +45,10 @@
           <tr [class]="'estado-' + s.estado">
             <!-- DatePipe formatea ISO a legible -->
             <td>{{ s.fecha | date:'short' }}</td>
+
             <!-- En solicitanteUser guardamos el DNI -->
             <td>{{ s.solicitanteUser }}</td>
+
             <!-- Mostramos el nombre del animal -->
             <td><strong>{{ getNombreAnimal(s.animalId) }}</strong></td>
 
@@ -54,6 +60,13 @@
             </td>
 
             <td class="acciones">
+              <!-- 🔵 NUEVO: VER DETALLE DE LA SOLICITUD -->
+              <a 
+                class="btn-detalle" 
+                [routerLink]="['/admin/solicitudes', s.id]">
+                Ver detalle
+              </a>
+
               <!-- Solo si está 'pendiente' mostramos los botones de moderación -->
               @if (s.estado === 'pendiente') {
                 <button class="btn-aprobar" (click)="aprobar(s)">✓ Aprobar</button>

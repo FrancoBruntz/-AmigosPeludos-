@@ -6,11 +6,12 @@ import { NotificacionService } from '../../../services/notificacionservice';
 import { Petsservice } from '../../../services/petsservice';
 import Solicitud, {EstadoSolicitud} from '../../../models/solicitud';
 import Pets from '../../../models/pets';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-request',
   standalone: true,
-  imports: [CommonModule, FormsModule, DatePipe],
+  imports: [CommonModule, FormsModule, DatePipe, RouterLink],
   templateUrl: './admin-request.html',
   styleUrl: './admin-request.css',
 })

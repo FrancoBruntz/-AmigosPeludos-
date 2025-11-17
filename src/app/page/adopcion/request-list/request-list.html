@@ -1,33 +1,71 @@
 <section class="container">
-    <h1>Mis Solicitudes de Adopción</h1>
+  <h1>Mis Solicitudes de Adopción</h1>
 
-    <p class="loading" *ngIf="loading">Cargando solicitudes...</p>
-    <p class="error" *ngIf="!loading && error">{{ error }}</p>
+  <p class="loading" *ngIf="loading">Cargando solicitudes...</p>
+  <p class="error" *ngIf="!loading && error">{{ error }}</p>
 
-    <table class="solicitudes-table" *ngIf="!loading && !error && data.length > 0">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Animal</th>
-                <th>Estado</th>
-                <th>Comentarios</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let s of data; trackBy: trackById" [class]="getEstadoClase(s.estado)">
-                <td>{{ s.fecha | date: 'short' }}</td>
-                <td><strong>{{ getNombreAnimal(s.animalId) }}</strong></td>
-                <td><span class="estado-badge" [class]="s.estado">{{ s.estado | uppercase }}</span></td>
-                <td class="comentarios">{{ s.comentarios || '-' }}</td>
-                <td class="acciones">
-                    <a [routerLink]="['/details', s.animalId]">Ver animal</a>
-                    <button *ngIf="s.estado === 'pendiente'" (click)="cancelarSolicitud(s)">Cancelar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="solicitudes-table" *ngIf="!loading && !error && data.length > 0">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Animal</th>
+        <th>Estado</th>
+        <th>Comentarios</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
 
-    <p class="empty" *ngIf="!loading && !error && data.length === 0">No tenes solicitudes.</p>
+    <tbody>
+      <tr *ngFor="let s of data; trackBy: trackById" [class]="getEstadoClase(s.estado)">
 
+        <!-- Fecha -->
+        <td>{{ s.fecha | date: 'short' }}</td>
+
+        <!-- Animal -->
+        <td><strong>{{ getNombreAnimal(s.animalId) }}</strong></td>
+
+        <!-- Estado -->
+        <td>
+          <span class="estado-badge" [class]="s.estado">
+            {{ s.estado | uppercase }}
+          </span>
+        </td>
+
+        <!-- Comentarios -->
+        <td class="comentarios">
+          {{ s.comentarios || '-' }}
+        </td>
+
+        <!-- Acciones -->
+        <td class="acciones">
+
+          <!-- 🔵 Ver DETALLE de la solicitud (para el usuario) -->
+          <a class="btn details"
+             [routerLink]="['/solicitudes', s.id]">
+            Ver detalle
+        </a>
+
+          <!-- 🟢 Ver ANIMAL -->
+          <a class="btn animal"
+             [routerLink]="['/details', s.animalId]">
+            Ver animal
+          </a>
+
+          <!-- 🟡 Cancelar solo si está pendiente -->
+          <button
+            class="btn cancel"
+            *ngIf="s.estado === 'pendiente'"
+            (click)="cancelarSolicitud(s)">
+            Cancelar
+          </button>
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="empty" *ngIf="!loading && !error && data.length === 0">
+    No tenés solicitudes.
+  </p>
 </section>

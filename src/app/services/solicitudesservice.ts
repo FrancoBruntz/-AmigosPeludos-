@@ -40,6 +40,10 @@ export class Solicitudesservice {
     };
   }
 
+  getById(id: string) {
+    return this.http.get<Solicitud>(`${this.base}/${id}`);
+  }
+
   // Trae todas las solicitudes de un usuario (por dni como clave)
   listByUser(dni: string){
     return this.http.get<Solicitud[]>(

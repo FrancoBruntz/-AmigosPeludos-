@@ -261,6 +261,20 @@
       "estado": "aprobada",
       "mensaje": "Toda la vida quise tener un salchicha y esta es mi oportunidad para poder darle una mejor vida a el y que me acompañe a mi",
       "comentarios": "Felicitaciones! Ya son familia"
+    },
+    {
+      "id": "318b",
+      "animalId": "3266",
+      "solicitanteUser": "39555661",
+      "fecha": "2025-11-17T13:43:57.479Z",
+      "estado": "pendiente",
+      "mensaje": "kan cvklz akvnikzvn ",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": true,
+      "detalleMascotas": "2 perros ",
+      "viveConNinos": false,
+      "aceptaCompromiso": true
     }
   ],
   "notificaciones": [
@@ -326,6 +340,26 @@
       "comentarios": "Felicitaciones! Ya son familia",
       "leida": false,
       "fechaCreacion": "2025-11-17T12:05:06.189Z"
+    },
+    {
+      "id": "c736",
+      "usuarioDNI": "admin",
+      "solicitudId": "318b",
+      "animalId": "3266",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 39555661 para animal #3266",
+      "leida": false,
+      "fechaCreacion": "2025-11-17T13:43:57.505Z"
+    },
+    {
+      "id": "99ec",
+      "usuarioDNI": "admin",
+      "solicitudId": "76d7",
+      "animalId": "9cf0",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 45131280 para animal #9cf0",
+      "leida": false,
+      "fechaCreacion": "2025-11-17T14:09:58.153Z"
     }
   ],
   "donations": [
