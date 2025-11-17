@@ -17,7 +17,9 @@ export class Header implements OnInit {
 
   unread = 0;
 
-  constructor(protected auth:AuthService, private router:Router){}
+  constructor(
+    protected auth:AuthService, 
+    private router:Router){}
 
   ngOnInit(): void {
     // Suscribirse a cambios de usuario para actualizar badge

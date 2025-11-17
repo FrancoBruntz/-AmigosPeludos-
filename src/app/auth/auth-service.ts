@@ -73,11 +73,9 @@ export class AuthService {
       }) 
     }
 
-    getCurrentUsername(): string | null {
-      try {
-        return JSON.parse(localStorage.getItem('user') || 'null')?.user ?? null;
-      }
-      catch { return null ;}
-    }
+  getCurrentUsername(): string | null {
+     return localStorage.getItem('user');
+  }
 
+    
 }
