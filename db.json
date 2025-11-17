@@ -205,7 +205,7 @@
       "castrado": true,
       "notes": "Ama salir a pasear",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262915/fiopausijsditkgcyk1t.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "dea6",
@@ -251,14 +251,6 @@
       "fecha": "2025-11-17T01:21:00.496Z",
       "estado": "pendiente",
       "mensaje": "Amo los animales"
-    },
-    {
-      "id": "2634",
-      "animalId": "3266",
-      "solicitanteUser": "39555661",
-      "fecha": "2025-11-17T11:43:01.493Z",
-      "estado": "pendiente",
-      "mensaje": "Ganas de tener un perro "
     }
   ],
   "notificaciones": [
@@ -290,18 +282,8 @@
       "animalId": "1",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para animal #1",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-11-17T01:21:00.528Z"
-    },
-    {
-      "id": "81a6",
-      "usuarioDNI": "admin",
-      "solicitudId": "2634",
-      "animalId": "3266",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 39555661 para animal #3266",
-      "leida": false,
-      "fechaCreacion": "2025-11-17T11:43:01.514Z"
     }
   ],
   "donations": [
@@ -312,6 +294,14 @@
       "method": "Transferencia",
       "message": "",
       "date": "2025-11-17T02:28:12.821Z"
+    },
+    {
+      "id": "8986",
+      "userId": "46112136",
+      "amount": 10000,
+      "method": "Transferencia",
+      "message": "Espero que los animalitos puedan comer un rico pollito con esta donacion",
+      "date": "2025-11-17T11:58:10.649Z"
     }
   ]
 }
