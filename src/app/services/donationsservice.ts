@@ -16,6 +16,10 @@ export class Donationsservice {
     return this.http.get<Donation[]>(this.url); 
   }
 
+  getDonationById(id: string) {
+    return this.http.get<Donation>(`${this.url}/${id}`);
+  }
+
   // Donaciones de un usuario (para historial propio)
   getByUser(userId: string) { 
     return this.http.get<Donation[]>(`${this.url}?userId=${userId}`);
@@ -28,7 +32,7 @@ export class Donationsservice {
 
   // Filtro genérico (opcional)
     // Filtro genérico (opcional)
-  filter(params: { userId?: number; method?: string }) {
+  filter(params: { userId?: string; method?: string }) {
     const query = new URLSearchParams();
 
     if (params.userId !== undefined) query.set('userId', params.userId.toString());

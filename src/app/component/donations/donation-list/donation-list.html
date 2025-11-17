@@ -1,1 +1,89 @@
-<p>donation-list works!</p>
+<div class="header-actions">
+  <button class="btn-back" [routerLink]="['/admin']">⬅ Volver</button>
+</div>
+
+<h2>Historial de donaciones (Admin)</h2>
+
+@if (errorMessage) {
+  <p>{{ errorMessage }}</p>
+} @else {
+
+  <!-- FILTROS -->
+  <div class="filters">
+    <!-- Método -->
+    <div>
+      <label for="methodAdmin">Método:</label>
+      <select
+        id="methodAdmin"
+        [(ngModel)]="selectedMethod"
+        (change)="applyFilter()"
+      >
+        <option value="Todas">Todas</option>
+        <option value="Tarjeta">Tarjeta</option>
+        <option value="Transferencia">Transferencia</option>
+        <option value="Efectivo">Efectivo</option>
+      </select>
+    </div>
+
+    <!-- userId -->
+    <div>
+      <label for="userIdFilter">Usuario (userId):</label>
+      <input
+        id="userIdFilter"
+        type="text"
+        [(ngModel)]="userIdFilter"
+        (input)="applyFilter()"
+        placeholder="Ej: 12345678"
+      >
+    </div>
+
+    <!-- Monto mínimo -->
+    <div>
+      <label for="minAmount">Monto mínimo:</label>
+      <input
+        id="minAmount"
+        type="number"
+        [(ngModel)]="minAmount"
+        (input)="applyFilter()"
+        placeholder="Ej: 1000"
+      >
+    </div>
+  </div>
+
+  @if (filteredDonations.length === 0) {
+    <p>No hay donaciones que coincidan con el filtro.</p>
+  } @else {
+
+    <p>
+      Total donado (filtro actual):
+      <strong>${{ getTotal() }}</strong>
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Usuario (userId)</th>
+          <th>Monto</th>
+          <th>Método</th>
+          <th>Fecha</th>
+          <th>Mensaje</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (d of filteredDonations; track d.id) {
+          <tr>
+            <td>{{ d.userId }}</td>
+            <td>${{ d.amount }}</td>
+            <td>{{ d.method }}</td>
+            <td>{{ d.date | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ d.message }}</td>
+            <td><a [routerLink]="['/admin/donaciones', d.id]"> Ver detalle </a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+  }
+
+}

@@ -14,6 +14,7 @@ import { adminGuard } from './guards/admin-guard';
 import { DonationForm } from './component/donations/donation-form/donation-form';
 import { DonationList } from './component/donations/donation-list/donation-list';
 import { DonationDetails } from './component/donations/donation-details/donation-details';
+import { MyDonations } from './component/donations/my-donations/my-donations';
 
 export const routes: Routes = [
     {path:'', component: Home},
@@ -29,7 +30,7 @@ export const routes: Routes = [
     {path:'admin/solicitudes', component: AdminRequest, canMatch: [adminGuard] },
     {path:'notifications', component: NotificationsComponent},
     {path: 'donar' , component: DonationForm},
-    {path: 'mis-donaciones', component: DonationList}, //?????
+    {path: 'mis-donaciones', component: MyDonations}, 
     {path: 'admin/donaciones', component: DonationList},
     {path: 'admin/donaciones/:id', component: DonationDetails},
     {path: '**', component: Home}

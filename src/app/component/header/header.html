@@ -1,33 +1,66 @@
 <header>
     <h1>Amigos Peludos</h1>
+
     <nav>
       <ul>
         <li>
-            <a routerLink="/">Inicio</a>
-            @if (auth.isLogIn() && auth.isAdmin()) {
-                <a routerLink="/agregarpets">Cargar animal</a>
-                <a routerLink="/sobreellos">Sobre ellos</a>
-                <a routerLink="/admin/solicitudes">Solicitudes</a>
-            }
+
+          <!-- INICIO -->
+          <a routerLink="/">Inicio</a>
+
+          <!-- ========================= -->
+          <!--     MENÚ ADMINISTRADOR    -->
+          <!-- ========================= -->
+          @if (auth.isLogIn() && auth.isAdmin()) {
             
-            @if (auth.isLogIn() && !auth.isAdmin()) {
-                <a routerLink="/sobreellos">Animales disponibles</a>
-                <a routerLink="/mis-solicitudes">Mis solicitudes</a>
-            }
-            
-            <a routerLink="/sobrenosotros">Sobre nosotros</a> 
-            <!-- Link a notificaciones (muestra badge si hay no-leídas) -->
-            @if (auth.isLogIn()) {
-                <a routerLink="/notifications">Notificaciones @if (unread > 0) { <span class="badge">{{ unread }}</span> }</a>
-            }
-            @if (auth.isLogIn()) {
-                <a (click)="logout()">Cerrar sesion</a>    
-            } @else {
-                <a routerLink="/login">Inciar Sesion</a>
-            }
-            
-            
+            <a routerLink="/agregarpets">Cargar animal</a>
+            <a routerLink="/sobreellos">Sobre ellos</a>
+            <a routerLink="/admin/solicitudes">Solicitudes</a>
+
+            <!-- HISTORIAL DE DONACIONES (ADMIN) -->
+            <a routerLink="/admin/donaciones">Historial donaciones</a>
+
+          }
+
+          <!-- ========================= -->
+          <!--     MENÚ USUARIO NORMAL    -->
+          <!-- ========================= -->
+          @if (auth.isLogIn() && !auth.isAdmin()) {
+
+            <a routerLink="/sobreellos">Animales disponibles</a>
+            <a routerLink="/mis-solicitudes">Mis solicitudes</a>
+
+            <!-- MENÚ DONACIONES USUARIO -->
+            <a routerLink="/donar">Donar</a>
+            <a routerLink="/mis-donaciones">Mis donaciones</a>
+
+          }
+
+          <!-- SOBRE NOSOTROS -->
+          <a routerLink="/sobrenosotros">Sobre nosotros</a>
+
+          <!-- ========================= -->
+          <!--       NOTIFICACIONES       -->
+          <!-- ========================= -->
+          @if (auth.isLogIn()) {
+            <a routerLink="/notifications">
+              Notificaciones 
+              @if (unread > 0) { 
+                <span class="badge">{{ unread }}</span> 
+              }
+            </a>
+          }
+
+          <!-- ========================= -->
+          <!--        LOGIN / LOGOUT      -->
+          <!-- ========================= -->
+          @if (auth.isLogIn()) {
+            <a (click)="logout()">Cerrar sesión</a>
+          } @else {
+            <a routerLink="/login">Iniciar sesión</a>
+          }
+
         </li>
-    </ul>  
+      </ul>
     </nav>
 </header>
