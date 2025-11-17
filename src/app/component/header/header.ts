@@ -33,7 +33,10 @@ export class Header implements OnInit {
   }
 
   logout(){
-    this.auth.logOut();
-    this.router.navigateByUrl("/home")
+    if(confirm("Seguro que desea cerrar sesion?")){
+      this.auth.logOut();
+      this.router.navigateByUrl("/home")
+    }
+    
   }
 }

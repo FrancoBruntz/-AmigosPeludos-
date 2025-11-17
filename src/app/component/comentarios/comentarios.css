@@ -1,0 +1,167 @@
+/* CONTENEDOR GENERAL */
+#comentarios {
+  max-width: 800px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+#comentarios h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: #ffcc70;
+}
+
+#comentarios .intro {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+/* FORMULARIO */
+.comentario-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  border-radius: 8px;
+  border: none;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: #ff9c9c;
+}
+
+/* BOTÓN */
+.comentario-form button {
+  align-self: flex-end;
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #ffcc70;
+  color: #333;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.comentario-form button:hover {
+  background: #ffdd99;
+  transform: translateY(-1px);
+}
+
+/* LISTA DE COMENTARIOS */
+.lista-comentarios h3 {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  color: #ffe3a1;
+}
+
+.lista-comentarios ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comentario-card {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.comentario-card h4 {
+  margin: 0 0 5px 0;
+  font-size: 0.98rem;
+  color: #ffcc70;
+}
+
+.comentario-card p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.sin-comentarios {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #f5e1c6;
+  text-align: center;
+}
+
+/* ===== BOTÓN ELIMINAR ===== */
+.comentario-card {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.45);
+  position: relative;
+}
+
+.btn-eliminar {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+
+
+  color: white;
+  border: none;
+  padding: 4px 10px;       
+  border-radius: 6px;
+  font-size: 0.75rem;     
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 600;
+}
+
+.btn-eliminar:hover {
+  background: #faa6a6;
+  transform: translateY(-1px);
+}
+
+.btn-eliminar:active {
+  background: #646363;
+  transform: scale(0.96);
+}
+
+
+.comentario-card h4 {
+  margin-top: 0;
+  padding-right: 90px;  
+}

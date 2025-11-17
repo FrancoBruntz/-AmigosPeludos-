@@ -1,19 +1,12 @@
-/* ===== FONDO GENERAL ===== */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  background-size: cover;
-  color: #fff;
+p{
+    color: white;
 }
-
 /* ===== CONTENEDOR PRINCIPAL ===== */
 .container {
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  padding: 60px 20px;
 }
 
 /* ===== RECUADRO DE TEXTO PRINCIPAL ===== */
@@ -21,144 +14,64 @@ body {
   background: rgba(0, 0, 0, 0.6);
   padding: 40px;
   border-radius: 12px;
-  max-width: 800px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  margin-bottom: 50px;
+  max-width: 850px;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-h1 {
-  font-size: 2.2rem;
+.text-box h1 {
+  font-size: 2.4rem;
   margin-bottom: 10px;
   color: #ffcc70;
 }
 
-h2 {
-  font-size: 1.4rem;
-  font-style: italic;
+.text-box h2 {
+  font-size: 1.5rem;
   margin-bottom: 20px;
-  color: #ffdca8;
+  color: #ffdd99;
 }
 
-p {
+.text-box p {
+  line-height: 1.7;
   font-size: 1rem;
-  line-height: 1.6;
-  color: #f1f1f1;
+}
+
+/* ===== CONTENEDOR DE TARJETAS ===== */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 10px;
 }
 
 /* ===== TARJETAS ===== */
-.cards-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
-  margin-bottom: 50px;
-}
-
-/* Cada tarjeta */
 .card {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 14px;
-  width: 240px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
   text-align: center;
-  color: #fff;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding-bottom: 10px;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
-/* Imagen dentro de la tarjeta */
+/* ===== IMÁGENES ===== */
 .card img {
   width: 100%;
-  height: 140px; /* 🔹 este punto es clave */
+  height: 180px;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 10px;
 }
 
-
+/* ===== TEXTO DE CADA TARJETA ===== */
 .card p {
+  padding: 10px 15px;
   font-size: 0.95rem;
-  color: #f1f1f1;
+  color: #ffe8c6;
 }
-
-/* ===== CUADRO DE COMENTARIOS ===== */
-.comment-box {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 30px;
-  border-radius: 12px;
-  max-width: 600px;
-  width: 100%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  margin-bottom: 40px;
-}
-
-.comment-box h3 {
-  color: #ffcc70;
-  margin-bottom: 15px;
-}
-
-.comment-box textarea {
-  width: 100%;
-  height: 100px;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  resize: none;
-  font-family: inherit;
-  font-size: 1rem;
-  margin-bottom: 15px;
-}
-
-.comment-box button {
-  background-color: #ffcc70;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.comment-box button:hover {
-  background-color: #ffd98c;
-}
-
-/* ===== HISTORIAL DE COMENTARIOS ===== */
-.reviews {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 30px;
-  border-radius: 12px;
-  max-width: 700px;
-  width: 100%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-}
-
-.reviews h3 {
-  color: #ffcc70;
-  margin-bottom: 25px;
-}
-
-.review {
-  background: rgba(255,255,255,0.1);
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.review h4 {
-  margin: 0 0 8px 0;
-  color: #ffdca8;
-}
-
-.review p {
-  margin: 0;
-  color: #f1f1f1;
-  font-size: 0.95rem;
-}
-

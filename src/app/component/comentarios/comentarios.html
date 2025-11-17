@@ -1,0 +1,64 @@
+@let comentarios = this.comentariosSignal();
+
+<div id="comentarios">
+
+  <h2>Dejanos tu comentario</h2>
+  <p class="intro">
+    Tu opinión nos ayuda a seguir cuidando mejor a nuestros amigos peludos 🐾
+  </p>
+
+  <!-- FORMULARIO DE COMENTARIO -->
+  <form [formGroup]="comentarioForm" (ngSubmit)="onSubmit()" class="comentario-form">
+
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input
+        id="nombre"
+        type="text"
+        formControlName="nombre"
+        placeholder="Escribí tu nombre"
+      />
+      @if (comentarioForm.controls['nombre'].invalid && comentarioForm.controls['nombre'].touched) {
+        <p class="error">El nombre es obligatorio.</p>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="text">Comentario</label>
+      <textarea
+        id="text"
+        rows="4"
+        formControlName="text"
+        placeholder="Contanos tu experiencia o dejá un mensaje..."
+      ></textarea>
+      @if (comentarioForm.controls['text'].invalid && comentarioForm.controls['text'].touched) {
+        <p class="error">El comentario es obligatorio.</p>
+      }
+    </div>
+
+    <button type="submit">Enviar comentario</button>
+  </form>
+
+  <!-- LISTA DE COMENTARIOS -->
+  <div class="lista-comentarios">
+    <h3>Comentarios de la comunidad</h3>
+
+    @if (!comentarios) {
+      <p class="sin-comentarios">
+        Todavía no hay comentarios. ¡Sé el primero en opinar! 💬
+      </p>
+    } @else {
+      <ul>
+        @for (c of comentarios; track c.id) {
+          <li class="comentario-card">
+            @if (auth.isLogIn() && auth.isAdmin()) {
+              <button class="btn-eliminar" (click)="borrarComentario(c.id)"> ❌ </button>
+            }
+            <h4>{{ c.nombre }}</h4>
+            <p>{{ c.text }}</p>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</div>

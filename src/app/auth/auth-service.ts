@@ -13,8 +13,8 @@ export class AuthService {
   
   constructor(private http: HttpClient, private router: Router, private userService: UserService){}
 
-  public readonly isLogIn=signal(false);
-  public readonly isAdmin=signal(false);
+  public readonly isLogIn=signal(JSON.parse(localStorage.getItem('isLogIn') ?? 'false'));
+  public readonly isAdmin=signal(JSON.parse(localStorage.getItem('isLogIn') ?? 'false'));
 
     logIn(user: string, password:string){
 
@@ -29,7 +29,7 @@ export class AuthService {
       this.http.get<usuarios[]>(this.url,{params:params}).subscribe({//a que corresponde el parametro, el objeto que yo le paso
           next:(data)=>{
             console.log(data);
-            if(data[0].user){
+            if(data[0]){
             // Guardar en UserService para sincronizar con notificaciones
             this.userService.saveCurrent({
               dni: data[0].user,
@@ -39,7 +39,9 @@ export class AuthService {
             });
             
             localStorage.setItem("user", data[0].user)
-            this.isLogIn.set(true);
+            localStorage.setItem("isLogIn",JSON.stringify(true)); //pasa el booleano a un string
+            this.isLogIn.set(true); //para asi cuando recarga la pagina no te lo convierte nuevamente a false
+            localStorage.setItem("isAdmin",JSON.stringify(data[0].isAdmin)) //y te saca, si no que, si se recarga la pagina no te saca de la sesion 
             this.isAdmin.update(value=> data[0].isAdmin);
             alert("Incio de sesion con exito!");
             this.router.navigateByUrl("/home");
@@ -64,6 +66,7 @@ export class AuthService {
     registro(dni:string, password:string){
       const user={user:dni, password:password, isAdmin:false}
             
+      if(this.verificarDNIUnico(dni)){
       this.http.post<usuarios>(this.url, user).subscribe({
         next:(data)=>{
           alert("Registro exitoso");
@@ -71,11 +74,35 @@ export class AuthService {
         },
         error:(e)=>{alert("Ocurrio un error")}
       }) 
+    } else{
+      alert("DNI Ya registrado en el sistema");
     }
+
+  }
+      
 
   getCurrentUsername(): string | null {
      return localStorage.getItem('user');
   }
 
-    
+  verificarDNIUnico(dni:string):boolean{
+
+    const requestParams = {
+        dni:dni
+      }
+  
+      let params = new HttpParams({fromObject:requestParams}); 
+     
+    this.http.get<usuarios[]>(this.url,{params:params}).subscribe({
+      next: (data)=> {
+        console.log(data);
+        if(data[0]){
+          return true;
+        }
+        return false;
+      }
+    })
+
+    return false;
+  }
 }

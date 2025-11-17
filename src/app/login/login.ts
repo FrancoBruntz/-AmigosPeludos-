@@ -28,7 +28,7 @@ export class Login implements OnInit {
   }
 
   onSubmit(): void {
-    if (true) {
+    if (this.loginForm.valid) {
       const { dni, password } = this.loginForm.value;
 
       console.log(dni,password)

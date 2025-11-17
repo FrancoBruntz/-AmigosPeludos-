@@ -48,7 +48,8 @@ export class Form implements OnInit {
       color: ['', Validators.required],
       castrado: [false],
       notes: ['', [Validators.maxLength(100)]],
-      image: ['']
+      image: [''],
+      activo: [true]
     });
 
     this.petId = this.route.snapshot.params['id'];

@@ -13,12 +13,6 @@
       "id": "c016"
     },
     {
-      "id": "93d6",
-      "user": "47068044",
-      "password": "edumango",
-      "isAdmin": false
-    },
-    {
       "id": "5381",
       "user": "39555661",
       "password": "soypri123",
@@ -28,12 +22,6 @@
       "id": "aea5",
       "user": "11111111",
       "password": "karina1",
-      "isAdmin": false
-    },
-    {
-      "id": "b908",
-      "user": "45131280",
-      "password": "aloha987",
       "isAdmin": false
     }
   ],
@@ -127,7 +115,7 @@
       "castrado": true,
       "notes": "Preferiblemente familia sin niños",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261435/unr9gsbl2rhlbukpffjk.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "42f4",
@@ -271,6 +259,19 @@
       "notes": "Muy cuidadoso y amoroso con los niños",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763386740/kihiz5bysulu8yojsbnt.jpg",
       "activo": true
+    },
+    {
+      "id": "a2d2",
+      "name": "Pirulo",
+      "type": "Gato",
+      "age": 2,
+      "size": "Pequeño",
+      "sexo": "Macho",
+      "color": "Blanco",
+      "castrado": false,
+      "notes": "Tiene cara de malo pero le gusta mucho jugar",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763400311/ov95rmtysylmi1w96rqx.jpg",
+      "activo": true
     }
   ],
   "solicitudes": [
@@ -306,14 +307,15 @@
       "animalId": "3266",
       "solicitanteUser": "39555661",
       "fecha": "2025-11-17T13:43:57.479Z",
-      "estado": "pendiente",
+      "estado": "aprobada",
       "mensaje": "kan cvklz akvnikzvn ",
       "tipoVivienda": "casa",
       "tienePatio": true,
       "tieneMascotas": true,
       "detalleMascotas": "2 perros ",
       "viveConNinos": false,
-      "aceptaCompromiso": true
+      "aceptaCompromiso": true,
+      "comentarios": ""
     }
   ],
   "notificaciones": [
@@ -399,6 +401,17 @@
       "mensaje": "Nueva solicitud de 45131280 para animal #9cf0",
       "leida": false,
       "fechaCreacion": "2025-11-17T14:09:58.153Z"
+    },
+    {
+      "id": "41a3",
+      "usuarioDNI": "39555661",
+      "solicitudId": "318b",
+      "animalId": "3266",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "",
+      "leida": false,
+      "fechaCreacion": "2025-11-17T17:24:05.123Z"
     }
   ],
   "donations": [
@@ -417,6 +430,43 @@
       "method": "Transferencia",
       "message": "Espero que los animalitos puedan comer un rico pollito con esta donacion",
       "date": "2025-11-17T11:58:10.649Z"
+    }
+  ],
+  "comentarios": [
+    {
+      "id": "1",
+      "nombre": "Sofia Torti",
+      "text": "Amo los animales, muy lindo refugio"
+    },
+    {
+      "id": "1763404872300",
+      "nombre": "Ceci Bogos",
+      "text": "Se nota el amor con el que cuidan todo.\n"
+    },
+    {
+      "id": "1763405050684",
+      "nombre": "Fran Garcia",
+      "text": "Lugar increíble, se siente el respeto por los animales."
+    },
+    {
+      "id": "1763405067476",
+      "nombre": "Aldi Gonzalez",
+      "text": "Transparencia total con adopciones, donaciones y cuidados."
+    },
+    {
+      "id": "1763405086734",
+      "nombre": "Kiara Ayzenberg",
+      "text": "Hermoso lugar, se preocupan por cada detalle."
+    },
+    {
+      "id": "1763405144726",
+      "nombre": "Delfi Lopez",
+      "text": "Volvería a elegir este refugio mil veces."
+    },
+    {
+      "id": "1763405173617",
+      "nombre": "Mica Marinzu ",
+      "text": "Siempre responden rápido y con mucha paciencia."
     }
   ]
 }
