@@ -2,19 +2,35 @@
   <h2>Mis Favoritos</h2>
 
   @if (favorites.length === 0) {
-    <div>No tienes favoritos todavía.</div>
+    <p class="empty">No tienes favoritos todavía.</p>
   }
 
   @if (favorites.length > 0) {
-    <ul>
+
+    <ul class="favorites-list">
       @for (fav of favorites; track $index) {
-        <li>
-          <h3>{{ fav.name }}</h3>
-          <p>Tipo: {{ fav.type }}</p>
-          <button (click)="remove(fav.id)">Eliminar</button>
+
+        <li class="favorite-item">
+
+          <!-- Foto -->
+          <img [src]="fav.image" alt="{{ fav.name }}" class="pet-img">
+
+          <!-- Info -->
+          <div class="pet-info">
+            <h3>{{ fav.name }}</h3>
+            <p class="type-label">{{ fav.type }}</p>
+          </div>
+
+          <!-- Acciones -->
+          <div class="actions">
+            <a class="btn details" [routerLink]="['/details', fav.id]">Ver más</a>
+            <button class="btn delete" (click)="remove(fav.id)">Eliminar</button>
+          </div>
+
         </li>
+
       }
     </ul>
+
   }
 </div>
-

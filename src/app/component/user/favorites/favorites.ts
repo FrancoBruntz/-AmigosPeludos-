@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FavoriteService } from '../../../services/favorite.service';
 import Pets from '../../../models/pets';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './favorites.html',
   styleUrls: ['./favorites.css']
 })
