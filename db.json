@@ -35,7 +35,9 @@
       "sexo": "Hembra",
       "color": "Negro",
       "castrado": true,
-      "notes": "Amigable con niños y otros perros"
+      "notes": "Amigable con niños y otros perros",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262692/cl1gbv6fxgqm7kphxkoo.jpg", 
+      "activo" : true
     },
     {
       "id": "42dc",
@@ -47,7 +49,8 @@
       "color": "Chocolate con leche",
       "castrado": false,
       "notes": "Muy mimoso, ama los besitos",
-      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261352/wmdqgalhuuw6e6v7lunv.jpg"
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261352/wmdqgalhuuw6e6v7lunv.jpg", 
+      "activo" : false
     },
     {
       "id": "d6f7",
@@ -58,10 +61,168 @@
       "sexo": "Hembra",
       "color": "gris",
       "castrado": true,
+      "notes": "Amante de la comida",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261165/ddrz4vucah6j6fxljp6j.jpg", 
+      "activo" : true
+    },
+    {
+      "id": "9cf0",
+      "name": "Lex",
+      "type": "Perro",
+      "age": 8,
+      "size": "Grande",
+      "sexo": "Macho",
+      "color": "Negro",
+      "castrado": false,
+      "notes": "Muy buenito",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261251/p9twrldyfvsceqzjdvpa.jpg", 
+      "activo" : true
+    },
+    {
+      "id": "9a8e",
+      "name": "Loki",
+      "type": "Gato",
+      "age": 2,
+      "size": "Pequeño",
+      "sexo": "Macho",
+      "color": "negro",
+      "castrado": false,
+      "notes": "Tiene cara de loquito pero es super bueno",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261307/yblrhkhksjewrfv1qves.jpg", 
+      "activo" : false
+    },
+    {
+      "id": "fd21",
+      "name": "Charly",
+      "type": "Perro",
+      "age": 3,
+      "size": "Pequeño",
+      "sexo": "Macho",
+      "color": "Negro",
+      "castrado": false,
       "notes": "",
-      "activo": false
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261391/irlshe0lmt43sqchsy1u.jpg", 
+      "activo" : true
+    },
+    {
+      "id": "3266",
+      "name": "Duke",
+      "type": "Perro",
+      "age": 3,
+      "size": "Pequeño",
+      "sexo": "Macho",
+      "color": "Chocolate con leche",
+      "castrado": true,
+      "notes": "Preferiblemente familia sin niños",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261435/unr9gsbl2rhlbukpffjk.jpg", 
+      "activo" : true
+    },
+    {
+      "id": "42f4",
+      "name": "Yummi",
+      "type": "Gato",
+      "age": 1,
+      "size": "Pequeño",
+      "sexo": "Hembra",
+      "color": "Gris clarito",
+      "castrado": false,
+      "notes": "Amorosa, se lleva barbaro con perros",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262406/tssx5okuhklyjuloqphz.jpg", 
+      "activo" : true
+    },
+    {
+      "id": "5ef9",
+      "name": "Ambar",
+      "type": "Gato",
+      "age": 5,
+      "size": "Mediano",
+      "sexo": "Hembra",
+      "color": "Marron oscuro",
+      "castrado": true,
+      "notes": "Mimosa con niños",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262459/heevwwjyuqe9gb5idu6i.jpg", 
+      "activo" : true
+    },
+    {
+      "id": "9dac",
+      "name": "Ipa",
+      "type": "Gato",
+      "age": 3,
+      "size": "Pequeño",
+      "sexo": "Hembra",
+      "color": "Blanco",
+      "castrado": false,
+      "notes": "",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262571/kxp41l4um9gptjih9s6w.jpg", 
+      "activo" : false
+    },
+    {
+      "id": "adad",
+      "name": "Tango",
+      "type": "Gato",
+      "age": 4,
+      "size": "Mediano",
+      "sexo": "Macho",
+      "color": "Naranja",
+      "castrado": false,
+      "notes": "Muy energico",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262752/zewhntgfrszufvm3le6q.jpg", 
+      "activo" : true
+    },
+    {
+      "id": "48fa",
+      "name": "Pedro",
+      "type": "Perro",
+      "age": 4,
+      "size": "Pequeño",
+      "sexo": "Macho",
+      "color": "Negro",
+      "castrado": true,
+      "notes": "Ama jugar con pelotas, muy energico",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262882/m5abmucaz4o6dfblbt7q.jpg", 
+      "activo" : false
+    },
+    {
+      "id": "a394",
+      "name": "ChimiChurri",
+      "type": "Perro",
+      "age": 3,
+      "size": "Mediano",
+      "sexo": "Macho",
+      "color": "Negro",
+      "castrado": true,
+      "notes": "Ama salir a pasear",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262915/fiopausijsditkgcyk1t.jpg", 
+      "activo" : true
+    },
+    {
+      "id": "dea6",
+      "name": "Provoleta",
+      "type": "Perro",
+      "age": 2,
+      "size": "Pequeño",
+      "sexo": "Hembra",
+      "color": "Marron clarito",
+      "castrado": true,
+      "notes": "",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262953/hpsqywoqekvy3ylq4mvg.jpg", 
+      "activo" : true
+    },
+    {
+      "id": "b600",
+      "name": "Apolo",
+      "type": "Perro",
+      "age": 5,
+      "size": "Pequeño",
+      "sexo": "Macho",
+      "color": "Negro",
+      "castrado": false,
+      "notes": "Ama estar tirado al sol",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262995/b2zxumyjfqikdbhqxyat.jpg", 
+      "activo" : true
     }
-  ],
+  ]
+,
   "solicitudes": [
     {
       "id": "b1f5",
@@ -95,9 +256,6 @@
       "leida": false,
       "fechaCreacion": "2025-11-16T19:48:45.885Z"
     }
-  ], 
-
-  "donations" : [
-
-  ]
+  ],
+  "donations": []
 }
