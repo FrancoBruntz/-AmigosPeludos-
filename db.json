@@ -4,25 +4,57 @@
       "user": "admin",
       "password": "admin1234!",
       "isAdmin": true,
-      "id": "22bf"
+      "id": "22bf",
+      "perfil": {
+        "nombre": "",
+        "apellido": "",
+        "email": "",
+        "telefono": "",
+        "barrio": "",
+        "ciudad": ""
+      }
     },
     {
       "user": "46112136",
       "password": "sofiatorti",
       "isAdmin": false,
-      "id": "c016"
+      "id": "c016",
+      "perfil": {
+        "nombre": "",
+        "apellido": "",
+        "email": "",
+        "telefono": "",
+        "barrio": "",
+        "ciudad": ""
+      }
     },
     {
       "id": "5381",
       "user": "39555661",
       "password": "soypri123",
-      "isAdmin": false
+      "isAdmin": false,
+      "perfil": {
+        "nombre": "",
+        "apellido": "",
+        "email": "",
+        "telefono": "",
+        "barrio": "",
+        "ciudad": ""
+      }
     },
     {
       "id": "aea5",
       "user": "11111111",
       "password": "karina1",
-      "isAdmin": false
+      "isAdmin": false,
+      "perfil": {
+        "nombre": "",
+        "apellido": "",
+        "email": "",
+        "telefono": "",
+        "barrio": "",
+        "ciudad": ""
+      }
     }
   ],
   "pets": [
