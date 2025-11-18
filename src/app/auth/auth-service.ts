@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment.development';
 import { Router } from '@angular/router';
 import { UserService } from '../component/user/user.service';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,11 +33,29 @@ export class AuthService {
             if(data[0]){
             // Guardar en UserService para sincronizar con notificaciones
             this.userService.saveCurrent({
+              id: data[0].id,
               dni: data[0].user,
-              nombre: data[0].user,
-              apellido: '',
+              nombre: data[0].nombre ?? '',
+              apellido: data[0].apellido ?? '',
+              email: data[0].email ?? '',
+              telefono: data[0].telefono ?? '',
+              direccion: data[0].direccion ?? '',
               isAdmin: data[0].isAdmin
-            });
+
+
+
+            /*this.userService.saveCurrent({
+            id: data[0].id,       // ← AQUÍ SE AGREGA
+            dni: data[0].user,
+            nombre: '',
+            apellido: '',
+            email: '',
+            telefono: '', 
+            direccion: '',
+            isAdmin: data[0].isAdmin*/
+});
+            // 👉 Ahora traemos el perfil completo
+            /*this.userService.loadUserProfile(data[0].id);*/
             
             localStorage.setItem("user", data[0].user)
             localStorage.setItem("isLogIn",JSON.stringify(true)); //pasa el booleano a un string
@@ -105,4 +124,7 @@ export class AuthService {
 
     return false;
   }
+  updateUser(id: string, data: Partial<usuarios>) {
+  return this.http.patch<usuarios>(`${this.url}/${id}`, data);
+}
 }

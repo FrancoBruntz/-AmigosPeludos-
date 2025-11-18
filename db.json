@@ -4,25 +4,46 @@
       "user": "admin",
       "password": "admin1234!",
       "isAdmin": true,
-      "id": "22bf"
+      "id": "22bf",
+      "nombre": "",
+      "apellido": "",
+      "email": "",
+      "telefono": "",
+      "direccion": ""
     },
     {
       "user": "46112136",
       "password": "sofiatorti",
       "isAdmin": false,
-      "id": "c016"
+      "id": "c016",
+      "nombre": "ju",
+      "apellido": "Torti",
+      "email": "SofiaTorti@gmail.com",
+      "telefono": "22334534564",
+      "direccion": "mar del plata",
+      "dni": "46112136"
     },
     {
       "id": "5381",
       "user": "39555661",
       "password": "soypri123",
-      "isAdmin": false
+      "isAdmin": false,
+      "nombre": "",
+      "apellido": "",
+      "email": "",
+      "telefono": "",
+      "direccion": ""
     },
     {
       "id": "aea5",
       "user": "11111111",
       "password": "karina1",
-      "isAdmin": false
+      "isAdmin": false,
+      "nombre": "",
+      "apellido": "",
+      "email": "",
+      "telefono": "",
+      "direccion": ""
     }
   ],
   "pets": [

@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-request-details',
-  imports: [DatePipe, FormsModule],
+  imports: [DatePipe, RouterLink],
   templateUrl: './request-details.html',
   styleUrl: './request-details.css',
 })
