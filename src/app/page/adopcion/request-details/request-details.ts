@@ -6,7 +6,7 @@ import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-request-details',
-  imports: [DatePipe, RouterLink],
+  imports: [DatePipe],
   templateUrl: './request-details.html',
   styleUrl: './request-details.css',
 })

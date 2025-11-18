@@ -1,23 +1,44 @@
-<section class="profile-card" *ngIf="user()">
-  <h2>Perfil de {{ user()?.nombre }} {{ user()?.apellido }}</h2>
+<section class="profile-card" *ngIf="form">
+  <h2>Completar / Editar Perfil</h2>
 
-  <div class="row">
-    <label>DNI</label><span>{{ user()?.dni }}</span>
-  </div>
-  <div class="row">
-    <label>Email</label><span>{{ user()?.email || 'No informado' }}</span>
-  </div>
-  <div class="row">
-    <label>Teléfono</label><span>{{ user()?.telefono || 'No informado' }}</span>
-  </div>
-  <div class="row">
-    <label>Dirección</label><span>{{ user()?.direccion || 'No informada' }}</span>
-  </div>
+  <form [formGroup]="form" (ngSubmit)="guardarCambios()">
 
- <div class="buttons">
-    <a routerLink="/user/edit">Editar perfil</a>
-    <button (click)="logout()">Cerrar sesión</button>
-  </div>
+    <div class="row">
+      <label>DNI</label>
+      <input type="text" formControlName="dni" readonly>
+    </div>
+
+    <div class="row">
+      <label>Nombre</label>
+      <input type="text" formControlName="nombre">
+    </div>
+
+    <div class="row">
+      <label>Apellido</label>
+      <input type="text" formControlName="apellido">
+    </div>
+
+    <div class="row">
+      <label>Email</label>
+      <input type="email" formControlName="email">
+    </div>
+
+    <div class="row">
+      <label>Teléfono</label>
+      <input type="text" formControlName="telefono">
+    </div>
+
+    <div class="row">
+      <label>Dirección</label>
+      <input type="text" formControlName="direccion">
+    </div>
+
+    <div class="buttons">
+      <button type="submit" [disabled]="form.invalid" >Guardar Cambios</button>
+      <button type="button" (click)="logout()">Cerrar sesión</button>
+    </div>
+
+  </form>
 </section>
 
 <div *ngIf="!user()">
