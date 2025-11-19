@@ -34,6 +34,11 @@ export class Petsservice {
     return this.http.put<Pets>(`${this.url}/${pet.id}`, pet);
   }
 
+  cambiarActivoPet(id : string, activo : boolean){
+    return this.http.patch<Pets>(`${this.url}/${id}`, {activo : activo} );
+  }
+
+   
   deletePet(id:string){ //elimina animal de la lista =>METODO DELETE
     return this.http.delete<void>(`${this.url}/${id}`);
   }

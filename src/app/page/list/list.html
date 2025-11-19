@@ -42,9 +42,12 @@
 
         @if (auth.isAdmin()) {
           <a class="btn edit" [routerLink]="['/edit', pet.id]">Editar</a>
-          <button class="btn delete" (click)="eliminarPet(pet.id)">
-            Eliminar
-          </button>
+          @if (!showOnlyAvailable) {
+            <button class="btn delete" (click)="cambiarEstadoPet(pet.id, false)"> Dar Baja </button>
+          } @else {
+            <button class="btn delete" (click)="cambiarEstadoPet(pet.id, true)"> Dar Alta </button>
+          }
+          
         }
       </div>
 

@@ -1,42 +1,122 @@
+/* ===========================
+   HEADER PRINCIPAL
+   =========================== */
 header {
-  background-color: #5ed6e9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px 20px;
+  min-height: 8vh;
+
+  background-color: rgba(40, 40, 40, 0.25);
+  backdrop-filter: blur(6px);
+
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
-  padding: 5px 10px;
-  gap: 15px; /* Espacio entre el título y los botones */
+  justify-content: space-between;
+  gap: 16px;
+
+  z-index: 1000;
+  transition: background-color 0.25s ease;
 }
 
-header h1 {
-  color: #080808;
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin: 0;
-  cursor: pointer;
+/* header al pasar por encima */
+header:hover {
+  background-color: rgba(40, 40, 40, 0.35);
 }
+
+/* ===========================
+   TÍTULO (HOME)
+   =========================== */
+
+.title-link {
+  margin: 0;
+  padding: 0;
+}
+
+.title-anchor {
+  text-decoration: none !important;
+  color: #000000;          /* negro */
+  font-size: 1.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+/* hover sobre título */
+.title-anchor:hover {
+  color: #ffcc70;          /* hover que pediste */
+}
+
+/* cuando estoy en el home */
+.active-title {
+  color: #ffcc70 !important;
+}
+
+/* ===========================
+   NAV GENERAL
+   =========================== */
 
 nav {
+  flex: 1;
   display: flex;
-  justify-content: flex-start; /* Alinea los botones a la izquierda */
-  align-items: center;         /* Centra verticalmente el contenido */
-  gap: 10px;                   /* Espacio entre los botones */
+  justify-content: flex-end;
 }
 
-
-a{
-    background-color: transparent;
-    color: #060606;
-    padding : 8px 16px;
-    text-align: end;
-    text-decoration: none;
-
-}
-
-a:hover {
-  background-color:#5e8cf7 ;
-  color:#2a2a2a;
-  border-color: #5e8cf7;
-}
-ul{
+nav ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-wrap: wrap;         /* para que no se rompa en pantallas chicas */
+  gap: 10px;
+}
+
+nav li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* LINKS DEL MENÚ */
+nav a {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.35);
+  color: #000000;          /* negro */
+  padding: 6px 14px;
+  border-radius: 999px;
+
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+/* hover en cualquier link del menú */
+nav a:hover {
+  color: #ffcc70;
+  transform: translateY(-1px);
+}
+
+/* link activo */
+nav a.active-link {
+  color: #ffcc70;
+  font-weight: 700;
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* BADGE NOTIFICACIONES */
+.badge {
+  background: red;
+  padding: 2px 6px;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  margin-left: 4px;
 }

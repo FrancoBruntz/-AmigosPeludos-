@@ -5,9 +5,14 @@
 }
 /* ===== Fondo general de toda la página (blur) ===== */
 html, body {
-  height: 100%;
   margin: 0;
+  padding: 0;
 }
+
+main {
+  margin-top: 6vh; /* altura del header */
+}
+
 
 :root{
   /* cambiá la ruta al archivo que quieras usar */

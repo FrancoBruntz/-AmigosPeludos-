@@ -66,9 +66,17 @@ export class List implements OnInit{
     }
   }
 
-  eliminarPet(id: string) {
-    if (confirm('¿Desea eliminar este animal?')) {
-      this.listaPets.deletePet(id).subscribe({
+  cambiarEstadoPet(id: string, estado : boolean) {
+
+    let mensaje = " ";
+    if(!estado){
+      mensaje = "¿Desea dar de baja este animal?"
+    } else{
+      mensaje = "¿Desea dar de alta este animal?"
+    }
+
+    if (confirm(mensaje)) {
+      this.listaPets.cambiarActivoPet(id, estado ).subscribe({
         next: () => {
           // recargar según vista actual
           this.showOnlyAvailable ? this.loadInactivePets() : this.loadActivePets();

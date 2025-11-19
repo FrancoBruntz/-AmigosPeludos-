@@ -161,20 +161,7 @@
       "castrado": false,
       "notes": "Amorosa, se lleva barbaro con perros",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262406/tssx5okuhklyjuloqphz.jpg",
-      "activo": true
-    },
-    {
-      "id": "5ef9",
-      "name": "Ambar",
-      "type": "Gato",
-      "age": 5,
-      "size": "Mediano",
-      "sexo": "Hembra",
-      "color": "Marron oscuro",
-      "castrado": true,
-      "notes": "Mimosa con niños",
-      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262459/heevwwjyuqe9gb5idu6i.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "9dac",
@@ -407,13 +394,14 @@
       "animalId": "42f4",
       "solicitanteUser": "39555661",
       "fecha": "2025-11-18T22:08:00.792Z",
-      "estado": "pendiente",
+      "estado": "aprobada",
       "mensaje": "Amariamos tener un gatito para mimar",
       "tipoVivienda": "departamento",
       "tienePatio": false,
       "tieneMascotas": false,
       "viveConNinos": true,
-      "aceptaCompromiso": true
+      "aceptaCompromiso": true,
+      "comentarios": ""
     }
   ],
   "notificaciones": [
@@ -520,6 +508,17 @@
       "mensaje": "Nueva solicitud de 39555661 para  #42f4",
       "leida": false,
       "fechaCreacion": "2025-11-18T22:08:00.820Z"
+    },
+    {
+      "id": "7fee",
+      "usuarioDNI": "39555661",
+      "solicitudId": "f0ff",
+      "animalId": "42f4",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Yummi fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "",
+      "leida": false,
+      "fechaCreacion": "2025-11-19T23:19:13.769Z"
     }
   ],
   "donations": [

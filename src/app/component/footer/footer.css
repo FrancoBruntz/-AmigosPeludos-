@@ -1,11 +1,41 @@
-footer{
-    background-color:#5ed6e9;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    text-align: center; 
+footer {
+  background-color: rgba(40, 40, 40, 0.55); 
+  backdrop-filter: blur(6px);
+  padding: 25px 0;
+  text-align: center;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.25s ease;
 }
-footer p {
-  display: block;    
-  margin: 4px 0;     
+
+footer:hover {
+  background-color: rgba(40, 40, 40, 0.70);
+}
+
+.footer-content p {
+  margin: 8px 0;
+  font-size: 18px;   /* 🔥 MÁS GRANDE */
+  color: #000;
+}
+
+/* Título del footer */
+.footer-title {
+  font-weight: 700;
+  font-size: 22px;   /* 🔥 MÁS GRANDE TAMBIÉN */
+  margin-bottom: 6px;
+  color: #000;
+}
+
+/* Hover suave */
+footer p:hover {
+  color: #111;
+  transition: color 0.25s ease;
+}
+
+.footer-copy {
+  font-size: 15px;   /* un poquito más grande también */
+  opacity: 0.9;
+  color: #000;
 }

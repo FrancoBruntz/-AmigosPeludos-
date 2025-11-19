@@ -32,6 +32,7 @@ export const routes: Routes = [
     { path:'registro', component: Registro },
     { path:'mis-solicitudes', component: RequestList },
     { path:'solicitar/:animalId', component: RequestForm },
+    {path: 'solicitudes/:id', component: RequestDetails },
 
     { path:'admin/solicitudes', component: AdminRequest, canMatch: [adminGuard] },
     { path: 'admin/solicitudes/:id', component: RequestDetails },

@@ -1,78 +1,65 @@
 <header>
-  <h1>Amigos Peludos</h1>
 
-    <nav>
-      <ul>
-        <li>
+  <!-- TÍTULO → ES EL HOME -->
+  <h1 class="title-link">
+    <a routerLink="/" routerLinkActive="active-title" class="title-anchor">
+      Amigos Peludos
+    </a>
+  </h1>
 
-          <!-- INICIO -->
-          <a routerLink="/" routerLinkActive="active-link"> Inicio</a>
+  <!-- MENÚ ÚNICO (se muestra según login/admin) -->
+  <nav>
+    <ul>
+      <li>
 
-          <!-- DONAR → solo usuarios, NO admin -->
-          @if (auth.isLogIn() && !auth.isAdmin()) {
-              <a routerLink="/donar" routerLinkActive="active-link">Donar</a>
-          }
+        <!-- DONAR → solo usuarios, NO admin -->
+        @if (auth.isLogIn() && !auth.isAdmin()) {
+          <a routerLink="/donar" routerLinkActive="active-link">Donar</a>
+        }
 
-          <!-- ========================= -->
-          <!--     MENÚ ADMINISTRADOR    -->
-          <!-- ========================= -->
-          @if (auth.isLogIn() && auth.isAdmin()) {
-            
-            <a routerLink="/agregarpets"  routerLinkActive="active-link">Cargar animal</a>
-            <a routerLink="/sobreellos"   routerLinkActive="active-link">Sobre ellos</a>
-            <a routerLink="/admin/solicitudes" routerLinkActive="active-link">Solicitudes</a>
+        <!-- ========================= -->
+        <!--     MENÚ ADMINISTRADOR    -->
+        <!-- ========================= -->
+        @if (auth.isLogIn() && auth.isAdmin()) {
+          <a routerLink="/agregarpets"  routerLinkActive="active-link">Cargar animal</a>
+          <a routerLink="/sobreellos"   routerLinkActive="active-link">Sobre ellos</a>
+          <a routerLink="/admin/solicitudes" routerLinkActive="active-link">Solicitudes</a>
+          <a routerLink="/admin/donaciones" routerLinkActive="active-link">Historial donaciones</a>
+        }
 
-            <!-- HISTORIAL DE DONACIONES (ADMIN) -->
-            <a routerLink="/admin/donaciones"   routerLinkActive="active-link">Historial donaciones</a>
+        <!-- ========================= -->
+        <!--     MENÚ USUARIO NORMAL   -->
+        <!-- ========================= -->
+        @if (auth.isLogIn() && !auth.isAdmin()) {
+          <a routerLink="/sobreellos"        routerLinkActive="active-link">Animales disponibles</a>
+          <a routerLink="/mis-solicitudes"   routerLinkActive="active-link">Mis solicitudes</a>
+          <a routerLink="/mis-donaciones"    routerLinkActive="active-link">Mis donaciones</a>
+          <a routerLink="/user/favorites"    routerLinkActive="active-link">Favoritos ❤️</a>
+          <a routerLink="/user/profile"      routerLinkActive="active-link">Ver perfil</a>
+        }
 
-          }
+        <!-- SOBRE NOSOTROS (siempre) -->
+        <a routerLink="/sobrenosotros" routerLinkActive="active-link">Sobre nosotros</a>
 
-          <!-- ========================= -->
-          <!--     MENÚ USUARIO NORMAL    -->
-          <!-- ========================= -->
-          @if (auth.isLogIn() && !auth.isAdmin()) {
+        <!-- NOTIFICACIONES (si hay login) -->
+        @if (auth.isLogIn()) {
+          <a routerLink="/notifications" routerLinkActive="active-link">
+            Notificaciones
+            @if (unread > 0) {
+              <span class="badge">{{ unread }}</span>
+            }
+          </a>
+        }
 
-            <a routerLink="/sobreellos"   routerLinkActive="active-link">Animales disponibles</a>
-
-            <!-- MENÚ SOLICITUDES PROPIAS -->
-            <a routerLink="/mis-solicitudes"   routerLinkActive="active-link">Mis solicitudes</a>
-
-            <!-- MENÚ DONACIONES USUARIO -->
-
-            <a routerLink="/mis-donaciones"   routerLinkActive="active-link">Mis donaciones</a>
-
-            <!-- ❤️ FAVORITOS -->
-          <a routerLink="/user/favorites" routerLinkActive="active-link">Favoritos ❤️</a>
-
-          <a routerLink="user/profile">Ver perfil</a>
-
-          }
-
-          <!-- SOBRE NOSOTROS -->
-          <a routerLink="/sobrenosotros"   routerLinkActive="active-link">Sobre nosotros</a>
-
-          <!-- ========================= -->
-          <!--       NOTIFICACIONES       -->
-          <!-- ========================= -->
-          @if (auth.isLogIn()) {
-            <a routerLink="/notifications"  routerLinkActive="active-link">
-              Notificaciones 
-              @if (unread > 0) { 
-                <span class="badge">{{ unread }}</span> 
-              }
-            </a>
-          }
-
-          <!-- ========================= -->
-          <!--        LOGIN / LOGOUT      -->
-          <!-- ========================= -->
-          @if (auth.isLogIn()) {
-            <a (click)="logout()">Cerrar sesión</a>
-          } @else {
-            <a routerLink="/login"   routerLinkActive="active-link">Iniciar sesión</a>
-          }
+        <!-- LOGIN / LOGOUT -->
+        @if (auth.isLogIn()) {
+          <a (click)="logout()">Cerrar sesión</a>
+        } @else {
+          <a routerLink="/login" routerLinkActive="active-link">Iniciar sesión</a>
+        }
 
       </li>
     </ul>
   </nav>
+
 </header>
