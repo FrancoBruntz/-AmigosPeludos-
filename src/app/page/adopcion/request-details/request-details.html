@@ -97,7 +97,7 @@
 
       </section>
 
-      <!-- ⭐ BOTONES PARA ADMIN (solo si la solicitud está pendiente) -->
+      <!-- BOTONES PARA ADMIN (solo si la solicitud está pendiente) -->
       @if (auth.isAdmin() && solicitud.estado === 'pendiente') {
         <div class="acciones-admin">
           <button class="btn-aprobar" (click)="openModal('aprobar')">

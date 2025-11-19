@@ -72,11 +72,18 @@ export class RequestList implements OnInit {
     return `estado-${estado}`;
   }
 
-  // Cancelar / eliminar solicitud (usuario)
+  // Cancelar  solicitud (usuario)
   cancelarSolicitud(s: Solicitud) {
     if (!confirm('Seguro queres cancelar esta solicitud?')) return;
-    this.solicitudes.delete(s.id).subscribe({
-      next: () => this.cargarSolicitudes(),
+
+    this.solicitudes.cambiarEstado(s.id, 'cancelada', 'Cancelada por el usuario').subscribe({
+      next: () => {
+        // Actualizo el objeto en memoria para que se vea el cambio
+        s.estado = 'cancelada';
+        s.comentarios = 'Cancelada por el usuario';
+        // Si preferís recargar todo:
+        // this.cargarSolicitudes();
+      },
       error: () => alert('No se pudo cancelar la solicitud')
     });
   }

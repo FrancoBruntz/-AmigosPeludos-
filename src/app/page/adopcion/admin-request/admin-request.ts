@@ -32,6 +32,8 @@ export class AdminRequest {
   dni = '';
   estado: '' | EstadoSolicitud = '';
 
+  tipoAnimal: '' | 'perro' | 'gato' = '';
+
   // Para modal de comentarios
   showComentariosModal = false;
   selectedSolicitud: Solicitud | null = null;
@@ -51,34 +53,44 @@ export class AdminRequest {
   }
 
   // Hace la busqueda contra el backend con los filtros actuales
-  buscar () {
-    this.loading = true;
+buscar() {
+  this.loading = true;
 
-    // si el dni esta vacio o solo espacios, enviamos undefined para no filtrar por eso
-    const dniParam = this.dni.trim() || undefined;
-    const estadoParam = this.estado || undefined;
+  const dniParam = this.dni.trim() || undefined;
+  const estadoParam = this.estado || undefined;
 
-    this.svc.list( {dni: dniParam, estado: estadoParam}).subscribe({
-      
-      // ok: guardamos el resultado, y ordenamos por fecha desc para ver lo ultimo arriba
-      next: r => {
-        this.data = r.sort((a , b) => b.fecha.localeCompare(a.fecha));
-        this.loading = false;
-      },
+  this.svc.list({ dni: dniParam, estado: estadoParam }).subscribe({
+    next: (r) => {
+      // Empezamos del resultado crudo del backend
+      let resultado = r;
 
-      // error: mensaje + apagamos loading
-      error: _ => {
-        this.error = 'No se pudo cargar';
-        this.loading = false;
+      // Si hay tipo seleccionado (perro / gato), filtramos en base a petMap
+      if (this.tipoAnimal) {
+        resultado = r.filter((s) => {
+          const pet = this.petMap.get(s.animalId);
+          if (!pet || !pet.type) return false;
+
+          // Normalizamos todo a minúsculas por las dudas
+          return pet.type.toLowerCase() === this.tipoAnimal.toLowerCase();
+        });
       }
 
-    });
-  }
+      //ordenar sobre "resultado"
+      this.data = resultado.sort((a, b) => b.fecha.localeCompare(a.fecha));
+      this.loading = false;
+    },
+    error: (_) => {
+      this.error = 'No se pudo cargar';
+      this.loading = false;
+    },
+  });
+}
 
   // Limpia filtros y vuelve a buscar
   limpiar ( ) {
     this.dni = '';
     this.estado = '';
+    this.tipoAnimal = '';
     this.buscar();
   }
 
@@ -125,28 +137,31 @@ export class AdminRequest {
         s.estado = estado;
         if (comentarios) s.comentarios = comentarios;
         
+
         // Si se aprueba, marcar el animal como inactivo (adoptado)
-        if (estado === 'aprobada') {
-          const pet = this.petMap.get(s.animalId);
-          if (pet) {
-            pet.activo = false;
-            this.petsService.updatePet(pet).subscribe({
-              error: e => console.error('Error al marcar animal como inactivo:', e)
-            });
-          }
+        const pet = this.petMap.get(s.animalId);
+
+        if (estado === 'aprobada' && pet) {
+          pet.activo = false;
+          this.petsService.updatePet(pet).subscribe({
+            error: e => console.error('Error al marcar animal como inactivo:', e)
+          });
         }
+
+      // Enviar notificación al adoptante usando el nombre del animal
+      const nombreAnimal = pet?.name || `animal #${s.animalId}`;
         
-        // Enviar notificación al adoptante
-        const mensaje = estado === 'aprobada' 
-          ? '¡Felicidades! Tu solicitud fue aprobada. El refugio se pondrá en contacto.'
-          : 'Lamentablemente, tu solicitud fue rechazada.';
+      // Enviar notificación al adoptante
+      const mensaje = estado === 'aprobada' 
+        ? `¡Felicidades! Tu solicitud para ${nombreAnimal} fue aprobada. El refugio se pondrá en contacto.`
+        : `Lamentablemente, tu solicitud para ${nombreAnimal} fue rechazada.`;
         
         this.notifService.send(
-          s.solicitanteUser,
+          s.solicitanteUser,  // id del adoptante 
           s.id,
           s.animalId,
           estado as any,
-          mensaje,
+          mensaje,  // mensaje ya armado con nombre 
           comentarios
         ).subscribe({
           error: e => console.error('Error al enviar notificación:', e)
