@@ -9,10 +9,7 @@
   <div class="filter-bar">
     <label class="switch">
       <input
-        type="checkbox"
-        [(ngModel)]="showOnlyAvailable"
-        (ngModelChange)="onToggle($event)"
-      />
+        type="checkbox" [(ngModel)]="showOnlyAvailable" (ngModelChange)="onToggle($event)"/>
       <span class="slider"></span>
     </label>
     <span class="filter-label">Historial</span>
@@ -36,15 +33,11 @@
 
       <!-- Acciones -->
       <div class="card-actions">
-        <a class="btn details" [routerLink]="['/details', pet.id]">
-          Detalles
-        </a>
+        <a class="btn details" [routerLink]="['/details', pet.id]">Detalles</a>
 
 
       @if (!auth.isAdmin()) {
-    <button class="btn fav" (click)="agregarFavorito(pet)">
-      ❤️ Favorito
-    </button>
+    <button class="btn fav" (click)="agregarFavorito(pet)">❤️ Favorito</button>
     }
 
         @if (auth.isAdmin()) {

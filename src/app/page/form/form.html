@@ -7,11 +7,7 @@
     <!-- NOMBRE -->
     <div>
       <label for="name">Nombre (*)</label>
-      <input
-        type="text"
-        id="name"
-        formControlName="name"
-        placeholder="Ingresa el nombre" />
+      <input type="text" id="name" formControlName="name" placeholder="Ingresa el nombre" />
       @if (petForm.controls['name'].errors?.['required'] && petForm.get('name')?.touched) {
         <p>El campo es obligatorio</p>
       }
@@ -20,10 +16,7 @@
     <!-- TIPO -->
     <div>
       <label for="type">Tipo de animal (*)</label>
-      <select
-        name="type"
-        id="type"
-        formControlName="type">
+      <select name="type" id="type" formControlName="type">
         <option value="" selected disabled>Seleccione una opcion</option>
         @for (t of types; track $index) {
           <option [value]="t">{{ t }}</option>
@@ -37,11 +30,7 @@
     <!-- EDAD -->
     <div>
       <label for="age">Edad (*)</label>
-      <input
-        type="number"
-        id="age"
-        formControlName="age"
-        placeholder="Ingrese la edad" />
+      <input type="number" id="age" formControlName="age" placeholder="Ingrese la edad" />
       @if (petForm.controls['age'].errors?.['required'] && petForm.get('age')?.touched) {
         <p>El campo es obligatorio</p>
       }
@@ -53,10 +42,7 @@
       <div class="size-options">
         @for (size of sizes; track $index) {
           <label class="size-option">
-            <input
-              type="radio"
-              [value]="size"
-              formControlName="size" />
+            <input type="radio" [value]="size" formControlName="size" />
             <span>{{ size }}</span>
           </label>
         }
@@ -69,10 +55,7 @@
     <!-- SEXO -->
     <div>
       <label for="sexo">Sexo (*)</label>
-      <select
-        name="sexo"
-        id="sexo"
-        formControlName="sexo">
+      <select name="sexo" id="sexo" formControlName="sexo">
         <option value="" selected disabled>Seleccione una opcion</option>
         @for (s of sexo; track $index) {
           <option [value]="s">{{ s }}</option>
@@ -86,11 +69,7 @@
     <!-- COLOR -->
     <div>
       <label for="color">Color (*)</label>
-      <input
-        type="text"
-        id="color"
-        formControlName="color"
-        placeholder="Ingresa el color" />
+      <input type="text" id="color" formControlName="color" placeholder="Ingresa el color" />
       @if (petForm.controls['color'].errors?.['required'] && petForm.get('color')?.touched) {
         <p>El campo es obligatorio</p>
       }
@@ -99,11 +78,7 @@
     <!-- CASTRADO -->
     <div class="check-group">
       <label for="castrado">El animal está castrado</label>
-      <input
-        type="checkbox"
-        name="castrado"
-        id="castrado"
-        formControlName="castrado" />
+      <input type="checkbox" name="castrado" id="castrado" formControlName="castrado" />
       @if (petForm.controls['castrado'].errors?.['required'] && petForm.get('castrado')?.touched) {
         <p>El campo es obligatorio</p>
       }
@@ -112,10 +87,7 @@
     <!-- OBSERVACIONES -->
     <div>
       <label for="notes">Observaciones</label>
-      <textarea
-        id="notes"
-        formControlName="notes"
-        rows="4"></textarea>
+      <textarea id="notes" formControlName="notes" rows="4"></textarea>
     </div>
 
     <!-- ================== SECCIÓN IMAGEN ================== -->
