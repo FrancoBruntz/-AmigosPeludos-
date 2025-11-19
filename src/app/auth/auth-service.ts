@@ -4,6 +4,7 @@ import usuarios from '../models/user';
 import { environment } from '../../environments/environment.development';
 import { Router } from '@angular/router';
 import { UserService } from '../component/user/user.service';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -11,120 +12,132 @@ import { UserService } from '../component/user/user.service';
 })
 export class AuthService {
   private url = environment.urlUser;
-  
-  constructor(private http: HttpClient, private router: Router, private userService: UserService){}
 
-  public readonly isLogIn=signal(JSON.parse(localStorage.getItem('isLogIn') ?? 'false'));
-  public readonly isAdmin=signal(JSON.parse(localStorage.getItem('isLogIn') ?? 'false'));
+  // señales ligadas a localStorage
+  public readonly isLogIn = signal<boolean>(
+    JSON.parse(localStorage.getItem('isLogIn') ?? 'false')
+  );
 
-    logIn(user: string, password:string){
+  public readonly isAdmin = signal<boolean>(
+    JSON.parse(localStorage.getItem('isAdmin') ?? 'false')
+  );
 
-      const requestParams = {
-        user: user,
-        password: password
-      }
-  
-      let params = new HttpParams({fromObject:requestParams}); 
-    
-      
-      this.http.get<usuarios[]>(this.url,{params:params}).subscribe({//a que corresponde el parametro, el objeto que yo le paso
-          next:(data)=>{
-            console.log(data);
-            if(data[0]){
-            // Guardar en UserService para sincronizar con notificaciones
-            this.userService.saveCurrent({
-              id: data[0].id,
-              dni: data[0].user,
-              nombre: data[0].nombre ?? '',
-              apellido: data[0].apellido ?? '',
-              email: data[0].email ?? '',
-              telefono: data[0].telefono ?? '',
-              direccion: data[0].direccion ?? '',
-              isAdmin: data[0].isAdmin
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
-
-
-            /*this.userService.saveCurrent({
-            id: data[0].id,       // ← AQUÍ SE AGREGA
-            dni: data[0].user,
-            nombre: '',
-            apellido: '',
-            email: '',
-            telefono: '', 
-            direccion: '',
-            isAdmin: data[0].isAdmin*/
-});
-            // 👉 Ahora traemos el perfil completo
-            /*this.userService.loadUserProfile(data[0].id);*/
-            
-            localStorage.setItem("user", data[0].user)
-            localStorage.setItem("isLogIn",JSON.stringify(true)); //pasa el booleano a un string
-            this.isLogIn.set(true); //para asi cuando recarga la pagina no te lo convierte nuevamente a false
-            localStorage.setItem("isAdmin",JSON.stringify(data[0].isAdmin)) //y te saca, si no que, si se recarga la pagina no te saca de la sesion 
-            this.isAdmin.update(value=> data[0].isAdmin);
-            alert("Incio de sesion con exito!");
-            this.router.navigateByUrl("/home");
-
-            } else{
-              alert("Usuario o contra incorrecta");
-            }
-          },
-          error:(e)=>{alert("Usuario o contra incorrecta")
-            console.error(e)
-          }
-      });
-    }
-
-    logOut(){
-      this.isLogIn.set(false);
-      this.isAdmin.set(false);
-      this.userService.logout();
-      localStorage.removeItem("user")
-    }
-
-    registro(dni:string, password:string){
-      const user={user:dni, password:password, isAdmin:false}
-            
-      if(this.verificarDNIUnico(dni)){
-      this.http.post<usuarios>(this.url, user).subscribe({
-        next:(data)=>{
-          alert("Registro exitoso");
-          this.logIn(dni, password);
-        },
-        error:(e)=>{alert("Ocurrio un error")}
-      }) 
-    } else{
-      alert("DNI Ya registrado en el sistema");
-    }
-
-  }
-      
-
-  getCurrentUsername(): string | null {
-     return localStorage.getItem('user');
-  }
-
-  verificarDNIUnico(dni:string):boolean{
-
+  // ===== LOGIN =====
+  logIn(user: string, password: string) {
     const requestParams = {
-        dni:dni
-      }
-  
-      let params = new HttpParams({fromObject:requestParams}); 
-     
-    this.http.get<usuarios[]>(this.url,{params:params}).subscribe({
-      next: (data)=> {
-        console.log(data);
-        if(data[0]){
-          return true;
-        }
-        return false;
-      }
-    })
+      user: user,
+      password: password,
+    };
 
-    return false;
+    let params = new HttpParams({ fromObject: requestParams });
+
+    this.http.get<usuarios[]>(this.url, { params }).subscribe({
+      next: (data) => {
+        console.log('login data:', data);
+        if (data[0]) {
+          // Guardar en UserService para sincronizar
+          this.userService.saveCurrent({
+            id: data[0].id,
+            dni: data[0].user,
+            nombre: data[0].nombre ?? '',
+            apellido: data[0].apellido ?? '',
+            email: data[0].email ?? '',
+            telefono: data[0].telefono ?? '',
+            direccion: data[0].direccion ?? '',
+            isAdmin: data[0].isAdmin,
+          });
+
+          localStorage.setItem('user', data[0].user);
+          localStorage.setItem('isLogIn', JSON.stringify(true));
+          this.isLogIn.set(true);
+
+          localStorage.setItem('isAdmin', JSON.stringify(data[0].isAdmin));
+          this.isAdmin.set(data[0].isAdmin);
+
+          alert('Inicio de sesión con éxito!');
+          this.router.navigateByUrl('/home');
+        } else {
+          alert('Usuario o contraseña incorrecta');
+        }
+      },
+      error: (e) => {
+        console.error(e);
+        alert('Usuario o contraseña incorrecta');
+      },
+    });
   }
+
+  // ===== LOGOUT =====
+  logOut() {
+    this.isLogIn.set(false);
+    this.isAdmin.set(false);
+    this.userService.logout();
+    localStorage.removeItem('user');
+    localStorage.removeItem('isLogIn');
+    localStorage.removeItem('isAdmin');
+    this.router.navigateByUrl('/login');
+  }
+
+  // ===== REGISTRO =====
+  registro(dni: string, password: string) {
+    const user = {
+      user: dni,          // se guarda el dni en el campo user
+      password: password,
+      isAdmin: false,
+    };
+
+    this.verificarDNIUnico(dni).subscribe({
+      next: (esUnico) => {
+        if (!esUnico) {
+          alert('DNI ya registrado en el sistema');
+          return;
+        }
+
+        // Si es único, registramos
+        this.http.post<usuarios>(this.url, user).subscribe({
+          next: (data) => {
+            alert('Registro exitoso');
+            this.logIn(dni, password);
+          },
+          error: (e) => {
+            console.error(e);
+            alert('Ocurrió un error al registrar');
+          },
+        });
+      },
+      error: (e) => {
+        console.error(e);
+        alert('Error al verificar el DNI');
+      },
+    });
+  }
+
+  // ===== OBTENER USERNAME ACTUAL =====
+  getCurrentUsername(): string | null {
+    return localStorage.getItem('user');
+  }
+
+  // ===== VERIFICAR DNI ÚNICO =====
+  verificarDNIUnico(dni: string) {
+    // En el JSON el campo donde se guarda el DNI es "user"
+    const params = new HttpParams().set('user', dni);
+
+    return this.http.get<usuarios[]>(this.url, { params }).pipe(
+      map((data) => {
+        // true si NO hay nadie con ese DNI
+        return data.length === 0;
+      })
+    );
+  }
+
+  // ===== UPDATE USER =====
   updateUser(id: string, data: Partial<usuarios>) {
-  return this.http.patch<usuarios>(`${this.url}/${id}`, data);
-}
+    return this.http.patch<usuarios>(`${this.url}/${id}`, data);
+  }
 }
