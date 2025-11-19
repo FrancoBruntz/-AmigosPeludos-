@@ -28,6 +28,7 @@
 
             <!-- BOTONES -->
             <div class="det-actions">
+
                 @if (auth.isAdmin()) {
                     <a [routerLink]="['/edit', pets.id]">EDITAR</a>
                     <button (click)="borrarPets(pets.id)">BORRAR</button>
@@ -35,6 +36,11 @@
                     <a [routerLink]="['/solicitar', pets.id]">SOLICITAR ADOPCIÓN</a>
                 }
             </div>
+
+            <button class="btn-back" (click)="goBack()">
+               ⬅ Volver al listado
+            </button>
+
 
         </div>
 

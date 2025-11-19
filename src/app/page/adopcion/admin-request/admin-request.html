@@ -15,6 +15,12 @@
       <option value="cancelada">Cancelada</option>
     </select>
 
+      <select [(ngModel)]="tipoAnimal" name="tipoAnimal">
+      <option value="">Todos los tipos</option>
+      <option value="perro">Perros</option>
+      <option value="gato">Gatos</option>
+    </select>
+
     <button type="submit">Buscar</button>
     <button type="button" (click)="limpiar()">Limpiar</button>
   </form>
@@ -60,7 +66,7 @@
             </td>
 
             <td class="acciones">
-              <!-- 🔵 NUEVO: VER DETALLE DE LA SOLICITUD -->
+              <!-- VER DETALLE DE LA SOLICITUD -->
               <a 
                 class="btn-detalle" 
                 [routerLink]="['/admin/solicitudes', s.id]">

@@ -89,7 +89,8 @@ h1 {
 }
 
 .solicitudes-table tbody tr.estado-cancelada {
-  background-color: #e0e0e0;
+  background-color: #e2e3e5;
+ 
 }
 
 /* Badge de estado */
