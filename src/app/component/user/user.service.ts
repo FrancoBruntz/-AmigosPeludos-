@@ -1,7 +1,11 @@
 import { Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import type usuarios from '../../models/user';
+import { environment } from '../../../environments/environment.development';
 
 export interface UserProfile {
+  id?: string; 
   dni: string;
   nombre: string;
   apellido: string;
@@ -22,8 +26,10 @@ const USERS_STORE = 'amigospeludos_users'; // para simular varios usuarios
 export class UserService {
   // simple reactive signals (si tu Angular soporta signals en tu versión)
   public currentUser = signal<UserProfile | null>(this.loadCurrent());
-  constructor(private router: Router) {}
-
+  constructor(private router: Router, private http: HttpClient) {}
+  
+  
+  private url = environment.urlUser;
   private loadCurrent(): UserProfile | null {
     try {
       return JSON.parse(localStorage.getItem(USER_KEY) || 'null');
@@ -90,11 +96,28 @@ export class UserService {
     user.notificaciones = [];
     this.saveCurrent(user);
   }
-
+  
+  updateUser(id: string, data: Partial<usuarios>) {
+    return this.http.patch<usuarios>(`${this.url}/${id}`, data);
+  }
+  
+  updateUserOnServer(id: string, updatedData: any) {
+  return this.http.patch(`${environment.urlUser}/${id}`, updatedData);
+}
   // actualizar perfil parcialmente
   updateProfile(partial: Partial<UserProfile>) {
     const user = this.currentUser() || { dni: '', nombre: '', apellido: '' } ;
     const merged = { ...user, ...partial };
     this.saveCurrent(merged);
   }
+loadUserProfile(id: string) {
+  this.http.get<UserProfile>(`${this.url}/${id}`).subscribe({
+    next: perfil => {
+      if (perfil) {
+        this.saveCurrent(perfil);
+      }
+    },
+    error: err => console.error("Error cargando perfil", err)
+  });
+}
 }

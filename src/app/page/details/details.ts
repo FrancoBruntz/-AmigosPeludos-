@@ -3,6 +3,7 @@ import Pets from '../../models/pets';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Petsservice } from '../../services/petsservice';
 import { AuthService } from '../../auth/auth-service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-details',
@@ -14,9 +15,11 @@ export class Details implements OnInit{
 
   pets?: Pets;
 
-  constructor(private petsService: Petsservice,
-              private route: ActivatedRoute,
-              protected auth: AuthService
+  constructor(
+    private petsService: Petsservice,
+    private route: ActivatedRoute,
+    protected auth: AuthService,
+    private location: Location
   ){}
 
   ngOnInit(): void {
@@ -45,6 +48,10 @@ export class Details implements OnInit{
         alert("Algo salio mal, no se pudo eliminar" +e)
       }
     })
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

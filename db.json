@@ -4,25 +4,58 @@
       "user": "admin",
       "password": "admin1234!",
       "isAdmin": true,
-      "id": "22bf"
+      "id": "22bf",
+      "nombre": "",
+      "apellido": "",
+      "email": "",
+      "telefono": "",
+      "direccion": ""
     },
     {
       "user": "46112136",
       "password": "sofiatorti",
       "isAdmin": false,
-      "id": "c016"
+      "id": "c016",
+      "nombre": "ju",
+      "apellido": "Torti",
+      "email": "SofiaTorti@gmail.com",
+      "telefono": "22334534564",
+      "direccion": "mar del plata",
+      "dni": "46112136"
     },
     {
       "id": "5381",
       "user": "39555661",
       "password": "soypri123",
-      "isAdmin": false
+      "isAdmin": false,
+      "nombre": "",
+      "apellido": "",
+      "email": "",
+      "telefono": "",
+      "direccion": ""
     },
     {
       "id": "aea5",
       "user": "11111111",
       "password": "karina1",
-      "isAdmin": false
+      "isAdmin": false,
+      "nombre": "",
+      "apellido": "",
+      "email": "",
+      "telefono": "",
+      "direccion": ""
+    },
+    {
+      "id": "ca9e",
+      "user": "32556010",
+      "password": "surfsurf",
+      "isAdmin": false,
+      "dni": "32556010",
+      "nombre": "Rodrigo",
+      "apellido": "Fiore",
+      "email": "rodrifiore@gmail.com",
+      "telefono": "22356458678",
+      "direccion": "Magallanes 2568"
     }
   ],
   "pets": [
@@ -368,6 +401,19 @@
       "viveConNinos": false,
       "aceptaCompromiso": true,
       "comentarios": ""
+    },
+    {
+      "id": "f0ff",
+      "animalId": "42f4",
+      "solicitanteUser": "39555661",
+      "fecha": "2025-11-18T22:08:00.792Z",
+      "estado": "pendiente",
+      "mensaje": "Amariamos tener un gatito para mimar",
+      "tipoVivienda": "departamento",
+      "tienePatio": false,
+      "tieneMascotas": false,
+      "viveConNinos": true,
+      "aceptaCompromiso": true
     }
   ],
   "notificaciones": [
@@ -441,7 +487,7 @@
       "animalId": "3266",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 39555661 para animal #3266",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-11-17T13:43:57.505Z"
     },
     {
@@ -451,7 +497,7 @@
       "animalId": "9cf0",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 45131280 para animal #9cf0",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-11-17T14:09:58.153Z"
     },
     {
@@ -462,8 +508,18 @@
       "tipo": "aprobada",
       "mensaje": "¡Felicidades! Tu solicitud fue aprobada. El refugio se pondrá en contacto.",
       "comentarios": "",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-11-17T17:24:05.123Z"
+    },
+    {
+      "id": "23ec",
+      "usuarioDNI": "admin",
+      "solicitudId": "f0ff",
+      "animalId": "42f4",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 39555661 para  #42f4",
+      "leida": false,
+      "fechaCreacion": "2025-11-18T22:08:00.820Z"
     }
   ],
   "donations": [

@@ -89,7 +89,8 @@ h1 {
 }
 
 .solicitudes-table tbody tr.estado-cancelada {
-  background-color: #e0e0e0;
+  background-color: #e2e3e5;
+ 
 }
 
 /* Badge de estado */
@@ -179,6 +180,29 @@ h1 {
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+/* Botón azul para "Ver detalle" */
+.btn-detalle {
+  background-color: #007bff;
+  color: white;
+  padding: 0.45rem 0.9rem;
+  border-radius: 4px;
+  border: none;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+/* Hover */
+.btn-detalle:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {

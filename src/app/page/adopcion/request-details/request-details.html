@@ -97,6 +97,19 @@
 
       </section>
 
+      <!-- BOTONES PARA ADMIN (solo si la solicitud está pendiente) -->
+      @if (auth.isAdmin() && solicitud.estado === 'pendiente') {
+        <div class="acciones-admin">
+          <button class="btn-aprobar" (click)="openModal('aprobar')">
+            ✓ Aprobar
+          </button>
+
+          <button class="btn-rechazar" (click)="openModal('rechazar')">
+            ✕ Rechazar
+          </button>
+        </div>
+      }
+
       <button class="btn-back" (click)="goBack()">
         ⬅ Volver al listado
       </button>
@@ -105,3 +118,45 @@
 
   }
 </div>
+
+<!-- MODAL DE COMENTARIOS PARA APROBAR / RECHAZAR -->
+@if (showComentariosModal && solicitud) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+
+      <h2>
+        {{ modalAccion === 'aprobar' ? 'Aprobar solicitud' : 'Rechazar solicitud' }}
+      </h2>
+
+      <div class="modal-info">
+        <p><strong>Solicitante (DNI):</strong> {{ solicitud.solicitanteUser }}</p>
+        <p><strong>ID animal:</strong> {{ solicitud.animalId }}</p>
+        <p><strong>Fecha:</strong> {{ solicitud.fecha | date:'short' }}</p>
+      </div>
+
+      <div class="modal-form">
+        <label for="comentarios">Comentarios (opcional):</label>
+        <textarea
+          id="comentarios"
+          [(ngModel)]="comentariosText"
+          rows="4"
+          placeholder="Agrega comentarios para el adoptante..."
+        ></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+
+        <button
+          class="btn-confirm"
+          [class.btn-aprobar]="modalAccion === 'aprobar'"
+          [class.btn-rechazar]="modalAccion === 'rechazar'"
+          (click)="confirmarAccion()"
+        >
+          {{ modalAccion === 'aprobar' ? 'Aprobar' : 'Rechazar' }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+}

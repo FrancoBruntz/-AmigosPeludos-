@@ -7,6 +7,8 @@ import { AuthService } from '../../../auth/auth-service';
 import { UserService } from '../../../component/user/user.service';
 import { CommonModule } from '@angular/common';
 import { TipoVivienda } from '../../../models/solicitud';
+import { Petsservice } from '../../../services/petsservice';
+import Pets from '../../../models/pets';
 
 @Component({
   selector: 'app-request-form',
@@ -24,6 +26,7 @@ export class RequestForm {
   private notifService = inject(NotificacionService);
   private auth = inject(AuthService);
   private userService = inject(UserService);
+  private petsService = inject(Petsservice); 
 
   // ===== Formulario de solicitud de adopción =====
   form = this.fb.group({
@@ -86,16 +89,36 @@ export class RequestForm {
           extraDatos
         ).subscribe({
           next: (created) => {
-            const adminMsg = `Nueva solicitud de ${dni} para  #${this.animalId}`;
-            this.notifService
-              .send('admin', created.id, this.animalId, 'comentario' as any, adminMsg)
-              .subscribe({
-                error: () => console.warn('No se pudo notificar al admin')
-              });
+
+            // Traemos los pets para obtener el nombre del animal
+            this.petsService.getPet().subscribe({
+              next: (pets: Pets[]) => {
+                const pet = pets.find(p => p.id === this.animalId);
+                const nombreAnimal = pet?.name || `animal #${this.animalId}`;
+
+                const adminMsg = `Nueva solicitud de ${dni} para ${nombreAnimal}`;
+
+                this.notifService
+                  .send('admin', created.id, this.animalId, 'comentario' as any, adminMsg)
+                  .subscribe({
+                    error: () => console.warn('No se pudo notificar al admin')
+                  });
+              },
+              
+              error: () => {
+                // Si falla cargar los pets, al menos mandamos algo con el id
+                const adminMsg = `Nueva solicitud de ${dni} para animal #${this.animalId}`;
+                this.notifService
+                  .send('admin', created.id, this.animalId, 'comentario' as any, adminMsg)
+                  .subscribe({
+                    error: () => console.warn('No se pudo notificar al admin')
+                  });
+              }
+            });
 
             alert('Solicitud enviada.');
             this.router.navigateByUrl('/mis-solicitudes');
-          },
+           },
           error: (e) => alert('Error al enviar la solicitud: ' + e)
         });
       },
