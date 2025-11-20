@@ -22,7 +22,7 @@
         <!-- ========================= -->
         @if (auth.isLogIn() && auth.isAdmin()) {
           <a routerLink="/agregarpets"  routerLinkActive="active-link">Cargar animal</a>
-          <a routerLink="/sobreellos"   routerLinkActive="active-link">Sobre ellos</a>
+          <a routerLink="/sobreellos"   routerLinkActive="active-link">Animalitos</a>
           <a routerLink="/admin/solicitudes" routerLinkActive="active-link">Solicitudes</a>
           <a routerLink="/admin/donaciones" routerLinkActive="active-link">Historial donaciones</a>
         }
@@ -38,8 +38,7 @@
           <a routerLink="/user/profile"      routerLinkActive="active-link">Ver perfil</a>
         }
 
-        <!-- SOBRE NOSOTROS (siempre) -->
-        <a routerLink="/sobrenosotros" routerLinkActive="active-link">Sobre nosotros</a>
+      
 
         <!-- NOTIFICACIONES (si hay login) -->
         @if (auth.isLogIn()) {
@@ -50,6 +49,9 @@
             }
           </a>
         }
+
+        <!-- SOBRE NOSOTROS (siempre) -->
+        <a routerLink="/sobrenosotros" routerLinkActive="active-link">Sobre nosotros</a>
 
         <!-- LOGIN / LOGOUT -->
         @if (auth.isLogIn()) {

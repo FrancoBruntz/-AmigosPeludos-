@@ -5,6 +5,7 @@ import { Solicitudesservice } from '../../../services/solicitudesservice';
 import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../auth/auth-service';
 import { FormsModule } from '@angular/forms';
+import { Petsservice } from '../../../services/petsservice';
 
 @Component({
   selector: 'app-request-details',
@@ -28,6 +29,7 @@ export class RequestDetails implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private solicitudesServ: Solicitudesservice, 
+    private petsServ: Petsservice, 
     public auth: AuthService
   ) {}
 
@@ -53,8 +55,12 @@ export class RequestDetails implements OnInit {
   }
 
   goBack(): void {
+  if (this.auth.isAdmin()) {
     this.router.navigate(['/admin/solicitudes']);
+  } else {
+    this.router.navigate(['/mis-solicitudes']);
   }
+}
 
   // Helpers para mostrar Sí/No
   boolToText(value: boolean | undefined): string {
@@ -78,27 +84,47 @@ export class RequestDetails implements OnInit {
   }
 
   // 🔹 Confirmar acción (aprobar / rechazar)
-  confirmarAccion(): void {
-    if (!this.solicitud) return;
+confirmarAccion(): void {
+  if (!this.solicitud) return;
 
-    const nuevoEstado =
-      this.modalAccion === 'aprobar' ? 'aprobada' : 'rechazada';
+  const nuevoEstado =
+    this.modalAccion === 'aprobar' ? 'aprobada' : 'rechazada';
 
-    this.solicitudesServ
-      .cambiarEstado(this.solicitud.id, nuevoEstado, this.comentariosText)
-      .subscribe({
-        next: (dataActualizada) => {
-          // Actualizo la solicitud en pantalla
-          this.solicitud = dataActualizada;
+  // 🔹 Primero cambiamos el estado de la solicitud
+  this.solicitudesServ
+    .cambiarEstado(this.solicitud.id, nuevoEstado, this.comentariosText)
+    .subscribe({
+      next: (dataActualizada) => {
+        // ⬅Acá YA se actualiza el estado de la solicitud
+        this.solicitud = dataActualizada;
+
+        // Si se aprobó, también marcamos el pet como inactivo
+        if (nuevoEstado === 'aprobada' && this.solicitud?.animalId) {
+          const petId = String(this.solicitud.animalId);
+
+          this.petsServ.cambiarActivoPet(petId, false).subscribe({
+            next: () => {
+              alert('Solicitud aprobada y mascota marcada como no disponible.');
+              this.closeModal();
+            },
+            error: () => {
+              alert('La solicitud se aprobó, pero hubo un error al actualizar la mascota.');
+              this.closeModal();
+            }
+          });
+
+        } else {
+          // Si se rechazó, solo avisamos
           alert(
             `Solicitud ${this.modalAccion === 'aprobar' ? 'aprobada' : 'rechazada'} correctamente.`
           );
           this.closeModal();
-        },
-        error: () => {
-          alert('Ocurrió un error al actualizar la solicitud.');
         }
-      });
-  }
+      },
+      error: () => {
+        alert('Ocurrió un error al actualizar la solicitud.');
+      }
+    });
+}
 
 }

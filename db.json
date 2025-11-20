@@ -56,6 +56,18 @@
       "email": "rodrifiore@gmail.com",
       "telefono": "22356458678",
       "direccion": "Magallanes 2568"
+    },
+    {
+      "id": "dffb",
+      "user": "26057834",
+      "password": "mamapiola",
+      "isAdmin": false,
+      "dni": "26057834",
+      "nombre": "Romina",
+      "apellido": "Peracchi",
+      "email": "rominaperacchi@gmail.com",
+      "telefono": "2236803732",
+      "direccion": "Armenia 2256"
     }
   ],
   "pets": [
@@ -187,7 +199,7 @@
       "castrado": false,
       "notes": "Muy energico",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262752/zewhntgfrszufvm3le6q.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "48fa",
@@ -344,6 +356,19 @@
       "notes": "",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763405768/twuxcw0e4cyzbtw9cget.jpg",
       "activo": true
+    },
+    {
+      "id": "e08d",
+      "name": "Ambar",
+      "type": "Gato",
+      "age": 3,
+      "size": "Mediano",
+      "sexo": "Hembra",
+      "color": "carey",
+      "castrado": true,
+      "notes": "No le gustan los perros",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763599805/qkcehlkin0bhfyttpuwk.jpg",
+      "activo": true
     }
   ],
   "solicitudes": [
@@ -402,19 +427,64 @@
       "viveConNinos": true,
       "aceptaCompromiso": true,
       "comentarios": ""
+    },
+    {
+      "id": "d7db",
+      "animalId": "adad",
+      "solicitanteUser": "39555661",
+      "fecha": "2025-11-19T23:34:32.031Z",
+      "estado": "cancelada",
+      "mensaje": "hj<VFLKCUVFCKUJVA<SBFJK",
+      "tipoVivienda": "casa",
+      "tienePatio": false,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Cancelada por el usuario"
+    },
+    {
+      "id": "7a7d",
+      "animalId": "dea6",
+      "solicitanteUser": "39555661",
+      "fecha": "2025-11-19T23:35:00.889Z",
+      "estado": "pendiente",
+      "mensaje": "JKASZBVFGKLBZA-LKGBVA",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true
+    },
+    {
+      "id": "e183",
+      "animalId": "adad",
+      "solicitanteUser": "26057834",
+      "fecha": "2025-11-20T00:47:19.407Z",
+      "estado": "aprobada",
+      "mensaje": "Quisiera un compañero para mi gatito ",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": true,
+      "detalleMascotas": "otro gato",
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": ""
+    },
+    {
+      "id": "b118",
+      "animalId": "198b",
+      "solicitanteUser": "32556010",
+      "fecha": "2025-11-20T02:06:22.284Z",
+      "estado": "pendiente",
+      "mensaje": "Me gustaria poder darle un espacio de amor ",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true
     }
   ],
   "notificaciones": [
-    {
-      "id": "37e6",
-      "usuarioDNI": "admin",
-      "solicitudId": "b1f5",
-      "animalId": "d6f7",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 46112136 para animal #d6f7",
-      "leida": true,
-      "fechaCreacion": "2025-11-16T19:41:51.072Z"
-    },
     {
       "id": "908e",
       "usuarioDNI": "46112136",
@@ -425,26 +495,6 @@
       "comentarios": "",
       "leida": false,
       "fechaCreacion": "2025-11-16T19:48:45.885Z"
-    },
-    {
-      "id": "00d6",
-      "usuarioDNI": "admin",
-      "solicitudId": "e5a1",
-      "animalId": "1",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 11111111 para animal #1",
-      "leida": true,
-      "fechaCreacion": "2025-11-17T01:21:00.528Z"
-    },
-    {
-      "id": "1185",
-      "usuarioDNI": "admin",
-      "solicitudId": "9e7e",
-      "animalId": "a394",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 46112136 para animal #a394",
-      "leida": true,
-      "fechaCreacion": "2025-11-17T12:00:38.586Z"
     },
     {
       "id": "f0ea",
@@ -469,26 +519,6 @@
       "fechaCreacion": "2025-11-17T12:05:06.189Z"
     },
     {
-      "id": "c736",
-      "usuarioDNI": "admin",
-      "solicitudId": "318b",
-      "animalId": "3266",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 39555661 para animal #3266",
-      "leida": true,
-      "fechaCreacion": "2025-11-17T13:43:57.505Z"
-    },
-    {
-      "id": "99ec",
-      "usuarioDNI": "admin",
-      "solicitudId": "76d7",
-      "animalId": "9cf0",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 45131280 para animal #9cf0",
-      "leida": true,
-      "fechaCreacion": "2025-11-17T14:09:58.153Z"
-    },
-    {
       "id": "41a3",
       "usuarioDNI": "39555661",
       "solicitudId": "318b",
@@ -500,16 +530,6 @@
       "fechaCreacion": "2025-11-17T17:24:05.123Z"
     },
     {
-      "id": "23ec",
-      "usuarioDNI": "admin",
-      "solicitudId": "f0ff",
-      "animalId": "42f4",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 39555661 para  #42f4",
-      "leida": false,
-      "fechaCreacion": "2025-11-18T22:08:00.820Z"
-    },
-    {
       "id": "7fee",
       "usuarioDNI": "39555661",
       "solicitudId": "f0ff",
@@ -519,6 +539,46 @@
       "comentarios": "",
       "leida": false,
       "fechaCreacion": "2025-11-19T23:19:13.769Z"
+    },
+    {
+      "id": "37eb",
+      "usuarioDNI": "admin",
+      "solicitudId": "d7db",
+      "animalId": "adad",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 39555661 para Tango",
+      "leida": false,
+      "fechaCreacion": "2025-11-19T23:34:33.153Z"
+    },
+    {
+      "id": "bcf6",
+      "usuarioDNI": "admin",
+      "solicitudId": "7a7d",
+      "animalId": "dea6",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 39555661 para Provoleta",
+      "leida": false,
+      "fechaCreacion": "2025-11-19T23:35:01.885Z"
+    },
+    {
+      "id": "be50",
+      "usuarioDNI": "admin",
+      "solicitudId": "e183",
+      "animalId": "adad",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 26057834 para Tango",
+      "leida": true,
+      "fechaCreacion": "2025-11-20T00:47:20.912Z"
+    },
+    {
+      "id": "2bda",
+      "usuarioDNI": "admin",
+      "solicitudId": "b118",
+      "animalId": "198b",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 32556010 para Timba",
+      "leida": false,
+      "fechaCreacion": "2025-11-20T02:06:23.496Z"
     }
   ],
   "donations": [
@@ -537,6 +597,14 @@
       "method": "Transferencia",
       "message": "Espero que los animalitos puedan comer un rico pollito con esta donacion",
       "date": "2025-11-17T11:58:10.649Z"
+    },
+    {
+      "id": "e5d9",
+      "userId": "26057834",
+      "amount": 8000,
+      "method": "Tarjeta",
+      "message": "Para esas criaturitas hermosas",
+      "date": "2025-11-20T00:46:01.887Z"
     }
   ],
   "comentarios": [
@@ -574,6 +642,11 @@
       "id": "1763405173617",
       "nombre": "Mica Marinzu ",
       "text": "Siempre responden rápido y con mucha paciencia."
+    },
+    {
+      "id": "1763599385341",
+      "nombre": "Priscila",
+      "text": "Hermoso todo lo que hacen por estos seres sintientes ♥"
     }
   ]
 }

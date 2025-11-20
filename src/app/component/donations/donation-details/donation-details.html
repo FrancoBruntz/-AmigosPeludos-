@@ -23,7 +23,7 @@
      
       <p>
         <strong>Fecha:</strong> 
-        {{ donation.date | date:'dd/MM/yyyy HH:mm' }}
+        {{ donation.date | date:'dd/MM/yyyy' }}
       </p>
 
       @if (donation.message) {
@@ -48,7 +48,7 @@
 
     </section>
 
-    <button (click)="goBack()">⬅ Volver al historial</button>
+    <button type="button" class="btn-back" (click)="goBack()">⬅ Volver al historial</button>
 
   }
 

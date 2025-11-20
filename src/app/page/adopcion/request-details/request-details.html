@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Detalle de solicitud</h2>
+  <h2 class="title">Detalle de solicitud</h2>
 
   <!-- Cargando -->
   @if (isLoading) {
@@ -124,7 +124,7 @@
   <div class="modal-overlay" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
 
-      <h2>
+      <h2 class="title">
         {{ modalAccion === 'aprobar' ? 'Aprobar solicitud' : 'Rechazar solicitud' }}
       </h2>
 

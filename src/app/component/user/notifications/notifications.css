@@ -90,7 +90,7 @@
 /* No leída: resaltada */
 .notification-item.unread {
   background-color: #e3f2fd;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid #ffc045;
 }
 
 /* Contenido principal */
@@ -106,8 +106,8 @@
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
-  background-color: #e0f2fe; /* celeste suave */
-  color: #1d4ed8;
+  background-color: #e0f2fe; 
+  color: #c8942c;
 }
 
 /* Mensaje principal */
@@ -144,24 +144,33 @@
   white-space: nowrap;
 }
 
+/* Botones iguales */
+/* Botones iguales */
 .notification-actions button {
-  padding: 0.35rem 0.75rem;
-  border-radius: 6px;
+  padding: 0.55rem 1.2rem;       /*  mismo tamaño para todos */
+  border-radius: 10px;           /* más redondeados, más lindos */
   border: none;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.9rem;             /* misma letra para todos */
+  font-weight: 700;              /* estilo más fuerte */
   cursor: pointer;
-  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+  transition: 0.25s ease;        /* mismo efecto que venimos usando */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
 }
+
+.notification-actions button:hover {
+  transform: scale(1.06);        /* efecto igual al de “favoritos” */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
 
 /* Marcar como leída */
 .btn-mark {
-  background-color: #10b981;
+  background-color: #e7ae3d;
   color: #ffffff;
 }
 
 .btn-mark:hover {
-  background-color: #059669;
+  background-color: #d39b2c;
   transform: translateY(-1px);
   box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4);
 }

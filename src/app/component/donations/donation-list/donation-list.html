@@ -54,7 +54,7 @@
           >
         </div>
 
-        <!-- Fecha desde -->
+        <!-- Fecha desde 
         <div>
           <label for="dateFrom">Desde:</label>
           <input
@@ -65,7 +65,7 @@
           >
         </div>
 
-        <!-- Fecha hasta -->
+        Fecha hasta --><!-- 
         <div>
           <label for="dateTo">Hasta:</label>
           <input
@@ -75,6 +75,7 @@
             (change)="applyFilter()"
           >
         </div>
+        -->
 
       </div>
 
@@ -95,7 +96,6 @@
               <th>Usuario (userId)</th>
               <th>Monto</th>
               <th>Método</th>
-              <th>Destino</th>
               <th>Fecha</th>
               <th>Mensaje</th>
               <th>Acciones</th>
@@ -107,7 +107,7 @@
                 <td>{{ d.userId }}</td>
                 <td>${{ d.amount }}</td>
                 <td>{{ d.method }}</td>
-                <td>{{ d.date | date:'dd/MM/yyyy HH:mm' }}</td>
+                <td>{{ d.date | date:'dd/MM/yyyy ' }}</td>
                 <td>{{ d.message }}</td>
                 <td class="acciones">
                   <a [routerLink]="['/admin/donaciones', d.id]">

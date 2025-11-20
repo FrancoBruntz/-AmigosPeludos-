@@ -91,8 +91,8 @@ button[type="submit"] {
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  background: #457b9d;
-  color: #fff;
+  background: #ffc045;
+  color: #000000;
   box-shadow: 0 3px 10px rgba(0,0,0,0.18);
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }

@@ -8,9 +8,24 @@
     </div>
 
     <div class="input-group">
-      <label for="password">Contraseña</label>
-      <input type="password" id="password" placeholder="Ingrese su contraseña" required formControlName="password">
-    </div>
+  <label for="password">Contraseña</label>
+
+  <div class="password-field">
+    <input 
+      [type]="showPassword ? 'text' : 'password'" 
+      id="password" 
+      placeholder="Ingrese su contraseña"
+      required 
+      formControlName="password">
+
+    <button 
+      type="button" 
+      class="toggle-password"
+      (click)="togglePasswordVisibility()">
+      {{ showPassword ? '👁️' : '👁️‍🗨️' }}
+    </button>
+  </div>
+</div>
 
     <button type="submit" class="btn-login" >Iniciar sesión</button>
   </form>

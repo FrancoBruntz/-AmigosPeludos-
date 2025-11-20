@@ -6,7 +6,7 @@
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-left: 6px solid #4a90e2; /* azul suave como solicitudes */
+  border-left: 6px solid #ffc045; /* azul suave como solicitudes */
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -78,8 +78,8 @@ h2 {
 
 /* Guardar cambios */
 .buttons button[type="submit"] {
-  background-color: #4a90e2;
-  color: white;
+  background-color: #ffc045;
+  color: rgb(4, 1, 1);
 }
 
 .buttons button[type="submit"]:hover {

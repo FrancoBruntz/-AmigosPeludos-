@@ -13,6 +13,7 @@ import { AuthService } from '../auth/auth-service';
 export class Login implements OnInit {
 
   loginForm!: FormGroup;
+  showPassword: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +26,10 @@ export class Login implements OnInit {
       dni: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(4)]]
     });
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
   onSubmit(): void {

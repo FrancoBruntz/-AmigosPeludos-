@@ -61,8 +61,8 @@
 .filters input:focus,
 .filters select:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
+  border-color: #ffc045;
+  box-shadow: 0 0 0 2px rgba(186, 99, 17, 0.15);
 }
 
 /* =============================== */
@@ -76,7 +76,7 @@
 }
 
 .total strong {
-  color: #007bff;
+  color: #ad851a;
   font-weight: 600;
 }
 
@@ -160,8 +160,8 @@
   display: inline-block;
   padding: 0.45rem 0.9rem;
   border-radius: 6px;
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #ffc045;
+  color: #010000;
   font-size: 0.85rem;
   text-decoration: none;
   font-weight: 500;
@@ -169,7 +169,7 @@
 }
 
 .acciones a:hover {
-  background-color: #0056b3;
+  background-color: #ad851a;
   transform: translateY(-1px);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
 }

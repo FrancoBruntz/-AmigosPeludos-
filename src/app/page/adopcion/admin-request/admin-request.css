@@ -36,8 +36,8 @@ h1 {
 }
 
 .filters button {
-  background-color: #007bff;
-  color: white;
+  background-color: #ffc045;
+  color: rgb(4, 2, 2);
   cursor: pointer;
   transition: background-color 0.2s;
   border: none;
@@ -45,7 +45,7 @@ h1 {
 }
 
 .filters button:hover {
-  background-color: #0056b3;
+  background-color: #d39312;
 }
 
 /* Estados de carga y error */
@@ -238,7 +238,7 @@ h1 {
   padding: 1rem;
   border-radius: 4px;
   margin-bottom: 1.5rem;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid #d39312;
 }
 
 .modal-info p {
@@ -270,8 +270,8 @@ h1 {
 
 .modal-form textarea:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  border-color: #d39312;
+  box-shadow: 0 0 0 3px rgba(192, 170, 30, 0.1);
 }
 
 .modal-actions {
@@ -323,8 +323,8 @@ h1 {
 
 /* Botón azul para "Ver detalle" */
 .btn-detalle {
-  background-color: #007bff;
-  color: white;
+  background-color: #ffc045;
+  color: rgb(0, 0, 0);
   padding: 0.45rem 0.9rem;
   border-radius: 4px;
   border: none;
@@ -339,7 +339,7 @@ h1 {
 
 /* Hover */
 .btn-detalle:hover {
-  background-color: #0056b3;
+  background-color: #d39312;
   transform: translateY(-1px);
 }
 

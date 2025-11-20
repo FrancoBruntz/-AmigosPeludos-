@@ -106,8 +106,8 @@ h2 {
 }
 
 .details {
-  background: #457b9d;
-  color: white;
+  background: #ffc045;
+  color: rgb(6, 3, 3);
 }
 
 .details:hover {
