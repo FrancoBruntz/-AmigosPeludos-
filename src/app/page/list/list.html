@@ -16,6 +16,21 @@
   </div>
 }
 
+<!-- Filtro por tipo (Perro / Gato) para TODOS (admin y adoptantes) -->
+<div class="type-filter">
+  <span class="type-filter-label">🐾 Filtrar por:</span>
+
+  <select
+    id="typeFilter"
+    [(ngModel)]="selectedType"
+    (ngModelChange)="applyFilter()"
+  >
+    <option value="">Todos</option>
+    <option value="Perro">Perros</option>
+    <option value="Gato">Gatos</option>
+  </select>
+</div>
+
 <!-- LISTA DE TARJETAS -->
 <div class="cards">
   @for (pet of pets(); track $index) {

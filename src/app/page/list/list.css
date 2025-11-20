@@ -8,8 +8,9 @@ h2 {
 
 /* ===== CONTENEDOR DE TARJETAS ===== */
 .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  display: flex;
+  flex-wrap: wrap;          /* que se pasen a varias filas */
+  justify-content: center;  /* centrar cuando hay pocas */
   gap: 1.3rem;
   padding: 1rem;
 }
@@ -23,6 +24,9 @@ h2 {
   box-shadow: 0 3px 12px rgba(0,0,0,0.15);
   transition: transform .15s ease, box-shadow .15s ease;
   overflow: hidden;
+
+  width: 260px;      /* ancho “tarjetita” fijo */
+  max-width: 100%;   /* por si en celu es más chico */
 }
 
 .card:hover {
@@ -171,3 +175,23 @@ h2 {
 .switch input:checked + .slider::before {
   transform: translateX(22px);
 }
+
+/* combo más prolijo */
+.type-filter select {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+  background-color: #f8f9fa;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.type-filter select:hover,
+.type-filter select:focus {
+  border-color: #457b9d;
+  box-shadow: 0 0 0 2px rgba(69, 123, 157, 0.25);
+}
+
+
