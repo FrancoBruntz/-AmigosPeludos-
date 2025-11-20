@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -27,12 +27,12 @@ export class ProfileComponent implements OnInit {
     const user = this.userService.getUser();
 
     this.form = this.fb.group({
-      dni: [user?.dni || ''],
-      nombre: [user?.nombre || ''],
-      apellido: [user?.apellido || ''],
-      email: [user?.email || ''],
-      telefono: [user?.telefono || ''],
-      direccion: [user?.direccion || '']
+      dni: [user?.dni || '', Validators.required],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: ['',[Validators.required,Validators.pattern(/^[0-9]{7,15}$/)]],
+      direccion: ['', Validators.required]
     });
   }
 
