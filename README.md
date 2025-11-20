@@ -1,78 +1,56 @@
 
 # 🐾 **Amigos Peludos - Sistema de Gestión de Mascotas para Adopción**
 
-Aplicación web desarrollada en Angular para gestionar mascotas disponibles para adopción, incluyendo listado, detalle y carga de nuevas mascotas.
+Amigos Peludos es una aplicación web desarrollada con Angular 20 que permite administrar mascotas disponibles para adopción dentro de un refugio. El sistema reúne funciones para visitantes y administradores, integrando listados de animales, detalles individuales, formularios de alta, gestión de donaciones, notificaciones y un módulo completo para solicitudes de adopción.
+
+El proyecto combina una interfaz clara y moderna con un backend simulado mediante JSON Server, permitiendo mantener una base actualizada de mascotas, usuarios, favoritos, solicitudes y comentarios del refugio.
+
 
 ---
 
-## **Tabla de Contenidos**
+# **Esta pensado para dos perfiles:**
 
-* Sobre el Proyecto
-* Características
-* Tecnologías Utilizadas
-* Requisitos Previos
-* Instalación
-* Uso
-* Estructura del Proyecto
-* Arquitectura
-* API y Servicios
-* Roadmap
-* Licencia
-* Contacto
-
----
-
-##  **Sobre el Proyecto**
-
-**Amigos Peludos** es una aplicación web desarrollada con **Angular 20** que permite registrar, listar y visualizar mascotas disponibles para adopción. Sistema pensado para un refugio de mascotas.
- Incluye vistas para:
-
-* ver el catálogo de mascotas
-* ver los detalles de una mascota
-* agregar nuevas mascotas mediante un formulario reactivo
-* realizar donaciones
-* ver comentarios del refugio
-* sistema de notificaciones
-
-El objetivo es brindar una experiencia clara y ágil para mantener actualizada la base de mascotas.
-
+ 
 ---
 
 ##  **Características Principales**
 
-###  Adoptantes (uso general)
+###  👤 Usuarios adoptantes
 
-* Listado de mascotas con datos principales
-* Detalle completo de cada mascota
-* Control de sus datos personales
-* Listado de mascotas favoritas
-* Donaciones con distintos metodos de pago
-* Sistema de notificaciones
-* Navegación fluida entre las vistas
+El sistema ofrece a los adoptantes una experiencia fluida y organizada:
+* Catálogo general de mascotas con datos principales.
+* Acceso al detalle individual de cada animal.
+* Panel para gestionar información personal.
+* Sección de favoritos para guardar mascotas de interés.
+* Realización de donaciones con diferentes métodos de pago.
+* Recepción de notificaciones internas.
+* Navegación rápida y dinámica entre vistas.
 
-###  Administradores 
+# **Interfaz y experiencia de usuario**
+*La plataforma se diseñó pensando en la comodidad del usuario:*
 
-* Carga de animales / Edicion de animales
-* Alta y baja de animales
-* Historial de animales adoptados / dados de baja
-* Gestion de comentarios sobre el refugio
-* Sistema de notificaciones
-* Gestion de solicitudes de adopcion
-* Historial de donaciones
-* Navegación fluida entre las vistas
+* UI moderna, clara y responsiva, adaptable a distintos dispositivos.
+* Navegación fluida, sin recargas innecesarias de página.
+* Indicadores visuales, loaders y mensajes de estado para guiar al usuario durante las acciones.
 
-###  Funcionalidades Técnicas
+ # **Administración del refugio**
 
-* Formularios reactivos con validaciones
-* Ruteo completo con parámetros
-* Servicio centralizado para API REST
-* Manejo de errores
-* Simulación de backend con JSON Server
+El área administrativa permite gestionar la operación completa del sistema:
 
----
+* Alta, baja y edición de animales.
+* Registro de animales adoptados o dados de baja.
+* Administración de comentarios sobre el refugio.
+* Control completo de solicitudes de adopción.
+* Acceso al historial de donaciones.
+* Emisión y administración de notificaciones.
+* Navegación organizada bajo un panel diseñado para eficiencia.
+ **El acceso al panel se realiza mediante credenciales predefinidas:**
 
-## **Tecnologías Utilizadas**
+DNI: admin
+Contraseña: admin1234!
 
+
+## **Algunas de las tecnologias que usamos son:**
 ### Front-end
 
 * **Angular 20** 
@@ -102,7 +80,7 @@ El objetivo es brindar una experiencia clara y ágil para mantener actualizada l
 
 ---
 
-##  **Instalación**
+##  **Cómo instalarlo?**
 
 ### 1. Clonar el repositorio
 
@@ -135,24 +113,15 @@ ng serve -o
 
 ---
 
-##  **Uso**
+##  **Y ya casi estamos**
 
 * Entrá a `http://localhost:4200`
-* Navegá por el catálogo de mascotas
-* Consultá el detalle de cada una
-* Agregá nuevas mascotas desde “Agregar mascota”
+* Crea una cuenta
+* o utiliza las credenciales de admin proporcionadas
+* Disfruta del proyecto
 
-## Acceso como Administrador
 
-1. Inicia sesión con credenciales de administrador:
-* dni: admin
-* Contraseña: admin1234!
-2. Accede al panel de administración
-3. Crea eventos, gestiona descuentos y visualiza estadísticas
-
- --- 
-
-## 📁 **Estructura del Proyecto**
+## 📁 **Como esta formada la estructura del Proyecto**
 
 ```bash
 TuProyecto/
@@ -197,11 +166,7 @@ TuProyecto/
     └── environments/                     # Configuración de entornos
 ```
 
----
-
-##  **Arquitectura**
-
-Patrón basado en:
+El diseño esta basado en lo siguiente:
 
 * Componentes: Estructura principal de la UI, reutilizables y organizados por funcionalidades.
 * Servicios: Lógica de negocio y conexión con la API.
@@ -209,101 +174,65 @@ Patrón basado en:
 * Ruteo declarativo: Navegación definida mediante app.routes.ts.
 * Formularios reactivos: Manejo de formularios con validaciones y control desde TypeScript.
 
-Flujo:
-
-```
-Componentes ↔ Servicios ↔ JSON Server
-         ↓              ↓
-     Modelos        Formularios
-```
-
----
-
-##  **API y Servicios**
-
-##  API y Servicios
+##  **Algunas de las API y Servicios que consume la aplicacion**
 
 ###  PetsService
-
-
-getPets(): Observable<Pet[]>
-getPet(id: string): Observable<Pet>
-createPet(data: Pet): Observable<Pet>
-updatePet(id: string, data: Pet): Observable<Pet>
-deletePet(id: string): Observable<void>
+* getPets(): Observable<Pet[]>
+* getPet(id: string): Observable<Pet>
+* createPet(data: Pet): Observable<Pet>
+* updatePet(id: string, data: Pet): Observable<Pet>
+* deletePet(id: string): Observable<void>
 
 
 ###  SolicitudesService
-
-
-create(animalId, dni, mensaje, extraDatos)
-listByUser(dni)
-getById(id)
-listAll()
-fetchUserRequestForAnimal(animalId, dni)
-cambiarEstado(id, estado, comentarios?)
-delete(id)
+* create(animalId, dni, mensaje, extraDatos)
+* listByUser(dni)
+* getById(id)
+* listAll()
+* fetchUserRequestForAnimal(animalId, dni)
+* cambiarEstado(id, estado, comentarios?)
+* delete(id)
 
 
 ###  UserService (Favoritos + Perfil + Notificaciones)
-
-
-addFavorite(petId: string)
-removeFavorite(petId: string)
-getFavorites(): string[]
-updateProfile(partial: Partial<UserProfile>)
-pushNotification(message: string)
-markAsRead(id: string)
-clearNotifications()
-
+* addFavorite(petId: string)
+* removeFavorite(petId: string)
+* getFavorites(): string[]
+* updateProfile(partial: Partial<UserProfile>)
+* pushNotification(message: string)
+* markAsRead(id: string)
+* clearNotifications()
 
 ###  CommentService
-
-
-getCommentsByPet(petId: string)
-addComment(comment)
-deleteComment(id)
+* getCommentsByPet(petId: string)
+* addComment(comment)
+* deleteComment(id)
 
 
 ###  DonationService
+* createDonation(data)
+* getDonations()
 
 
-createDonation(data)
-getDonations()
-
-
-
----
-
-## **Roadmap**
-
-### Versión actual (1.0)
-
+### Primera Versión entregada el 20/11/25
+**Contiene:**
 * CRUD de mascotas
 * Rutas y navegación
 * Formularios reactivos
 * Sistema de Auth
 
 
-### Próximas funcionalidades
-
-* 
-* 
-* 
-* 
-
 ---
-
 ## **Licencia**
 
 Proyecto académico para la materia Laboratorio IV UTN Mar del plata 2025.
 
----
-
 ## 📬 Contacto
 
-Equipo de Desarrollo: AmigosPeludos
-Email: amigospeludos@gmail.com
-Link del proyecto : https://github.com/FrancoBruntz/-AmigosPeludos-.git
-
+* Equipo de Desarrollo: AmigosPeludos
+* Email: amigospeludos@gmail.com
+* Link del proyecto : https://github.com/FrancoBruntz/-AmigosPeludos-.git
+* Documentación Tecnica: Pedir al equipo tecnico
 ---
+
+
