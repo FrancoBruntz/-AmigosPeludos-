@@ -10,6 +10,8 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
+
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -128,4 +130,13 @@ div a:hover {
   .buttons button {
     width: 100%;
   }
+}
+
+
+/* ===== MENSAJES DE ERROR ===== */
+.error-msg {
+  color: #d9534f;        /* rojo suave */
+  font-size: 0.9rem;
+  margin-top: 6px;
+  font-weight: 600;
 }
