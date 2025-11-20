@@ -5,7 +5,7 @@ Aplicación web desarrollada en Angular para gestionar mascotas disponibles para
 
 ---
 
-## 📚 **Tabla de Contenidos**
+## **Tabla de Contenidos**
 
 * Sobre el Proyecto
 * Características
@@ -120,6 +120,10 @@ npm install
 ### 3. Iniciar JSON Server
 
 ```bash
+# Instalar JSON Server globalmente (si no lo tienes)
+npm install -g json-server
+
+# Iniciar JSON Server en el puerto 3000
 json-server --watch database/db.json --port 3000
 ```
 
@@ -141,8 +145,8 @@ ng serve -o
 ## Acceso como Administrador
 
 1. Inicia sesión con credenciales de administrador:
-* Email: agus@gmail.com
-* Contraseña: hola123
+* dni: admin
+* Contraseña: admin1234!
 2. Accede al panel de administración
 3. Crea eventos, gestiona descuentos y visualiza estadísticas
 
@@ -150,6 +154,7 @@ ng serve -o
 
 ## 📁 **Estructura del Proyecto**
 
+```bash
 TuProyecto/
 ├── public/                              # Archivos públicos
 │   └── favicon.ico
@@ -173,81 +178,24 @@ TuProyecto/
     │
     │   ├── component/                   # Componentes reutilizables
     │   │   ├── comentarios/             # Comentarios de usuarios
-    │   │   │   ├── comentarios.ts
-    │   │   │   ├── comentarios.html
-    │   │   │   ├── comentarios.css
-    │   │   │   └── comentarios.spec.ts
-    │   │   │
     │   │   ├── donations/               # Gestión de donaciones
-    │   │   │   ├── donation-details/    # Detalle de donación
-    │   │   │   ├── donation-form/       # Formulario de donación
-    │   │   │   ├── donation-list/       # Lista de donaciones
-    │   │   │   └── my-donations/        # Donaciones del usuario
-    │   │   │
     │   │   ├── footer/                  # Pie de página
     │   │   ├── header/                  # Encabezado de navegación
     │   │   ├── img-upload/              # Subida de imágenes
-    │   │   └── registro/                # Registro de usuarios
-    │   │
-    │   │   └── user/                     # Funcionalidades del usuario
-    │   │       ├── user.service.ts       # Servicio del usuario
-    │   │       ├── favorites/            # Favoritos del usuario
-    │   │       ├── notifications/        # Notificaciones
-    │   │       └── profile/              # Perfil del usuario
+    │   │   ├── registro/                # Registro de usuarios
+    │   │   └── user/                    # Funcionalidades del usuario
     │
     │   ├── guards/                       # Protección de rutas
     │   │   └── admin-guard.ts
     │
     │   ├── login/                        # Inicio de sesión
-    │   │   ├── login.ts
-    │   │   ├── login.html
-    │   │   ├── login.css
-    │   │   └── login.spec.ts
-    │
     │   ├── models/                       # Modelos de datos TypeScript
-    │   │   ├── comentarios.ts
-    │   │   ├── donation.ts
-    │   │   ├── notificacion.ts
-    │   │   ├── pets.ts
-    │   │   ├── solicitud.ts
-    │   │   └── user.ts
-    │
     │   ├── page/                         # Páginas principales
-    │   │   ├── adopcion/                 # Gestión de solicitudes de adopción
-    │   │   │   ├── admin-request/
-    │   │   │   ├── request-details/
-    │   │   │   ├── request-form/
-    │   │   │   └── request-list/
-    │   │   │
-    │   │   ├── details/                  # Detalle de mascota
-    │   │   ├── form/                     # Formulario general
-    │   │   ├── home/                     # Página principal
-    │   │   ├── list/                     # Lista de mascotas
-    │   │   └── refugio/                  # Información del refugio
-    │
     │   └── services/                     # Servicios de la aplicación
-    │       ├── comentarioservice.ts
-    │       ├── donationsservice.ts
-    │       ├── favorite.service.ts
-    │       ├── notificacionservice.ts
-    │       ├── petsservice.ts
-    │       └── solicitudesservice.ts
     │
-    ├── assets/                           # Recursos estáticos (imágenes)
-    │   ├── adoptado.webp
-    │   ├── amor.jpg
-    │   ├── animales.png
-    │   ├── cuidado.jpg
-    │   ├── cuidados.jpg
-    │   ├── familia.png
-    │   ├── fondo.webp
-    │   ├── imgrefugio.webp
-    │   └── logo1.png
-    │
+    ├── assets/                           # Recursos estáticos
     └── environments/                     # Configuración de entornos
-        ├── environment.ts
-        └── environment.development.ts
-
+```
 
 ---
 
@@ -275,11 +223,7 @@ Componentes ↔ Servicios ↔ JSON Server
 
 ### MascotasService
 
-* `getMascotas()`
-* `getMascotaById(id)`
-* `addMascota(mascota)`
-* `updateMascota(mascota)`
-* `deleteMascota(id)`
+
 
 ---
 
@@ -312,6 +256,6 @@ Proyecto académico para la materia Laboratorio IV UTN Mar del plata 2025.
 
 Equipo de Desarrollo: AmigosPeludos
 Email: amigospeludos@gmail.com
-Link del proyecto
+Link del proyecto : https://github.com/FrancoBruntz/-AmigosPeludos-.git
 
 ---
