@@ -221,7 +221,55 @@ Componentes ↔ Servicios ↔ JSON Server
 
 ##  **API y Servicios**
 
-### MascotasService
+##  API y Servicios
+
+###  PetsService
+
+
+getPets(): Observable<Pet[]>
+getPet(id: string): Observable<Pet>
+createPet(data: Pet): Observable<Pet>
+updatePet(id: string, data: Pet): Observable<Pet>
+deletePet(id: string): Observable<void>
+
+
+###  SolicitudesService
+
+
+create(animalId, dni, mensaje, extraDatos)
+listByUser(dni)
+getById(id)
+listAll()
+fetchUserRequestForAnimal(animalId, dni)
+cambiarEstado(id, estado, comentarios?)
+delete(id)
+
+
+###  UserService (Favoritos + Perfil + Notificaciones)
+
+
+addFavorite(petId: string)
+removeFavorite(petId: string)
+getFavorites(): string[]
+updateProfile(partial: Partial<UserProfile>)
+pushNotification(message: string)
+markAsRead(id: string)
+clearNotifications()
+
+
+###  CommentService
+
+
+getCommentsByPet(petId: string)
+addComment(comment)
+deleteComment(id)
+
+
+###  DonationService
+
+
+createDonation(data)
+getDonations()
 
 
 
