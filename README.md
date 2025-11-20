@@ -15,7 +15,7 @@ El proyecto combina una interfaz clara y moderna con un backend simulado mediant
 
 ##  **Características Principales**
 
-###  👤 Usuarios adoptantes
+###  Usuarios adoptantes
 
 El sistema ofrece a los adoptantes una experiencia fluida y organizada:
 * Catálogo general de mascotas con datos principales.
