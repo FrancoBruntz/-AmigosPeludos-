@@ -6,7 +6,7 @@
   min-height: 100vh;
   padding: 40px 20px;
   font-family: 'Poppins', system-ui, sans-serif;
-  color: #333;
+  color: #eceaea;
   box-sizing: border-box;
 }
 
@@ -188,7 +188,7 @@ button[type="submit"]:disabled {
 .transfer-info-box p {
   margin: 2px 0;
   font-size: 0.95rem;
-  color: #e4e5e7;
+  color: #414243;
 }
 
 /* ===== TARJETA DE RESUMEN ===== */
