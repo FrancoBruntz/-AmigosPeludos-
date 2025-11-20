@@ -18,6 +18,12 @@ export class List implements OnInit{
   // lista que se muestra en pantalla
   pets = signal<Pets[]>([]);
 
+  // lista completa 
+  private allPets: Pets[] = [];
+
+  // filtro de algun tipo
+  selectedType: '' | 'Perro' | 'Gato' = '';
+
   // toggle historial (true = inactivos/adoptados)
   protected showOnlyAvailable = false;
 
@@ -32,11 +38,23 @@ export class List implements OnInit{
     this.loadActivePets();
   }
 
+  // aplica filtro de perro o gato a la lista de animales
+  applyFilter() {
+    let filtrados = this.allPets;
+
+    if (this.selectedType) {
+      filtrados = this.allPets.filter(pet => pet.type === this.selectedType);
+    }
+
+    this.pets.set([...filtrados]);
+  }
+
   // Animales activos (disponibles)
   private loadActivePets() {
     this.listaPets.getPetActivos().subscribe({
-      next: (data) => {
-        this.pets.set([...data]);
+      next: (data) => { 
+        this.allPets = data;  // guardar lista completa
+        this.applyFilter();   // aplicar filtro si existe
       },
       error: (e) => {
         alert('Algo salió mal ' + e);
@@ -48,7 +66,8 @@ export class List implements OnInit{
   private loadInactivePets() {
     this.listaPets.getPetInactives().subscribe({
       next: (data) => {
-        this.pets.set([...data]);
+        this.allPets = data;  // guardar lista completa
+        this.applyFilter();   // aplicar filtro si existe
       },
       error: (e) => {
         alert('Algo salió mal ' + e);
