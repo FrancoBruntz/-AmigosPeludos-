@@ -27,6 +27,8 @@ h2 {
 
   width: 260px;      /* ancho “tarjetita” fijo */
   max-width: 100%;   /* por si en celu es más chico */
+
+  position: relative;
 }
 
 .card:hover {

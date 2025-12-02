@@ -1,3 +1,9 @@
+@if (notification.message()) {
+  <div class="toast">
+    {{ notification.message() }}
+  </div>
+}
+
 <app-header></app-header>
 
 <div id="contenedor">

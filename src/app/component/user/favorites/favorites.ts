@@ -13,7 +13,7 @@ import { AuthService } from '../../../auth/auth-service';
 })
 export class FavoritesComponent {
 
-  favorites: Pets[] = [];
+  favorites: (Pets & { adopted?: boolean })[] = [];
   errorMessage = '';
 
   constructor(
@@ -22,7 +22,7 @@ export class FavoritesComponent {
     private router: Router
   ) {}
 
-  ngOnInit() {
+ async ngOnInit() {
 
     // Si NO está logueado
     if (!this.auth.isLogIn()) {
@@ -37,7 +37,16 @@ export class FavoritesComponent {
     }
 
     // Usuario normal sí puede ver sus favoritos
-    this.favorites = this.favoriteService.getFavorites();
+    const favs = this.favoriteService.getFavorites();
+
+    //Verificar si algun animal fue adoptado
+    this.favorites = await Promise.all(
+      favs.map(async (fav) => {
+        const adopted = await this.favoriteService.checkAdopted(fav.id);
+        return { ...fav, adopted};
+      })
+    );
+    //this.favoriteService.checkAdopted();
   }
 
 

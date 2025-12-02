@@ -82,7 +82,7 @@
       "castrado": true,
       "notes": "Amigable con niños y otros perros",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262692/cl1gbv6fxgqm7kphxkoo.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "42dc",
@@ -108,7 +108,7 @@
       "castrado": true,
       "notes": "Amante de la comida",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261165/ddrz4vucah6j6fxljp6j.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "9cf0",
@@ -121,7 +121,7 @@
       "castrado": false,
       "notes": "Muy buenito",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261251/p9twrldyfvsceqzjdvpa.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "9a8e",
@@ -482,6 +482,62 @@
       "tieneMascotas": false,
       "viveConNinos": false,
       "aceptaCompromiso": true
+    },
+    {
+      "id": "4718",
+      "animalId": "9cf0",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-02T03:19:50.460Z",
+      "estado": "aprobada",
+      "mensaje": "Amo a los animales.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Esperamos que lo cuides mucho. "
+    },
+    {
+      "id": "0086",
+      "animalId": "d6f7",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-02T04:05:10.025Z",
+      "estado": "aprobada",
+      "mensaje": "Amo los gatos.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Espero que la ames como se lo merece."
+    },
+    {
+      "id": "51e7",
+      "animalId": "1",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-02T04:12:15.162Z",
+      "estado": "aprobada",
+      "mensaje": "Es hermosa",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Es tuya."
+    },
+    {
+      "id": "fe1e",
+      "animalId": "1",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-02T04:13:18.419Z",
+      "estado": "cancelada",
+      "mensaje": "La quiero igual.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Cancelada por el usuario"
     }
   ],
   "notificaciones": [
@@ -504,7 +560,7 @@
       "tipo": "rechazada",
       "mensaje": "Lamentablemente, tu solicitud fue rechazada.",
       "comentarios": "Xica esta bajo control medico, por el momento no puede ser adoptada",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-11-17T12:04:24.819Z"
     },
     {
@@ -579,6 +635,79 @@
       "mensaje": "Nueva solicitud de 32556010 para Timba",
       "leida": false,
       "fechaCreacion": "2025-11-20T02:06:23.496Z"
+    },
+    {
+      "id": "221b",
+      "usuarioDNI": "admin",
+      "solicitudId": "4718",
+      "animalId": "9cf0",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para Lex",
+      "leida": false,
+      "fechaCreacion": "2025-12-02T03:19:52.435Z"
+    },
+    {
+      "id": "042e",
+      "usuarioDNI": "46112136",
+      "solicitudId": "4718",
+      "animalId": "9cf0",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Lex fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "Esperamos que lo cuides mucho. ",
+      "leida": false,
+      "fechaCreacion": "2025-12-02T03:20:36.866Z"
+    },
+    {
+      "id": "e806",
+      "usuarioDNI": "admin",
+      "solicitudId": "0086",
+      "animalId": "d6f7",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para Atenea",
+      "leida": false,
+      "fechaCreacion": "2025-12-02T04:05:11.222Z"
+    },
+    {
+      "id": "04d6",
+      "usuarioDNI": "46112136",
+      "solicitudId": "0086",
+      "animalId": "d6f7",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Atenea fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "Espero que la ames como se lo merece.",
+      "leida": false,
+      "fechaCreacion": "2025-12-02T04:05:40.787Z"
+    },
+    {
+      "id": "2581",
+      "usuarioDNI": "admin",
+      "solicitudId": "51e7",
+      "animalId": "1",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para Xica",
+      "leida": false,
+      "fechaCreacion": "2025-12-02T04:12:16.704Z"
+    },
+    {
+      "id": "8075",
+      "usuarioDNI": "46112136",
+      "solicitudId": "51e7",
+      "animalId": "1",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Xica fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "Es tuya.",
+      "leida": false,
+      "fechaCreacion": "2025-12-02T04:12:39.410Z"
+    },
+    {
+      "id": "a651",
+      "usuarioDNI": "admin",
+      "solicitudId": "fe1e",
+      "animalId": "1",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Xica",
+      "leida": false,
+      "fechaCreacion": "2025-12-02T04:13:20.055Z"
     }
   ],
   "donations": [

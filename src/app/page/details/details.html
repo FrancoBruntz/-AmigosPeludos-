@@ -32,8 +32,15 @@
                 @if (auth.isAdmin()) {
                     <a [routerLink]="['/edit', pets.id]">EDITAR</a>
                     <button (click)="borrarPets(pets.id)">BORRAR</button>
+                
+                
                 } @else {
-                    <a [routerLink]="['/solicitar', pets.id]">SOLICITAR ADOPCIÓN</a>
+                    
+        @if (pets.activo === false) {
+            <p class="adopted-msg">⚠ Este animal ya fue adoptado</p>
+        } @else {
+            <a [routerLink]="['/solicitar', pets.id]">SOLICITAR ADOPCIÓN</a>
+        }
                 }
             </div>
 

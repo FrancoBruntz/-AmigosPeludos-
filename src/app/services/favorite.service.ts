@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import Pets from '../models/pets';
 import { UserService } from '../component/user/user.service';
-
+import { NotificacionService } from './notificacionservice';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,8 @@ import { UserService } from '../component/user/user.service';
 export class FavoriteService {
 
  private storagePrefix = 'favoritePets_';
+
+ private notification = inject(NotificacionService);
 
   constructor(private userService: UserService) {}
 
@@ -88,5 +90,23 @@ export class FavoriteService {
 
     localStorage.removeItem(key);
   }
+
+ async checkAdopted(petId: string): Promise<boolean> {
+  try {
+    const res = await fetch(`http://localhost:3000/pets/${petId}`);
+    const pet = await res.json();
+
+    // Si no existe pet, lo consideramos adoptado/inactivo
+    if (!pet) return true;
+
+    // SI activo === false → fue adoptado
+    return pet.activo === false;
+
+  } catch (e) {
+    console.error("Error verificando adopción:", e);
+    return false;
+  }
+}
+
 
 }

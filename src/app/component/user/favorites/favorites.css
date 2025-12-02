@@ -44,6 +44,7 @@ h2 {
   padding: 0.8rem;
   box-shadow: 0 3px 10px rgba(0,0,0,0.12);
   transition: 0.2s ease;
+  position: relative;
 }
 
 .favorite-item:hover {

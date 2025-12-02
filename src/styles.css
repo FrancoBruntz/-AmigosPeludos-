@@ -16,7 +16,7 @@ main {
 
 :root{
   /* cambiá la ruta al archivo que quieras usar */
-  --page-bg: url("assets/fondo.webp");
+  --page-bg: url("/assets/fondo.webp");
 }
 
 body::before{

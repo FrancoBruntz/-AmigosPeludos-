@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Notificacion, { TipoNotificacion } from '../models/notificacion';
 
@@ -9,6 +9,33 @@ export class NotificacionService {
   
   private http = inject(HttpClient);
   private base = 'http://localhost:3000/notificaciones';
+
+   private _message = signal<string | null>(null);
+
+  /**
+   * Devuelve el mensaje actual (para el template)
+   */
+  message() {
+    return this._message();
+  }
+
+  /**
+   * Muestra un mensaje por 3 segundos
+   */
+  show(text: string) {
+    this._message.set(text);
+
+    setTimeout(() => {
+      this._message.set(null);
+    }, 3000);
+  }
+
+  /**
+   * Limpia el mensaje (por si querés ocultarlo manualmente)
+   */
+  clear() {
+    this._message.set(null);
+  }
 
   // Enviar notificación (cuando admin aprueba/rechaza)
   send(usuarioDNI: string, solicitudId: string, animalId: string, tipo: TipoNotificacion, mensaje: string, comentarios?: string) {

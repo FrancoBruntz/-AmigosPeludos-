@@ -25,6 +25,13 @@
           <div class="actions">
             <a class="btn details" [routerLink]="['/details', fav.id]">Ver más</a>
             <button class="btn delete" (click)="remove(fav.id)">Eliminar</button>
+         
+            @if (fav.adopted === true) {
+              <p class="adopted-warning">
+                ⚠ Este animal ya fue adoptado
+              </p>
+            }
+         
           </div>
 
         </li>
