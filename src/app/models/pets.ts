@@ -3,6 +3,7 @@ export default interface Pets{
     name:string,
     type: string,
     age: number,
+    ageUnit?: string,
     size: string,
     sexo?: string,
     color: string,

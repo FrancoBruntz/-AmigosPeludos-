@@ -297,6 +297,7 @@
       "name": "Pirulo",
       "type": "Gato",
       "age": 2,
+      "ageUnit": "años",
       "size": "Pequeño",
       "sexo": "Macho",
       "color": "Blanco",
@@ -368,6 +369,20 @@
       "castrado": true,
       "notes": "No le gustan los perros",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763599805/qkcehlkin0bhfyttpuwk.jpg",
+      "activo": true
+    },
+    {
+      "id": "c587",
+      "name": "arbol",
+      "type": "Gato",
+      "age": 5,
+      "ageUnit": "meses",
+      "size": "Mediano",
+      "sexo": "Hembra",
+      "color": "negro",
+      "castrado": true,
+      "notes": "",
+      "image": "",
       "activo": true
     }
   ],

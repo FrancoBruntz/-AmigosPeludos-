@@ -36,6 +36,27 @@
       }
     </div>
 
+        <!-- UNIDAD DE EDAD (AÑOS / MESES) -->
+    <div class="age-unit-group">
+      <label>Unidad de edad (*)</label>
+
+      <div class="unit-options">
+        <label>
+          <input type="radio" value="años" formControlName="ageUnit" />
+          Años
+        </label>
+
+        <label>
+          <input type="radio" value="meses" formControlName="ageUnit" />
+          Meses
+        </label>
+      </div>
+
+      @if (petForm.controls['ageUnit']?.errors?.['required'] && petForm.get('ageUnit')?.touched) {
+        <p>El campo es obligatorio</p>
+      }
+    </div>
+
     <!-- TAMAÑO (RADIOS) -->
     <div class="size-group">
       <span class="size-label">Tamaño (*)</span>

@@ -43,6 +43,7 @@ export class Form implements OnInit {
       name: ['', [Validators.required]],
       type: ['', [Validators.required]],
       age: ['', [Validators.required, Validators.min(0), Validators.max(25)]],
+      ageUnit: ['', Validators.required],
       size: ['', [Validators.required]],
       sexo: ['', [Validators.required]],
       color: ['', Validators.required],

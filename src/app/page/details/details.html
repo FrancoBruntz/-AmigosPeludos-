@@ -17,7 +17,7 @@
             <h3>{{pets.name}}</h3>
 
             <p>Es un {{pets.type}}</p>
-            <p>Tiene {{pets.age}} años</p>
+            <p>Tiene {{ pets.age }} {{ pets.ageUnit }}</p>
             <p>Tamaño: {{pets.size}}</p>
             @if (pets && pets.sexo) { <p>Género: {{pets.sexo}}</p> }
             <p>Color: {{pets.color}}</p>
