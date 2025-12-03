@@ -104,6 +104,13 @@ export class Solicitudesservice {
     const url = q.length ? `${this.base}?${q.join('&')}` : this.base;
 
     return this.http.get<Solicitud[]>(url);
+  } 
+
+  // Traer la solicitud aprobada de un animal, para el historial.
+  getApprovedRequestForAnimal(animalId: string) {
+    return this.http.get<Solicitud[]>(
+      `${this.base}?animalId=${encodeURIComponent(animalId)}&estado=aprobada`
+    );
   }
 
 }

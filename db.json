@@ -16,8 +16,8 @@
       "password": "sofiatorti",
       "isAdmin": false,
       "id": "c016",
-      "nombre": "a2",
-      "apellido": "a2",
+      "nombre": "Sofia",
+      "apellido": "Torti",
       "email": "SofiaTorti@gmail.com",
       "telefono": "22334534564",
       "direccion": "mar del plata",
@@ -383,7 +383,7 @@
       "castrado": true,
       "notes": "",
       "image": "",
-      "activo": true
+      "activo": false
     }
   ],
   "solicitudes": [
@@ -553,6 +553,35 @@
       "viveConNinos": false,
       "aceptaCompromiso": true,
       "comentarios": "Cancelada por el usuario"
+    },
+    {
+      "id": "5aa3",
+      "animalId": "9cf0",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-02T23:46:59.170Z",
+      "estado": "aprobada",
+      "mensaje": "amo los perrasos",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": true,
+      "detalleMascotas": "3 gatos adultos",
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "todo tuyo es re pesado"
+    },
+    {
+      "id": "3e9a",
+      "animalId": "c587",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-03T00:02:02.859Z",
+      "estado": "aprobada",
+      "mensaje": "me encanta ese arbol\n",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": true,
+      "viveConNinos": true,
+      "aceptaCompromiso": true,
+      "comentarios": "siuu"
     }
   ],
   "notificaciones": [
@@ -723,6 +752,48 @@
       "mensaje": "Nueva solicitud de 11111111 para Xica",
       "leida": false,
       "fechaCreacion": "2025-12-02T04:13:20.055Z"
+    },
+    {
+      "id": "d7c8",
+      "usuarioDNI": "admin",
+      "solicitudId": "5aa3",
+      "animalId": "9cf0",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para Lex",
+      "leida": false,
+      "fechaCreacion": "2025-12-02T23:47:00.443Z"
+    },
+    {
+      "id": "cb5c",
+      "usuarioDNI": "46112136",
+      "solicitudId": "5aa3",
+      "animalId": "9cf0",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Lex fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "todo tuyo es re pesado",
+      "leida": false,
+      "fechaCreacion": "2025-12-02T23:47:32.604Z"
+    },
+    {
+      "id": "80ba",
+      "usuarioDNI": "admin",
+      "solicitudId": "3e9a",
+      "animalId": "c587",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para arbol",
+      "leida": false,
+      "fechaCreacion": "2025-12-03T00:02:04.086Z"
+    },
+    {
+      "id": "4d33",
+      "usuarioDNI": "46112136",
+      "solicitudId": "3e9a",
+      "animalId": "c587",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para arbol fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "siuu",
+      "leida": false,
+      "fechaCreacion": "2025-12-03T00:02:28.391Z"
     }
   ],
   "donations": [

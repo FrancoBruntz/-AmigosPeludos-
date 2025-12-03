@@ -120,4 +120,7 @@ loadUserProfile(id: string) {
     error: err => console.error("Error cargando perfil", err)
   });
 }
+getByDni(dni: string) {
+  return this.http.get<UserProfile[]>(`${this.url}?user=${encodeURIComponent(dni)}`);
+}
 }

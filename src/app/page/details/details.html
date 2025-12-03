@@ -26,6 +26,36 @@
             <h3>Observaciones</h3>
             <p>{{pets.notes}}</p>
 
+            @if (pets.activo === false && solicitudAprobada && adoptante) {
+            <div class="adoptante-box">
+
+                <h3>Datos del adoptante</h3>
+
+                <p><strong>Nombre:</strong> {{ adoptante.nombre }}</p>
+                <p><strong>DNI:</strong> {{ adoptante.dni }}</p>
+                <p><strong>Email:</strong> {{ adoptante.email }}</p>
+                <p><strong>Teléfono:</strong> {{ adoptante.telefono }}</p>
+
+                <h3>Datos de la adopción</h3>
+                <p><strong>Fecha:</strong> {{ solicitudAprobada.fecha | date }}</p>
+
+                <h4>Información del formulario</h4>
+                <p>Vivienda: {{ solicitudAprobada.tipoVivienda }}</p>
+                <p>¿Tiene patio?: {{ solicitudAprobada.tienePatio ? 'Sí' : 'No' }}</p>
+                <p>¿Tiene otras mascotas?: {{ solicitudAprobada.tieneMascotas ? 'Sí' : 'No' }}</p>
+
+                @if (solicitudAprobada.detalleMascotas) {
+                <p>Detalle mascotas: {{ solicitudAprobada.detalleMascotas }}</p>
+                }
+
+                <p>¿Vive con niños?: {{ solicitudAprobada.viveConNinos ? 'Sí' : 'No' }}</p>
+
+                @if (solicitudAprobada.mensaje) {
+                <p><strong>Mensaje del adoptante:</strong> {{ solicitudAprobada.mensaje }}</p>
+                }
+            </div>
+            }
+
             <!-- BOTONES -->
             <div class="det-actions">
 
