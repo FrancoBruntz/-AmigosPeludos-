@@ -157,8 +157,10 @@
     <h3>Resumen de tu donación</h3>
 
     <p>
-      Vas a donar <strong>${{ getControl('amount')?.value }}</strong>
-      mediante <strong>{{ getControl('method')?.value }}</strong>.
+      Vas a donar 
+      <strong>{{ getControl('amount')?.value | currency:'ARS':'symbol':'1.0-0' }}</strong>
+      mediante 
+      <strong>{{ getControl('method')?.value | titlecase }}</strong>.
     </p>
 
     @if (isCardMethod()) {
@@ -171,26 +173,17 @@
         </strong>.
       </p>
       @if (getControl('cardHolder')?.value) {
-        <p>Titular: <strong>{{ getControl('cardHolder')?.value }}</strong></p>
+        <p>
+          Titular: 
+          <strong>{{ getControl('cardHolder')?.value | titlecase }}</strong>
+        </p>
       }
-    }
-
-    @if (isTransferMethod()) {
-      @if (getControl('alias')?.value) {
-        <p>Alias: <strong>{{ getControl('alias')?.value }}</strong></p>
-      }
-      @if (getControl('cbu')?.value) {
-        <p>CBU: <strong>{{ getControl('cbu')?.value }}</strong></p>
-      }
-      <p>
-        Recordá enviar el comprobante al refugio para confirmar la donación.
-      </p>
     }
 
     @if (getControl('method')?.value === 'Efectivo') {
       <p>
         Podrás realizar la donación en efectivo 
-        al acercarte al refugio o en los eventos solidarios.
+        al acercarte al refugio.
       </p>
     }
 

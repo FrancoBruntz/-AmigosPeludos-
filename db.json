@@ -820,6 +820,22 @@
       "method": "Tarjeta",
       "message": "Para esas criaturitas hermosas",
       "date": "2025-11-20T00:46:01.887Z"
+    },
+    {
+      "id": "1f16",
+      "userId": "46112136",
+      "amount": 300103,
+      "method": "Transferencia",
+      "message": "siu",
+      "date": "2025-12-03T02:41:52.950Z"
+    },
+    {
+      "id": "099a",
+      "userId": "46112136",
+      "amount": 2300,
+      "method": "Transferencia",
+      "message": "",
+      "date": "2025-12-03T02:47:57.462Z"
     }
   ],
   "comentarios": [

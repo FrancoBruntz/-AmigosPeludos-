@@ -1,14 +1,16 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Donation } from '../../../models/donation';
 import { Donationsservice } from '../../../services/donationsservice';
 import { RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-donation-list',
-  imports: [FormsModule, DatePipe, RouterModule],
+  imports: [FormsModule, DatePipe, RouterModule,CurrencyPipe, TitleCasePipe],
   templateUrl: './donation-list.html',
   styleUrl: './donation-list.css',
 })

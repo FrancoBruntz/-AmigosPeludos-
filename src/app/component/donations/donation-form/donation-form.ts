@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { CurrencyPipe } from '@angular/common';
 import { Donationsservice } from '../../../services/donationsservice';
 import { Donation } from '../../../models/donation';
 import { AuthService } from '../../../auth/auth-service';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-donation-form',
   standalone: true,
-  imports: [ReactiveFormsModule, ɵInternalFormsSharedModule],
+  imports: [ReactiveFormsModule, ɵInternalFormsSharedModule,CurrencyPipe, TitleCasePipe],
   templateUrl: './donation-form.html',
   styleUrls: ['./donation-form.css'],
 })

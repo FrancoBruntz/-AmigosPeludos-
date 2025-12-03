@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Donation } from '../../../models/donation';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Donationsservice } from '../../../services/donationsservice';
-import { DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-donation-details',
-  imports: [DatePipe],
+  imports: [DatePipe,CurrencyPipe],
   templateUrl: './donation-details.html',
   styleUrl: './donation-details.css',
 })

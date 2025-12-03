@@ -13,32 +13,35 @@
 
     } @else {
 
-      <p class="total">
-        Total donado:
-        <strong>${{ getTotal() }}</strong>
-      </p>
+    <p class="total">
+      Total donado:
+      <strong>{{ getTotal() | currency:'ARS':'symbol':'1.0-0' }}</strong>
+    </p>
 
-      <table class="donations-table">
-        <thead>
+    <table class="donations-table">
+      <thead>
+        <tr>
+          <th>Monto</th>
+          <th>Método</th>
+          <th>Fecha</th>
+          <th>Mensaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (d of myDonations; track d.id) {
           <tr>
-            <th>Monto</th>
-            <th>Método</th>
-            <th>Destino</th>
-            <th>Fecha</th>
-            <th>Mensaje</th>
+
+            <td>{{ d.amount | currency:'ARS':'symbol':'1.0-0' }}</td>
+
+            <td>{{ d.method | titlecase }}</td>
+
+            <td>{{ d.date | date:'dd/MM/yyyy HH:mm' }}</td>
+
+            <td>{{ d.message }}</td>
           </tr>
-        </thead>
-        <tbody>
-          @for (d of myDonations; track d.id) {
-            <tr>
-              <td>${{ d.amount }}</td>
-              <td>{{ d.method }}</td>
-              <td>{{ d.date | date:'dd/MM/yyyy HH:mm' }}</td>
-              <td>{{ d.message }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
+        }
+      </tbody>
+    </table>
 
     }
 

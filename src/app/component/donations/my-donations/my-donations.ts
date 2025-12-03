@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 import { Donationsservice } from '../../../services/donationsservice';
 import { AuthService } from '../../../auth/auth-service';
 import { Donation } from '../../../models/donation';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-my-donations',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe,CurrencyPipe, TitleCasePipe],
   templateUrl: './my-donations.html',
   styleUrls: ['./my-donations.css']
 })
