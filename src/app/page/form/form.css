@@ -122,11 +122,18 @@ input[type="checkbox"] {
   transform: scale(1.2);
 }
 
-/* ===== MENSAJES DE ERROR ===== */
-p {
+/* ===== MENSAJES DE ERROR CON ESPACIO FIJO ===== */
+.error-space {
+  min-height: 5px;     /* espacio reservado */
+  height: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.error-space p {
   color: #e76f51;
   font-size: 0.9rem;
-  margin-top: 4px;
+  margin: 0;
 }
 
 /* ===== TEXTAREA ===== */

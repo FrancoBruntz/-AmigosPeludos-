@@ -8,9 +8,11 @@
     <div>
       <label for="name">Nombre (*)</label>
       <input type="text" id="name" formControlName="name" placeholder="Ingresa el nombre" />
-      @if (petForm.controls['name'].errors?.['required'] && petForm.get('name')?.touched) {
-        <p>El campo es obligatorio</p>
-      }
+      <div class="error-space">
+        @if (petForm.controls['name'].errors?.['required'] && petForm.get('name')?.touched) {
+          <p>El campo es obligatorio</p>
+        }
+      </div>
     </div>
 
     <!-- TIPO -->
@@ -22,42 +24,45 @@
           <option [value]="t">{{ t }}</option>
         }
       </select>
-      @if (petForm.controls['type'].errors?.['required'] && petForm.get('type')?.touched) {
-        <p>El campo es obligatorio</p>
-      }
+      <div class="error-space">
+        @if (petForm.controls['type'].errors?.['required'] && petForm.get('type')?.touched) {
+          <p>El campo es obligatorio</p>
+        }
+      </div>
     </div>
 
     <!-- EDAD -->
     <div>
       <label for="age">Edad (*)</label>
       <input type="number" id="age" formControlName="age" placeholder="Ingrese la edad" />
-      @if (petForm.controls['age'].errors?.['required'] && petForm.get('age')?.touched) {
-        <p>El campo es obligatorio</p>
-      }
+      <div class="error-space">
+        @if (petForm.controls['age'].errors?.['required'] && petForm.get('age')?.touched) {
+          <p>El campo es obligatorio</p>
+        }
+      </div>
     </div>
 
-        <!-- UNIDAD DE EDAD (AÑOS / MESES) -->
+    <!-- UNIDAD DE EDAD -->
     <div class="age-unit-group">
       <label>Unidad de edad (*)</label>
 
       <div class="unit-options">
         <label>
-          <input type="radio" value="años" formControlName="ageUnit" />
-          Años
+          <input type="radio" value="años" formControlName="ageUnit" /> Años
         </label>
-
         <label>
-          <input type="radio" value="meses" formControlName="ageUnit" />
-          Meses
+          <input type="radio" value="meses" formControlName="ageUnit" /> Meses
         </label>
       </div>
 
-      @if (petForm.controls['ageUnit']?.errors?.['required'] && petForm.get('ageUnit')?.touched) {
-        <p>El campo es obligatorio</p>
-      }
+      <div class="error-space">
+        @if (petForm.controls['ageUnit']?.errors?.['required'] && petForm.get('ageUnit')?.touched) {
+          <p>El campo es obligatorio</p>
+        }
+      </div>
     </div>
 
-    <!-- TAMAÑO (RADIOS) -->
+    <!-- TAMAÑO -->
     <div class="size-group">
       <span class="size-label">Tamaño (*)</span>
       <div class="size-options">
@@ -68,9 +73,12 @@
           </label>
         }
       </div>
-      @if (petForm.controls['size'].errors?.['required'] && petForm.get('size')?.touched) {
-        <p>El campo es obligatorio</p>
-      }
+
+      <div class="error-space">
+        @if (petForm.controls['size'].errors?.['required'] && petForm.get('size')?.touched) {
+          <p>El campo es obligatorio</p>
+        }
+      </div>
     </div>
 
     <!-- SEXO -->
@@ -82,36 +90,43 @@
           <option [value]="s">{{ s }}</option>
         }
       </select>
-      @if (petForm.controls['sexo']?.errors?.['required'] && petForm.get('sexo')?.touched) {
-        <p>El campo es obligatorio</p>
-      }
+      <div class="error-space">
+        @if (petForm.controls['sexo']?.errors?.['required'] && petForm.get('sexo')?.touched) {
+          <p>El campo es obligatorio</p>
+        }
+      </div>
     </div>
 
     <!-- COLOR -->
     <div>
       <label for="color">Color (*)</label>
       <input type="text" id="color" formControlName="color" placeholder="Ingresa el color" />
-      @if (petForm.controls['color'].errors?.['required'] && petForm.get('color')?.touched) {
-        <p>El campo es obligatorio</p>
-      }
+      <div class="error-space">
+        @if (petForm.controls['color'].errors?.['required'] && petForm.get('color')?.touched) {
+          <p>El campo es obligatorio</p>
+        }
+      </div>
     </div>
 
     <!-- CASTRADO -->
     <div class="check-group">
       <label for="castrado">El animal está castrado</label>
       <input type="checkbox" name="castrado" id="castrado" formControlName="castrado" />
-      @if (petForm.controls['castrado'].errors?.['required'] && petForm.get('castrado')?.touched) {
-        <p>El campo es obligatorio</p>
-      }
+      <div class="error-space">
+        @if (petForm.controls['castrado'].errors?.['required'] && petForm.get('castrado')?.touched) {
+          <p>El campo es obligatorio</p>
+        }
+      </div>
     </div>
 
     <!-- OBSERVACIONES -->
     <div>
       <label for="notes">Observaciones</label>
       <textarea id="notes" formControlName="notes" rows="4"></textarea>
+      <div class="error-space"></div>
     </div>
 
-    <!-- ================== SECCIÓN IMAGEN ================== -->
+    <!-- IMAGEN -->
     <div class="image-section">
       <label>Foto del animal</label>
 
@@ -152,21 +167,14 @@
         }
       </div>
 
-      <!-- para ligar el control 'image' del formulario -->
       <input type="hidden" formControlName="image" />
+      <div class="error-space"></div>
     </div>
-    <!-- ==================================================== -->
 
     <!-- BOTONES -->
     <div class="actions">
-      <button
-        type="submit"
-        [disabled]="petForm.invalid || isUploading">
-        @if (isUploading) {
-          GUARDANDO...
-        } @else {
-          GUARDAR FORMULARIO
-        }
+      <button type="submit" [disabled]="petForm.invalid || isUploading">
+        @if (isUploading) { GUARDANDO... } @else { GUARDAR FORMULARIO }
       </button>
 
       <button type="reset">LIMPIAR FORMULARIO</button>
