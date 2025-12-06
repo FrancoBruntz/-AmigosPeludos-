@@ -5,7 +5,8 @@ import { environment } from '../../environments/environment.development';
 import { Router } from '@angular/router';
 import { UserService } from '../component/user/user.service';
 import { map } from 'rxjs/operators';
-
+import { NotificacionService } from '../services/notificacionservice';
+import { effect } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -22,11 +23,21 @@ export class AuthService {
     JSON.parse(localStorage.getItem('isAdmin') ?? 'false')
   );
 
+   public readonly currentUser = signal<usuarios | null>(null);
+
   constructor(
     private http: HttpClient,
     private router: Router,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private notificacionService: NotificacionService
+  ) {
+    effect(() => {
+    const user = this.currentUser();
+    if (user) {
+      this.notificacionService.cargarPorUsuario(user.user);
+    }
+  });
+  }
 
   // ===== LOGIN =====
   logIn(user: string, password: string) {
@@ -53,6 +64,8 @@ export class AuthService {
             isAdmin: data[0].isAdmin,
           });
 
+          this.currentUser.set(data[0]);
+
           localStorage.setItem('user', data[0].user);
           localStorage.setItem('isLogIn', JSON.stringify(true));
           this.isLogIn.set(true);
@@ -77,6 +90,10 @@ export class AuthService {
   logOut() {
     this.isLogIn.set(false);
     this.isAdmin.set(false);
+
+    this.currentUser.set(null);
+
+
     this.userService.logout();
     localStorage.removeItem('user');
     localStorage.removeItem('isLogIn');

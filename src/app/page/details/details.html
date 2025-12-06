@@ -16,64 +16,39 @@
             <!-- INFORMACIÓN -->
             <h3>{{pets.name}}</h3>
 
+            @if (pets.activo == false) {
+                <p class="adopted-msg">⚠ Este animal ya fue adoptado</p>
+            } @else { 
             <p>Es un {{pets.type}}</p>
-            <p>Tiene {{ pets.age }} {{ pets.ageUnit }}</p>
+            <p>Tiene {{pets.age}} años</p>
             <p>Tamaño: {{pets.size}}</p>
             @if (pets && pets.sexo) { <p>Género: {{pets.sexo}}</p> }
             <p>Color: {{pets.color}}</p>
             <p>{{pets.castrado ? 'Está castrado' : 'NO está castrado'}}</p>
 
+            @if (pets.activo === true){
             <h3>Observaciones</h3>
-            <p>{{pets.notes}}</p>
 
-            @if (pets.activo === false && solicitudAprobada && adoptante) {
-            <div class="adoptante-box">
-
-                <h3>Datos del adoptante</h3>
-
-                <p><strong>Nombre:</strong> {{ adoptante.nombre }}</p>
-                <p><strong>DNI:</strong> {{ adoptante.dni }}</p>
-                <p><strong>Email:</strong> {{ adoptante.email }}</p>
-                <p><strong>Teléfono:</strong> {{ adoptante.telefono }}</p>
-
-                <h3>Datos de la adopción</h3>
-                <p><strong>Fecha:</strong> {{ solicitudAprobada.fecha | date }}</p>
-
-                <h4>Información del formulario</h4>
-                <p>Vivienda: {{ solicitudAprobada.tipoVivienda }}</p>
-                <p>¿Tiene patio?: {{ solicitudAprobada.tienePatio ? 'Sí' : 'No' }}</p>
-                <p>¿Tiene otras mascotas?: {{ solicitudAprobada.tieneMascotas ? 'Sí' : 'No' }}</p>
-
-                @if (solicitudAprobada.detalleMascotas) {
-                <p>Detalle mascotas: {{ solicitudAprobada.detalleMascotas }}</p>
-                }
-
-                <p>¿Vive con niños?: {{ solicitudAprobada.viveConNinos ? 'Sí' : 'No' }}</p>
-
-                @if (solicitudAprobada.mensaje) {
-                <p><strong>Mensaje del adoptante:</strong> {{ solicitudAprobada.mensaje }}</p>
-                }
-            </div>
+            @if (pets.notes){
+               <p>{{pets.notes}}</p> 
+            } @else {
+                <p class="no-notes">Sin observaciones</p>
             }
-
+            
+            }
+            
             <!-- BOTONES -->
             <div class="det-actions">
 
                 @if (auth.isAdmin()) {
                     <a [routerLink]="['/edit', pets.id]">EDITAR</a>
                     <button (click)="borrarPets(pets.id)">BORRAR</button>
-                
-                
                 } @else {
-                    
-        @if (pets.activo === false) {
-            <p class="adopted-msg">⚠ Este animal ya fue adoptado</p>
-        } @else {
-            <a [routerLink]="['/solicitar', pets.id]">SOLICITAR ADOPCIÓN</a>
-        }
+                  <a [routerLink]="['/solicitar', pets.id]">SOLICITAR ADOPCIÓN</a>
                 }
             </div>
 
+        }
             <button class="btn-back" (click)="goBack()">
                ⬅ Volver al listado
             </button>

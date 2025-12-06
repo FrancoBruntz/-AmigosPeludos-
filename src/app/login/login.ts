@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth/auth-service';
-
+import { NotificacionService } from '../services/notificacionservice';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -19,6 +19,7 @@ export class Login implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     protected authService: AuthService,
+    protected notifService: NotificacionService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +40,12 @@ export class Login implements OnInit {
       console.log(dni,password)
       this.authService.logIn(dni, password);
       
+      setTimeout(() => {
+         const user = this.authService.currentUser();
+        if (user) {
+          this.notifService.cargarPorUsuario(user.id);
+  }
+}, 150);
       
     } else {
       this.loginForm.markAllAsTouched();

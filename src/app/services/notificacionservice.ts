@@ -1,4 +1,4 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, inject, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Notificacion, { TipoNotificacion } from '../models/notificacion';
 
@@ -9,6 +9,17 @@ export class NotificacionService {
   
   private http = inject(HttpClient);
   private base = 'http://localhost:3000/notificaciones';
+
+
+   // ✅ SIGNAL PRINCIPAL
+  private _notificaciones = signal<Notificacion[]>([]);
+
+  // ✅ SELECTORES
+  notificaciones = this._notificaciones.asReadonly();
+
+  unreadCount = computed(
+    () => this._notificaciones().filter(n => !n.leida).length
+  );
 
    private _message = signal<string | null>(null);
 
@@ -37,6 +48,13 @@ export class NotificacionService {
     this._message.set(null);
   }
 
+  
+  cargarPorUsuario(dni: string) {
+      this.http
+      .get<Notificacion[]>(`${this.base}?usuarioDNI=${encodeURIComponent(dni)}&_sort=-fechaCreacion`)
+      .subscribe(n => this._notificaciones.set(n)); // ⭐ ACTUALIZA SIGNAL
+  }
+  
   // Enviar notificación (cuando admin aprueba/rechaza)
   send(usuarioDNI: string, solicitudId: string, animalId: string, tipo: TipoNotificacion, mensaje: string, comentarios?: string) {
     const body: Omit<Notificacion, 'id'> = {
@@ -49,7 +67,7 @@ export class NotificacionService {
       leida: false,
       fechaCreacion: new Date().toISOString()
     };
-    return this.http.post<Notificacion>(this.base, body as any);
+     return this.http.post<Notificacion>(this.base, body);
   }
 
   // Obtener notificaciones de un usuario (por DNI)

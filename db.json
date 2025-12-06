@@ -238,7 +238,7 @@
       "castrado": true,
       "notes": "",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262953/hpsqywoqekvy3ylq4mvg.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "b600",
@@ -251,7 +251,7 @@
       "castrado": false,
       "notes": "Ama estar tirado al sol",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763262995/b2zxumyjfqikdbhqxyat.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "8974",
@@ -264,7 +264,7 @@
       "castrado": false,
       "notes": "Muy juguetona",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763386377/gapdlmcyalzijqwguwac.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "1f4f",
@@ -277,7 +277,7 @@
       "castrado": true,
       "notes": "",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763386449/gboe6bi80dwpvueo88nz.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "0bcb",
@@ -290,7 +290,7 @@
       "castrado": true,
       "notes": "Muy cuidadoso y amoroso con los niños",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763386740/kihiz5bysulu8yojsbnt.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "a2d2",
@@ -304,7 +304,7 @@
       "castrado": false,
       "notes": "Tiene cara de malo pero le gusta mucho jugar",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763400311/ov95rmtysylmi1w96rqx.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "1552",
@@ -317,7 +317,7 @@
       "castrado": false,
       "notes": "Le gusta mucho dormir",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763405457/flsywgmdkakaa56tmpsl.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "198b",
@@ -330,7 +330,7 @@
       "castrado": false,
       "notes": "",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763405702/sp0sxweyzrgiefcd1fqk.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "4d64",
@@ -343,7 +343,7 @@
       "castrado": false,
       "notes": "",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763405740/gslhdvtpipvtkdubpo2e.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "e0ba",
@@ -356,7 +356,7 @@
       "castrado": false,
       "notes": "",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763405768/twuxcw0e4cyzbtw9cget.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "e08d",
@@ -369,7 +369,7 @@
       "castrado": true,
       "notes": "No le gustan los perros",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763599805/qkcehlkin0bhfyttpuwk.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "c587",
@@ -582,6 +582,160 @@
       "viveConNinos": true,
       "aceptaCompromiso": true,
       "comentarios": "siuu"
+    },
+    {
+      "id": "4901",
+      "animalId": "dea6",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-04T20:03:10.152Z",
+      "estado": "aprobada",
+      "mensaje": "Amo a provoleta. ",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": ""
+    },
+    {
+      "id": "be37",
+      "animalId": "b600",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-04T20:05:12.789Z",
+      "estado": "aprobada",
+      "mensaje": "Amo los perritos.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "17:05"
+    },
+    {
+      "id": "62e9",
+      "animalId": "e0ba",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-04T20:08:04.228Z",
+      "estado": "aprobada",
+      "mensaje": "Amo los animales.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": ""
+    },
+    {
+      "id": "54d3",
+      "animalId": "e08d",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-04T20:09:16.553Z",
+      "estado": "aprobada",
+      "mensaje": "La amo con todo mi corazon.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": ""
+    },
+    {
+      "id": "14df",
+      "animalId": "4d64",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-04T20:21:20.478Z",
+      "estado": "aprobada",
+      "mensaje": "Amooooooooooo.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": ""
+    },
+    {
+      "id": "bb0b",
+      "animalId": "1552",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-05T12:50:29.693Z",
+      "estado": "aprobada",
+      "mensaje": "Amo a Quesito.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Cuidalo."
+    },
+    {
+      "id": "29a0",
+      "animalId": "0bcb",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-05T14:40:01.248Z",
+      "estado": "aprobada",
+      "mensaje": "Te amo Forulais",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Espero que lo cuides y lo ames como se merece."
+    },
+    {
+      "id": "9e49",
+      "animalId": "198b",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-05T23:56:44.287Z",
+      "estado": "aprobada",
+      "mensaje": "Amo el mantecol.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Cuidalo mucho."
+    },
+    {
+      "id": "70bc",
+      "animalId": "8974",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-05T23:57:23.154Z",
+      "estado": "aprobada",
+      "mensaje": "Lo amooooooo.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Cuidalo mucho."
+    },
+    {
+      "id": "f50f",
+      "animalId": "a2d2",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-06T00:33:08.352Z",
+      "estado": "aprobada",
+      "mensaje": "Lo amoooooo.",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "Cuidalo nena."
+    },
+    {
+      "id": "bd26",
+      "animalId": "1f4f",
+      "solicitanteUser": "11111111",
+      "fecha": "2025-12-06T00:44:56.738Z",
+      "estado": "aprobada",
+      "mensaje": "lñskaflkvSÑD",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": false,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": ""
     }
   ],
   "notificaciones": [
@@ -794,6 +948,237 @@
       "comentarios": "siuu",
       "leida": false,
       "fechaCreacion": "2025-12-03T00:02:28.391Z"
+    },
+    {
+      "id": "20f8",
+      "usuarioDNI": "admin",
+      "solicitudId": "4901",
+      "animalId": "dea6",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Provoleta",
+      "leida": false,
+      "fechaCreacion": "2025-12-04T20:03:11.704Z"
+    },
+    {
+      "id": "608e",
+      "usuarioDNI": "11111111",
+      "solicitudId": "4901",
+      "animalId": "dea6",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Provoleta fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "",
+      "leida": true,
+      "fechaCreacion": "2025-12-04T20:03:34.219Z"
+    },
+    {
+      "id": "2738",
+      "usuarioDNI": "admin",
+      "solicitudId": "be37",
+      "animalId": "b600",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Apolo",
+      "leida": false,
+      "fechaCreacion": "2025-12-04T20:05:14.172Z"
+    },
+    {
+      "id": "e00d",
+      "usuarioDNI": "11111111",
+      "solicitudId": "be37",
+      "animalId": "b600",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Apolo fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "17:05",
+      "leida": true,
+      "fechaCreacion": "2025-12-04T20:05:50.657Z"
+    },
+    {
+      "id": "f993",
+      "usuarioDNI": "admin",
+      "solicitudId": "62e9",
+      "animalId": "e0ba",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Lassie",
+      "leida": false,
+      "fechaCreacion": "2025-12-04T20:08:05.453Z"
+    },
+    {
+      "id": "eaea",
+      "usuarioDNI": "admin",
+      "solicitudId": "54d3",
+      "animalId": "e08d",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para Ambar",
+      "leida": false,
+      "fechaCreacion": "2025-12-04T20:09:17.914Z"
+    },
+    {
+      "id": "d245",
+      "usuarioDNI": "46112136",
+      "solicitudId": "54d3",
+      "animalId": "e08d",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Ambar fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "",
+      "leida": false,
+      "fechaCreacion": "2025-12-04T20:09:59.158Z"
+    },
+    {
+      "id": "51ea",
+      "usuarioDNI": "11111111",
+      "solicitudId": "62e9",
+      "animalId": "e0ba",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Lassie fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "",
+      "leida": true,
+      "fechaCreacion": "2025-12-04T20:10:04.936Z"
+    },
+    {
+      "id": "1dc2",
+      "usuarioDNI": "admin",
+      "solicitudId": "14df",
+      "animalId": "4d64",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Peluche",
+      "leida": false,
+      "fechaCreacion": "2025-12-04T20:21:21.811Z"
+    },
+    {
+      "id": "9d6d",
+      "usuarioDNI": "11111111",
+      "solicitudId": "14df",
+      "animalId": "4d64",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Peluche fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "",
+      "leida": true,
+      "fechaCreacion": "2025-12-04T20:21:55.639Z"
+    },
+    {
+      "id": "7278",
+      "usuarioDNI": "admin",
+      "solicitudId": "bb0b",
+      "animalId": "1552",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Quesito",
+      "leida": false,
+      "fechaCreacion": "2025-12-05T12:50:31.288Z"
+    },
+    {
+      "id": "c569",
+      "usuarioDNI": "11111111",
+      "solicitudId": "bb0b",
+      "animalId": "1552",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Quesito fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "Cuidalo.",
+      "leida": true,
+      "fechaCreacion": "2025-12-05T12:51:00.196Z"
+    },
+    {
+      "id": "b508",
+      "usuarioDNI": "admin",
+      "solicitudId": "29a0",
+      "animalId": "0bcb",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Firulais",
+      "leida": false,
+      "fechaCreacion": "2025-12-05T14:40:02.616Z"
+    },
+    {
+      "id": "8260",
+      "usuarioDNI": "11111111",
+      "solicitudId": "29a0",
+      "animalId": "0bcb",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Firulais fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "Espero que lo cuides y lo ames como se merece.",
+      "leida": true,
+      "fechaCreacion": "2025-12-05T14:40:43.070Z"
+    },
+    {
+      "id": "914a",
+      "usuarioDNI": "admin",
+      "solicitudId": "9e49",
+      "animalId": "198b",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Timba",
+      "leida": false,
+      "fechaCreacion": "2025-12-05T23:56:45.523Z"
+    },
+    {
+      "id": "b4c1",
+      "usuarioDNI": "admin",
+      "solicitudId": "70bc",
+      "animalId": "8974",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para Mantecol",
+      "leida": false,
+      "fechaCreacion": "2025-12-05T23:57:27.337Z"
+    },
+    {
+      "id": "9211",
+      "usuarioDNI": "46112136",
+      "solicitudId": "70bc",
+      "animalId": "8974",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Mantecol fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "Cuidalo mucho.",
+      "leida": false,
+      "fechaCreacion": "2025-12-05T23:57:57.563Z"
+    },
+    {
+      "id": "2f65",
+      "usuarioDNI": "11111111",
+      "solicitudId": "9e49",
+      "animalId": "198b",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Timba fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "Cuidalo mucho.",
+      "leida": true,
+      "fechaCreacion": "2025-12-05T23:58:02.307Z"
+    },
+    {
+      "id": "198f",
+      "usuarioDNI": "admin",
+      "solicitudId": "f50f",
+      "animalId": "a2d2",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Pirulo",
+      "leida": false,
+      "fechaCreacion": "2025-12-06T00:33:09.991Z"
+    },
+    {
+      "id": "e06a",
+      "usuarioDNI": "11111111",
+      "solicitudId": "f50f",
+      "animalId": "a2d2",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Pirulo fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "Cuidalo nena.",
+      "leida": true,
+      "fechaCreacion": "2025-12-06T00:33:57.573Z"
+    },
+    {
+      "id": "fe94",
+      "usuarioDNI": "admin",
+      "solicitudId": "bd26",
+      "animalId": "1f4f",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 11111111 para Lobito",
+      "leida": false,
+      "fechaCreacion": "2025-12-06T00:44:58.298Z"
+    },
+    {
+      "id": "c8f4",
+      "usuarioDNI": "11111111",
+      "solicitudId": "bd26",
+      "animalId": "1f4f",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Lobito fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "",
+      "leida": true,
+      "fechaCreacion": "2025-12-06T00:45:21.526Z"
     }
   ],
   "donations": [

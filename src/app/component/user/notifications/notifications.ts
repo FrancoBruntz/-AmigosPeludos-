@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 import Notificacion from '../../../models/notificacion';
 import { Petsservice } from '../../../services/petsservice';
 import Pets from '../../../models/pets';
+import { effect } from '@angular/core';
 
 @Component({
   selector: 'app-notifications',
@@ -20,93 +21,51 @@ export class NotificationsComponent implements OnInit {
   
   private petsService = inject(Petsservice);
 
+ notificationsSignal =  this.notifService.notificaciones;
+
   notifications: Notificacion[] = [];
+  petMap: Map<string, Pets> = new Map();
+ 
   loading = true;
   error = '';
 
-  petMap: Map<string, Pets> = new Map();
-
-  // Nuevo para que se vea el nombre de la mascota en la notificación
-
-  ngOnInit() {
-  this.cargarDatos();
-  }
-
-  private cargarDatos() {
-
-    const dni = this.userService.getUser()?.dni;
-
-    if (!dni) {
-      this.error = 'Inicia sesión para ver notificaciones';
-      this.loading = false;
-      return;
-    }
-
-    // Traigo los pets y armo el mapa
-    this.petsService.getPet().subscribe({
-
-    next: (pets) => {
-      pets.forEach(p => this.petMap.set(p.id, p));
-
-      //Una vez que tengo el mapa, cargo las notificaciones
-      this.notifService.listByUserSorted(dni).subscribe({
-        next: (notifs) => {
-          this.notifications = notifs;
-          this.loading = false;
-        },
-        error: () => {
-          this.error = 'No se pudo cargar las notificaciones';
-          this.loading = false;
-        }
-      });
-    },
-
-    error: () => {
-      // Si fallan los pets, igual intento traer notificaciones
-      this.notifService.listByUserSorted(dni).subscribe({
-        next: (notifs) => {
-          this.notifications = notifs;
-          this.loading = false;
-        },
-        error: () => {
-          this.error = 'No se pudo cargar las notificaciones';
-          this.loading = false;
-        }
-      });
-    }
+  
+ constructor() {
+  effect(() => {
+    this.notifications = this.notificationsSignal();
   });
 }
 
-// helper para obtener el nombre de la mascota por su ID
-getNombreAnimal(animalId: string): string {
-  return this.petMap.get(animalId)?.name || `Animal #${animalId}`;
-}
-
-/*  ngOnInit() {
-    this.cargarNotificaciones();
-  }*/
-
-  cargarNotificaciones() {
+  ngOnInit() {
     const dni = this.userService.getUser()?.dni;
-    
+
     if (!dni) {
       this.error = 'Inicia sesión para ver notificaciones';
       this.loading = false;
       return;
     }
 
-    this.notifService.listByUserSorted(dni).subscribe({
-      next: (notifs) => {
-        this.notifications = notifs;
+    // 1. Cargar mascotas
+    this.petsService.getPet().subscribe({
+      next: (pets: Pets[]) => {
+        pets.forEach(p => this.petMap.set(p.id, p));
+
+        // 2. Cargar notificaciones
+        this.notifService.cargarPorUsuario(dni);
+
+        // El efecto reactivo actualizará notifications
         this.loading = false;
       },
-      error: (e) => {
-        this.error = 'No se pudo cargar las notificaciones';
+      error: () => {
+        this.error = 'Error al cargar mascotas';
         this.loading = false;
       }
     });
   }
 
+  getNombreAnimal(animalId: string): string {
+    return this.petMap.get(animalId)?.name || `Animal #${animalId}`;
+  }
   markAsRead(notif: Notificacion) {
     this.notifService.markAsRead(notif.id).subscribe({
       next: () => {

@@ -44,8 +44,8 @@
         @if (auth.isLogIn()) {
           <a routerLink="/notifications" routerLinkActive="active-link">
             Notificaciones
-            @if (unread > 0) {
-              <span class="badge">{{ unread }}</span>
+            @if (unread() > 0) {
+              <span class="badge">{{ unread() }}</span>
             }
           </a>
         }

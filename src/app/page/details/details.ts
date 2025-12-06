@@ -10,7 +10,7 @@ import { UserService, UserProfile } from '../../component/user/user.service';
 
 @Component({
   selector: 'app-details',
-  imports: [RouterLink, DatePipe],
+  imports: [RouterLink],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
