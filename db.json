@@ -462,13 +462,14 @@
       "animalId": "dea6",
       "solicitanteUser": "39555661",
       "fecha": "2025-11-19T23:35:00.889Z",
-      "estado": "pendiente",
+      "estado": "aprobada",
       "mensaje": "JKASZBVFGKLBZA-LKGBVA",
       "tipoVivienda": "casa",
       "tienePatio": true,
       "tieneMascotas": false,
       "viveConNinos": false,
-      "aceptaCompromiso": true
+      "aceptaCompromiso": true,
+      "comentarios": "suerte, esta re loco"
     },
     {
       "id": "e183",
