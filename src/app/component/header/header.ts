@@ -13,7 +13,7 @@ import { UserService } from '../user/user.service';
 })
 export class Header  {
   private notifService = inject(NotificacionService);
-  private userService = inject(UserService);
+ // private userService = inject(UserService);
 
   unread = this.notifService.unreadCount;
 
@@ -21,9 +21,9 @@ export class Header  {
     protected auth:AuthService, 
     private router:Router){
        effect(() => {
-      const user = this.userService.getUser();
-      if (user?.dni) {
-        this.notifService.cargarPorUsuario(user.dni);
+      const user = this.auth.currentUser();
+      if (user?.user) {
+        this.notifService.cargarPorUsuario(user.user);
       }
     });
     }

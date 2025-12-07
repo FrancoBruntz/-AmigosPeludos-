@@ -1,6 +1,9 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Notificacion, { TipoNotificacion } from '../models/notificacion';
+import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -67,7 +70,12 @@ export class NotificacionService {
       leida: false,
       fechaCreacion: new Date().toISOString()
     };
-     return this.http.post<Notificacion>(this.base, body);
+     return this.http.post<Notificacion>(this.base, body).pipe(
+      tap((created) => {
+        // preprend para mantener orden por fecha desc
+        this._notificaciones.update(curr => [created, ...curr]);
+      })
+    );
   }
 
   // Obtener notificaciones de un usuario (por DNI)
@@ -76,6 +84,29 @@ export class NotificacionService {
       `${this.base}?usuarioDNI=${encodeURIComponent(dni)}`
     );
   }
+
+   /**
+   * Marcar notificación como leída y actualizar signal (método seguro)
+   */
+  markAsReadAndUpdate(id: string): Observable<Notificacion> {
+    return this.http.patch<Notificacion>(`${this.base}/${id}`, { leida: true }).pipe(
+      tap((updated) => {
+        this._notificaciones.update(arr => arr.map(n => n.id === id ? updated : n));
+      })
+    );
+  }
+
+  /**
+   * Eliminar notificación y actualizar signal
+   */
+  deleteAndUpdate(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.base}/${id}`).pipe(
+      tap(() => {
+        this._notificaciones.update(arr => arr.filter(n => n.id !== id));
+      })
+    );
+  }
+
 
   // Marcar notificación como leída
   markAsRead(id: string) {

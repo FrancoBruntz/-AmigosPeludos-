@@ -43,7 +43,7 @@ export class Login implements OnInit {
       setTimeout(() => {
          const user = this.authService.currentUser();
         if (user) {
-          this.notifService.cargarPorUsuario(user.id);
+          this.notifService.cargarPorUsuario(user.user);
   }
 }, 150);
       

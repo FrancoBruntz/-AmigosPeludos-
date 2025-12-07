@@ -66,18 +66,21 @@ export class NotificationsComponent implements OnInit {
   getNombreAnimal(animalId: string): string {
     return this.petMap.get(animalId)?.name || `Animal #${animalId}`;
   }
-  markAsRead(notif: Notificacion) {
-    this.notifService.markAsRead(notif.id).subscribe({
-      next: () => {
-        notif.leida = true;
+  markAsRead(notif: Notificacion)  {
+    this.notifService.markAsReadAndUpdate(notif.id).subscribe({
+      next: (updated) => {
+        // el servicio ya actualizó la signal; si querés que el array local se actualice inmediatamente:
+        this.notifications = this.notifications.map(n => n.id === updated.id ? updated : n);
       },
       error: (e) => alert('Error al marcar como leída')
     });
   }
 
-  deleteNotification(notif: Notificacion) {
-    this.notifService.delete(notif.id).subscribe({
+
+  deleteNotification(notif: Notificacion)  {
+    this.notifService.deleteAndUpdate(notif.id).subscribe({
       next: () => {
+        // la signal ya fue actualizada por el servicio, pero para mantener consistencia:
         this.notifications = this.notifications.filter(n => n.id !== notif.id);
       },
       error: (e) => alert('Error al eliminar notificación')
@@ -85,9 +88,15 @@ export class NotificationsComponent implements OnInit {
   }
 
   clearAllNotifications() {
-    this.notifications.forEach(n => {
-      this.notifService.delete(n.id).subscribe();
+    // Método seguro que borra todas en cadena y actualiza la signal una a una.
+    const ids = [...this.notifications].map(n => n.id);
+    // Elijo secuencial para no saturar el servidor; cada deleteAndUpdate actualizará la signal
+    ids.forEach(id => {
+      this.notifService.deleteAndUpdate(id).subscribe({
+        error: () => { /* opcional: log */ }
+      });
     });
+    // Opcionalmente vaciamos la vista inmediatamente (el servicio también la actualizará)
     this.notifications = [];
   }
 }
