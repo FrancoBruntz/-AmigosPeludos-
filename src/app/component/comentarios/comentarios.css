@@ -165,3 +165,18 @@
   margin-top: 0;
   padding-right: 90px;  
 }
+
+/* ===== RESERVA DE ESPACIO PARA ERRORES ===== */
+.form-group {
+  position: relative;
+  margin-bottom: 20px; /* un poco más para el espacio reservado */
+  min-height: 70px; /* asegura que el error no empuje nada */
+}
+
+.form-group .error {
+  position: absolute;
+  bottom: -18px; /* siempre abajo en el mismo lugar */
+  left: 0;
+  font-size: 0.8rem;
+  color: #ff9c9c;
+}

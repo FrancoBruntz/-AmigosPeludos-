@@ -81,6 +81,11 @@
   color: #e63946;
 }
 
+/* Reserva espacio para que los errores no muevan el formulario */
+.error-space {
+  min-height: 18px;
+}
+
 /* ===== BOTÓN ENVIAR ===== */
 button[type="submit"] {
   margin-top: 0.5rem;

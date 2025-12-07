@@ -40,7 +40,7 @@
 }
 
 .login-header h1 {
-  color: #ffc045;              /* amarillo como el resto del sitio */
+  color: #ffc045;
   font-size: 2rem;
   margin-bottom: 8px;
   font-weight: 800;
@@ -60,6 +60,8 @@ form {
 
 .form-group {
   margin-bottom: 20px;
+  position: relative;
+  min-height: 85px; /* 🔥 evita que los errores empujen todo */
 }
 
 label {
@@ -124,8 +126,12 @@ input[type="password"]:focus {
 .error-message {
   color: #e74c3c;
   font-size: 0.85rem;
-  margin-top: 6px;
-  margin-bottom: 0;
+
+  /* 🔥 ESTO FIJA EL ESPACIO Y EVITA DESPLAZAMIENTOS */
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  margin: 0;
 }
 
 /* ===== RECORDARME ===== */
@@ -150,7 +156,7 @@ input[type="password"]:focus {
   color: #000;
 }
 
-/* ===== BOTÓN DE LOGIN (igual estética botones amarillos) ===== */
+/* ===== BOTÓN DE LOGIN ===== */
 .btn-login {
   width: 100%;
   padding: 14px;

@@ -13,9 +13,11 @@
         <option value="departamento">Departamento</option>
       </select>
 
-      @if (form.controls['tipoVivienda'].invalid && form.controls['tipoVivienda'].touched) {
-        <p class="error-msg">Este campo es obligatorio.</p>
-      }
+      <div class="error-space">
+        @if (form.controls['tipoVivienda'].invalid && form.controls['tipoVivienda'].touched) {
+          <p class="error-msg">Este campo es obligatorio.</p>
+        }
+      </div>
     </div>
 
     <!-- Patio -->
@@ -64,11 +66,13 @@
         placeholder="Contanos por qué querés adoptar y cómo sería su nueva vida con vos">
       </textarea>
 
-      @if (form.controls['mensaje'].invalid && form.controls['mensaje'].touched) {
-        <p class="error-msg">
-          Mensaje requerido (mínimo 10 caracteres).
-        </p>
-      }
+      <div class="error-space">
+        @if (form.controls['mensaje'].invalid && form.controls['mensaje'].touched) {
+          <p class="error-msg">
+            Mensaje requerido (mínimo 10 caracteres).
+          </p>
+        }
+      </div>
     </div>
 
     <!-- Compromiso -->
@@ -78,9 +82,11 @@
         Me comprometo a brindar cuidado responsable, vacunación y no abandonar a la mascota *
       </label>
 
-      @if (form.controls['aceptaCompromiso'].invalid && form.controls['aceptaCompromiso'].touched) {
-        <p class="error-msg">Debés aceptar este compromiso para continuar.</p>
-      }
+      <div class="error-space">
+        @if (form.controls['aceptaCompromiso'].invalid && form.controls['aceptaCompromiso'].touched) {
+          <p class="error-msg">Debés aceptar este compromiso para continuar.</p>
+        }
+      </div>
     </div>
 
     <!-- Botón -->

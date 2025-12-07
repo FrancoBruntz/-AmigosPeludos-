@@ -143,6 +143,8 @@ textarea {
   margin-top: 4px;
 }
 
+
+
 .form-group.invalid input,
 .form-group.invalid select,
 .form-group.invalid textarea {
@@ -227,4 +229,18 @@ button[type="submit"]:disabled {
   .form-row {
     flex-direction: column;
   }
+}
+
+/* ===== MANTIENE ESPACIO FIJO PARA ERRORES ===== */
+.form-group {
+  position: relative;
+  min-height: 75px; /* mantiene todo firme */
+}
+
+.form-group small.error {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  font-size: 0.85rem;
+  color: #fca5a5;
 }
