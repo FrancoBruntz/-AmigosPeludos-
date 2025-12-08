@@ -13,18 +13,47 @@ export class NotificacionService {
   private http = inject(HttpClient);
   private base = 'http://localhost:3000/notificaciones';
 
-
-   // ✅ SIGNAL PRINCIPAL
+  // SIGNAL PRINCIPAL
   private _notificaciones = signal<Notificacion[]>([]);
 
-  // ✅ SELECTORES
+  // SELECTORES
   notificaciones = this._notificaciones.asReadonly();
 
   unreadCount = computed(
     () => this._notificaciones().filter(n => !n.leida).length
   );
 
-   private _message = signal<string | null>(null);
+  private _message = signal<string | null>(null);
+
+  // Canal para propagar entre pestañas (si está disponible)
+  private channel?: BroadcastChannel;
+
+  constructor() {
+    // Inicializar listener para BroadcastChannel si está disponible
+    try {
+      if (typeof BroadcastChannel !== 'undefined') {
+        this.channel = new BroadcastChannel('amigospeludos_notifs');
+        this.channel.onmessage = (ev) => {
+          const created = ev.data as Notificacion;
+          this._notificaciones.update(curr => [created, ...curr]);
+        };
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    // Fallback: escuchar storage events en otras pestañas
+    if (typeof window !== 'undefined') {
+      window.addEventListener('storage', (e: StorageEvent) => {
+        if (e.key === 'amigospeludos_new_notif' && e.newValue) {
+          try {
+            const created = JSON.parse(e.newValue) as Notificacion;
+            this._notificaciones.update(curr => [created, ...curr]);
+          } catch {}
+        }
+      });
+    }
+  }
 
   /**
    * Devuelve el mensaje actual (para el template)
@@ -70,10 +99,27 @@ export class NotificacionService {
       leida: false,
       fechaCreacion: new Date().toISOString()
     };
-     return this.http.post<Notificacion>(this.base, body).pipe(
+    return this.http.post<Notificacion>(this.base, body).pipe(
       tap((created) => {
         // preprend para mantener orden por fecha desc
         this._notificaciones.update(curr => [created, ...curr]);
+
+        // Propagar a otras pestañas del mismo origen para mostrar notificación en tiempo real
+        try {
+          if (typeof BroadcastChannel !== 'undefined') {
+            if (!this.channel) {
+              this.channel = new BroadcastChannel('amigospeludos_notifs');
+            }
+            this.channel.postMessage(created);
+          } else if (typeof window !== 'undefined') {
+            localStorage.setItem('amigospeludos_new_notif', JSON.stringify(created));
+            // limpiar para no acumular
+            setTimeout(() => localStorage.removeItem('amigospeludos_new_notif'), 500);
+          }
+        } catch (e) {
+          // no interrumpir si falla la propagación
+          console.warn('Error propagando notificación entre pestañas', e);
+        }
       })
     );
   }

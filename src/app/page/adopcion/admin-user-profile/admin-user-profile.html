@@ -1,0 +1,62 @@
+<section class="container">
+  <h1>Perfil del adoptante</h1>
+
+  <!-- cargando -->
+  @if (loading) {
+    <p class="loading">Cargando perfil...</p>
+    
+  } @else {
+
+    <!-- error -->
+    @if (error) {
+      <p class="error">{{ error }}</p>
+
+      <a routerLink="/admin/solicitudes" class="btn-back">
+        ⬅ Volver a solicitudes
+      </a>
+
+    } @else if (profile) {
+
+      <!-- Perfil -->
+      <div class="profile-card">
+
+        <div class="profile-row">
+          <span class="label">DNI</span>
+          <span class="value">{{ profile.dni || profile.user }}</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="label">Nombre</span>
+          <span class="value">{{ profile.nombre || '-' }}</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="label">Apellido</span>
+          <span class="value">{{ profile.apellido || '-' }}</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="label">Email</span>
+          <span class="value">{{ profile.email || '-' }}</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="label">Teléfono</span>
+          <span class="value">{{ profile.telefono || '-' }}</span>
+        </div>
+
+        <div class="profile-row">
+          <span class="label">Dirección</span>
+          <span class="value">{{ profile.direccion || '-' }}</span>
+        </div>
+
+      </div>
+
+      <a routerLink="/admin/solicitudes" class="btn-back">
+        ⬅ Volver a solicitudes
+      </a>
+
+    }
+
+  }
+</section>

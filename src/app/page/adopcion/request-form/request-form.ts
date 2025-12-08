@@ -39,6 +39,26 @@ export class RequestForm {
     aceptaCompromiso: [false, Validators.requiredTrue] // compromiso refugio
   });
 
+  // Chequear que el perfil tenga los datos para solicitar adopcion 
+  private perfilIncompleto(): boolean {
+    const user = this.userService.getUser();
+
+    if(!user){
+      return true;
+     }
+
+    const camposObligatorios = [
+       user.nombre,
+       user.apellido,
+       user.email,
+       user.telefono,
+       user.direccion
+     ];
+
+    // si algun campo esta vacio, undefinded o solo espacios => perfil incompleto
+    return camposObligatorios.some(campo => !campo || campo.toString().trim() === '');
+  }
+
   // Tomamos :animalId desde la URL 
   get animalId(): string {
     return String(this.route.snapshot.paramMap.get('animalId'));
@@ -51,12 +71,27 @@ export class RequestForm {
       return;
     }
 
-    // Verifico usuario logueado
-    const dni = this.userService.getUser()?.dni ?? null;
+    // Verifico usuario logueado: soporte tanto user.dni como user.user (db.json puede guardar el dni en 'user')
+    const currentUser = this.userService.getUser();
+    const dni = currentUser?.dni ?? currentUser?.user ?? null;
 
     if (!dni) {
       alert('Debes iniciar sesion!');
       this.router.navigateByUrl('/login');
+      return;
+    }
+
+    if (this.perfilIncompleto()) {
+      const quiereCompletar = confirm(
+        'Tu perfil está incompleto (faltan datos como nombre, apellido, email, teléfono o dirección).\n\n' +
+        '¿Querés completarlo ahora?'
+      );
+
+    if (quiereCompletar) {
+      // a completar el perfil.
+      this.router.navigateByUrl('/user/profile');
+    }
+
       return;
     }
 

@@ -21,6 +21,8 @@ import { NotificationsComponent } from './component/user/notifications/notificat
 import { MyDonations } from './component/donations/my-donations/my-donations';
 import { RequestDetails } from './page/adopcion/request-details/request-details';
 
+import { AdminUserProfile } from './page/adopcion/admin-user-profile/admin-user-profile';
+
 export const routes: Routes = [
     { path:'', component: Home },
     { path:'sobreellos', component: List },
@@ -32,11 +34,11 @@ export const routes: Routes = [
     { path:'registro', component: Registro },
     { path:'mis-solicitudes', component: RequestList },
     { path:'solicitar/:animalId', component: RequestForm },
-    {path: 'solicitudes/:id', component: RequestDetails },
-
+    { path:'solicitudes/:id', component: RequestDetails }, 
     { path:'admin/solicitudes', component: AdminRequest, canMatch: [adminGuard] },
-    { path: 'admin/solicitudes/:id', component: RequestDetails },
-  
+    { path:'admin/solicitudes/:id', component: RequestDetails },
+
+    { path:'admin/usuarios/:dni', component: AdminUserProfile },
 
     { path:'user/profile', component: ProfileComponent },
     { path:'user/favorites', component: FavoritesComponent },

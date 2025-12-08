@@ -4,41 +4,41 @@ import { HttpClient } from '@angular/common/http';
 import type usuarios from '../../models/user';
 import { environment } from '../../../environments/environment.development';
 
-export interface UserProfile {
-  id?: string; 
-  dni: string;
-  nombre: string;
-  apellido: string;
-  email?: string;
-  telefono?: string;
-  direccion?: string;
-  isAdmin?: boolean;
-  favoritos?: string[]; // lista de IDs de mascotas favoritas
-  notificaciones?: Array<{ id: string; message: string; date: string; read: boolean }>;
+export interface UserProfile extends usuarios {
+  dni?: string;
+  favoritos?: string[];
+  notificaciones?: Array<{
+    id: string;
+    message: string;
+    date: string;
+    read: boolean;
+  }>;
 }
 
-const USER_KEY = 'amigospeludos_user'; // para perfil actual
-const USERS_STORE = 'amigospeludos_users'; // para simular varios usuarios
+const USER_KEY = 'amigospeludos_user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  // simple reactive signals (si tu Angular soporta signals en tu versión)
+
   public currentUser = signal<UserProfile | null>(this.loadCurrent());
+
   constructor(private router: Router, private http: HttpClient) {}
   
-  
   private url = environment.urlUser;
+
   private loadCurrent(): UserProfile | null {
     try {
       return JSON.parse(localStorage.getItem(USER_KEY) || 'null');
-    } catch { return null; }
+    } catch {
+      return null;
+    }
   }
 
   getUser(): UserProfile | null {
-  return this.currentUser();
-}
+    return this.currentUser();
+  }
 
   saveCurrent(profile: UserProfile) {
     localStorage.setItem(USER_KEY, JSON.stringify(profile));
@@ -51,7 +51,7 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  // favoritos
+  // ===== FAVORITOS =====
   addFavorite(petId: string) {
     const user = this.currentUser();
     if (!user) return;
@@ -73,11 +73,16 @@ export class UserService {
     return this.currentUser()?.favoritos || [];
   }
 
-  // notificaciones
+  // ===== NOTIFICACIONES LOCALES =====
   pushNotification(message: string) {
     const user = this.currentUser();
     if (!user) return;
-    const note = { id: Date.now().toString(), message, date: new Date().toISOString(), read: false };
+    const note = {
+      id: Date.now().toString(),
+      message,
+      date: new Date().toISOString(),
+      read: false
+    };
     user.notificaciones = user.notificaciones || [];
     user.notificaciones.unshift(note);
     this.saveCurrent(user);
@@ -86,7 +91,9 @@ export class UserService {
   markAsRead(noteId: string) {
     const user = this.currentUser();
     if (!user || !user.notificaciones) return;
-    user.notificaciones = user.notificaciones.map(n => n.id === noteId ? {...n, read: true} : n);
+    user.notificaciones = user.notificaciones.map(n =>
+      n.id === noteId ? { ...n, read: true } : n
+    );
     this.saveCurrent(user);
   }
 
@@ -96,31 +103,47 @@ export class UserService {
     user.notificaciones = [];
     this.saveCurrent(user);
   }
-  
+
+  // ===== UPDATE EN JSON-SERVER =====
   updateUser(id: string, data: Partial<usuarios>) {
     return this.http.patch<usuarios>(`${this.url}/${id}`, data);
   }
   
   updateUserOnServer(id: string, updatedData: any) {
-  return this.http.patch(`${environment.urlUser}/${id}`, updatedData);
-}
-  // actualizar perfil parcialmente
+    return this.http.patch(`${environment.urlUser}/${id}`, updatedData);
+  }
+
+  // actualizar perfil en localStorage
   updateProfile(partial: Partial<UserProfile>) {
-    const user = this.currentUser() || { dni: '', nombre: '', apellido: '' } ;
+    const user = this.currentUser() || {
+      id: '',
+      user: '',
+      password: '',
+      isAdmin: false,
+      nombre: '',
+      apellido: ''
+    } as UserProfile;
+
     const merged = { ...user, ...partial };
     this.saveCurrent(merged);
   }
-loadUserProfile(id: string) {
-  this.http.get<UserProfile>(`${this.url}/${id}`).subscribe({
-    next: perfil => {
-      if (perfil) {
-        this.saveCurrent(perfil);
-      }
-    },
-    error: err => console.error("Error cargando perfil", err)
-  });
-}
-getByDni(dni: string) {
-  return this.http.get<UserProfile[]>(`${this.url}?user=${encodeURIComponent(dni)}`);
-}
+
+  // cargar perfil desde backend por id
+  loadUserProfile(id: string) {
+    this.http.get<UserProfile>(`${this.url}/${id}`).subscribe({
+      next: perfil => {
+        if (perfil) {
+          this.saveCurrent(perfil);
+        }
+      },
+      error: err => console.error('Error cargando perfil', err)
+    });
+  }
+
+  // buscar usuario por dni (que en tu sistema se guarda en "user")
+  getByDni(dni: string) {
+    return this.http.get<UserProfile[]>(
+      `${this.url}?user=${encodeURIComponent(dni)}`
+    );
+  }
 }
