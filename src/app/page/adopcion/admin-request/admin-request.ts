@@ -6,7 +6,7 @@ import { NotificacionService } from '../../../services/notificacionservice';
 import { Petsservice } from '../../../services/petsservice';
 import Solicitud, {EstadoSolicitud} from '../../../models/solicitud';
 import Pets from '../../../models/pets';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-request',
@@ -21,6 +21,8 @@ export class AdminRequest {
   private svc = inject(Solicitudesservice);
   private notifService = inject(NotificacionService);
   private petsService = inject(Petsservice);
+
+  private router = inject(Router);
 
   // Estados de la vista
   loading = true;
@@ -40,6 +42,11 @@ export class AdminRequest {
   comentariosText = '';
   modalAccion: 'aprobar' | 'rechazar' | null = null;
 
+  verPerfil(s: Solicitud) {
+    // solicitanteUser guarda el DNI del adoptante
+    this.router.navigate(['/admin/usuarios', s.solicitanteUser]);
+  }
+
   // Al montas el componente , disparamos la busqueda inicial
   ngOnInit() {
     // Cargar primero los pets para tener el mapeo disponible
@@ -53,7 +60,7 @@ export class AdminRequest {
   }
 
   // Hace la busqueda contra el backend con los filtros actuales
-buscar() {
+ buscar() {
   this.loading = true;
 
   const dniParam = this.dni.trim() || undefined;

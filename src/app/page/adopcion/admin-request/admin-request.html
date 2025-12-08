@@ -73,6 +73,11 @@
                 Ver detalle
               </a>
 
+                <!-- VER PERFIL DEL ADOPTANTE -->
+                <button class="btn-detalle" (click)="verPerfil(s)">
+                  Ver perfil adoptante
+                </button>
+              
               <!-- Solo si está 'pendiente' mostramos los botones de moderación -->
               @if (s.estado === 'pendiente') {
                 <button class="btn-aprobar" (click)="aprobar(s)">✓ Aprobar</button>

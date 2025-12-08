@@ -24,19 +24,56 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const user = this.userService.getUser();
+    // Obtener user desde servicio o localStorage
+    const userFromService = this.userService.getUser();
+    const localUser = (() => {
+      try {
+        return JSON.parse(localStorage.getItem('amigospeludos_user') || 'null');
+      } catch {
+        return null;
+      }
+    })();
 
+    const user = userFromService ?? localUser;
+
+    // Inicializar formulario con lo que haya disponible
     this.form = this.fb.group({
-      dni: [user?.dni || '', Validators.required],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      telefono: ['',[Validators.required,Validators.pattern(/^[0-9]{7,15}$/)]],
-      direccion: ['', Validators.required]
+      dni: [user?.dni || user?.user || '', Validators.required],
+      nombre: [user?.nombre || '', Validators.required],
+      apellido: [user?.apellido || '', Validators.required],
+      email: [user?.email || '', [Validators.required, Validators.email]],
+      telefono: [user?.telefono || '', [Validators.required, Validators.pattern(/^[0-9]{7,15}$/)]],
+      direccion: [user?.direccion || '', Validators.required]
     });
+
+    // Intentar sincronizar con backend por DNI (o por 'user' si no hay 'dni')
+    const lookup = user?.dni ?? user?.user ?? null;
+    if (lookup) {
+      this.userService.getByDni(String(lookup)).subscribe({
+        next: (users) => {
+          if (users && users.length > 0) {
+            const perfil = users[0];
+            // Guardar en UserService (actualiza localStorage + signal)
+            this.userService.saveCurrent(perfil as any);
+            // Parchear el form con datos obtenidos del backend
+            this.form.patchValue({
+              dni: perfil.dni ?? perfil.user ?? '',
+              nombre: perfil.nombre ?? '',
+              apellido: perfil.apellido ?? '',
+              email: perfil.email ?? '',
+              telefono: perfil.telefono ?? '',
+              direccion: perfil.direccion ?? ''
+            });
+          }
+        },
+        error: (err) => {
+          console.warn('No se pudo sincronizar perfil desde backend', err);
+        }
+      });
+    }
   }
 
-guardarCambios() {
+ guardarCambios() {
   if (this.form.invalid) return;
 
   const updated = this.form.value;

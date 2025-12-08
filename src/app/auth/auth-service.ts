@@ -62,6 +62,8 @@ export class AuthService {
             telefono: data[0].telefono ?? '',
             direccion: data[0].direccion ?? '',
             isAdmin: data[0].isAdmin,
+            user: '',
+            password: ''
           });
 
           this.currentUser.set(data[0]);
