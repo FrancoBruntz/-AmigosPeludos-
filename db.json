@@ -396,6 +396,34 @@
       "notes": "",
       "image": "",
       "activo": false
+    },
+    {
+      "id": "1a4d",
+      "name": "Lobito",
+      "type": "Perro",
+      "age": 8,
+      "ageUnit": "meses",
+      "size": "Mediano",
+      "sexo": "Macho",
+      "color": "Marron clarito",
+      "castrado": false,
+      "notes": "Amoroso y obediente. Sociable por demás",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1765239861/algxrpfwsqmohyq5r0hv.jpg",
+      "activo": true
+    },
+    {
+      "id": "24e9",
+      "name": "Rumba",
+      "type": "Gato",
+      "age": 5,
+      "ageUnit": "meses",
+      "size": "Pequeño",
+      "sexo": "Macho",
+      "color": "gris",
+      "castrado": false,
+      "notes": "",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1765240660/n0uor9iuump2h8vgjokz.jpg",
+      "activo": true
     }
   ],
   "solicitudes": [
@@ -855,7 +883,7 @@
       "animalId": "adad",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 39555661 para Tango",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-11-19T23:34:33.153Z"
     },
     {
@@ -865,7 +893,7 @@
       "animalId": "dea6",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 39555661 para Provoleta",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-11-19T23:35:01.885Z"
     },
     {
@@ -885,7 +913,7 @@
       "animalId": "198b",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 32556010 para Timba",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-11-20T02:06:23.496Z"
     },
     {
@@ -895,7 +923,7 @@
       "animalId": "9cf0",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 46112136 para Lex",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-02T03:19:52.435Z"
     },
     {
@@ -916,7 +944,7 @@
       "animalId": "d6f7",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 46112136 para Atenea",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-02T04:05:11.222Z"
     },
     {
@@ -937,7 +965,7 @@
       "animalId": "1",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 46112136 para Xica",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-02T04:12:16.704Z"
     },
     {
@@ -958,7 +986,7 @@
       "animalId": "1",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Xica",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-02T04:13:20.055Z"
     },
     {
@@ -989,7 +1017,7 @@
       "animalId": "c587",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 46112136 para arbol",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-03T00:02:04.086Z"
     },
     {
@@ -1010,7 +1038,7 @@
       "animalId": "dea6",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Provoleta",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-04T20:03:11.704Z"
     },
     {
@@ -1031,7 +1059,7 @@
       "animalId": "b600",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Apolo",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-04T20:05:14.172Z"
     },
     {
@@ -1052,7 +1080,7 @@
       "animalId": "e0ba",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Lassie",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-04T20:08:05.453Z"
     },
     {
@@ -1062,7 +1090,7 @@
       "animalId": "e08d",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 46112136 para Ambar",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-04T20:09:17.914Z"
     },
     {
@@ -1094,7 +1122,7 @@
       "animalId": "4d64",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Peluche",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-04T20:21:21.811Z"
     },
     {
@@ -1115,7 +1143,7 @@
       "animalId": "1552",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Quesito",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-05T12:50:31.288Z"
     },
     {
@@ -1136,7 +1164,7 @@
       "animalId": "0bcb",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Firulais",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-05T14:40:02.616Z"
     },
     {
@@ -1157,7 +1185,7 @@
       "animalId": "198b",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Timba",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-05T23:56:45.523Z"
     },
     {
@@ -1167,7 +1195,7 @@
       "animalId": "8974",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 46112136 para Mantecol",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-05T23:57:27.337Z"
     },
     {
@@ -1199,7 +1227,7 @@
       "animalId": "a2d2",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Pirulo",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-06T00:33:09.991Z"
     },
     {
@@ -1220,7 +1248,7 @@
       "animalId": "1f4f",
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 11111111 para Lobito",
-      "leida": false,
+      "leida": true,
       "fechaCreacion": "2025-12-06T00:44:58.298Z"
     },
     {
@@ -1285,6 +1313,15 @@
       "method": "Transferencia",
       "message": "",
       "date": "2025-12-03T02:47:57.462Z"
+    },
+    {
+      "id": "5815",
+      "userId": "39555661",
+      "amount": 10000,
+      "method": "Transferencia",
+      "message": "djhd",
+      "date": "2025-12-08T22:02:48.482Z",
+      "comprobanteUrl": ""
     }
   ],
   "comentarios": [

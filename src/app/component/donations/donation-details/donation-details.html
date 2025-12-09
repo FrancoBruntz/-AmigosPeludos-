@@ -17,9 +17,9 @@
         <p><strong>ID donación:</strong> {{ donation.id }}</p>
         <p><strong>Usuario (userId):</strong> {{ donation.userId }}</p>
 
-        <!-- MONTO con PIPE currency -->
+        <!-- MONTO -->
         <p>
-          <strong>Monto:</strong> 
+          <strong>Monto:</strong>
           {{ donation.amount | currency:'ARS':'symbol':'1.0-0' }}
         </p>
 
@@ -35,27 +35,57 @@
           <p>"{{ donation.message }}"</p>
         }
 
-        <!-- Mensaje extra según método -->
+        <!-- Mensaje extra si es transferencia -->
         @if (donation.method === 'Transferencia') {
           <p class="hint">
-            Esta donación fue registrada como transferencia bancaria. 
+            Esta donación fue registrada como transferencia bancaria.
             Recordá verificar el comprobante correspondiente si es necesario.
-          </p>
-        }
-
-        @if (donation.method === 'Efectivo') {
-          <p class="hint">
-            Esta donación fue registrada como donación en efectivo
-            en el refugio o en algún evento solidario.
           </p>
         }
 
       </section>
 
-      <button type="button" class="btn-back" (click)="goBack()">⬅ Volver al historial</button>
+      <!-- =============================== -->
+      <!--     COMPROBANTE DE TRANSFERENCIA -->
+      <!-- =============================== -->
+
+      @if (donation.method === 'Transferencia') {
+        <div class="detalle-bloque">
+          <h3>Comprobante de transferencia</h3>
+
+          @if (donation.comprobanteUrl) {
+            <div class="detalle-comprobante">
+              <img
+                [src]="donation.comprobanteUrl"
+                alt="Comprobante de transferencia"
+                class="detalle-comprobante-img"
+              />
+
+              <a
+                [href]="donation.comprobanteUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-ver-comprobante"
+              >
+                Ver comprobante en otra pestaña
+              </a>
+            </div>
+          } @else {
+            <p class="detalle-comprobante-missing">
+              No hay comprobante adjunto para esta donación.
+            </p>
+          }
+        </div>
+      }
+
+      <!-- BOTÓN VOLVER -->
+      <button type="button" class="btn-back" (click)="goBack()">
+        ⬅ Volver al historial
+      </button>
 
     }
 
   }
 
 </div>
+

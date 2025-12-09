@@ -20,14 +20,13 @@ export class Form implements OnInit {
   public sizes = ['Pequeño', 'Mediano', 'Grande'];
   public sexo = ['Macho', 'Hembra'];
 
-//imagenes
+  // imágenes
   file: File | null = null;
   imagePreview: string | ArrayBuffer | null = null;
   isHovering = false;
   isUploading = false;
 
-
-//configuracion y union de CLOUDINARY 
+  // configuración de CLOUDINARY 
   readonly CLOUD_NAME = 'dc7ucvbtu';
   readonly UPLOAD_PRESET = 'imgpets';
 
@@ -47,9 +46,9 @@ export class Form implements OnInit {
       size: ['', [Validators.required]],
       sexo: ['', [Validators.required]],
       color: ['', Validators.required],
-      castrado: [false],
+      castrado: [false],                      
       notes: ['', [Validators.maxLength(100)]],
-      image: [''],
+      image: ['', Validators.required],       
       activo: [true]
     });
 
@@ -70,7 +69,7 @@ export class Form implements OnInit {
     }
   }
 
-//configuraciones para la carga de la imagen
+  // ======= Drag & Drop imagen =======
   @HostListener('dragover', ['$event'])
   onDragOver(event: DragEvent) {
     event.preventDefault();
@@ -109,6 +108,13 @@ export class Form implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result;
+
+      // Marcamos el formControl image como con valor para que pase el required
+      this.petForm.patchValue({ image: 'temp-local-file' });
+      const imageControl = this.petForm.get('image');
+      imageControl?.markAsDirty();
+      imageControl?.markAsTouched();
+      imageControl?.updateValueAndValidity();
     };
     reader.readAsDataURL(file);
   }
@@ -117,9 +123,40 @@ export class Form implements OnInit {
     this.file = null;
     this.imagePreview = null;
     this.petForm.patchValue({ image: '' });
+    const imageControl = this.petForm.get('image');
+    imageControl?.markAsDirty();
+    imageControl?.markAsTouched();
+    imageControl?.updateValueAndValidity();
   }
 
-//subir a cloudinary
+  // ======= Reset completo (form + imagen) =======
+  onReset() {
+    // Resetea el formulario a sus valores iniciales
+    this.petForm.reset({
+      name: '',
+      type: '',
+      age: '',
+      ageUnit: '',
+      size: '',
+      sexo: '',
+      color: '',
+      castrado: false,
+      notes: '',
+      image: '',
+      activo: true
+    });
+
+    // Limpia imagen y estados relacionados
+    this.clearImage();
+    this.isHovering = false;
+
+    // Deja el form como recién cargado
+    this.petForm.markAsPristine();
+    this.petForm.markAsUntouched();
+    this.petForm.updateValueAndValidity();
+  }
+
+  // ======= Subida a Cloudinary =======
   async uploadToCloudinary(): Promise<string | null> {
     if (!this.file) return null;
 
@@ -139,10 +176,18 @@ export class Form implements OnInit {
     }
   }
 
+  // ======= Submit =======
   async onSubmit() {
+    // Si el formulario es inválido, marco TODOS los controles como tocados + sucios
     if (this.petForm.invalid) {
-      alert('La información debe estar completa para ser enviada');
-      this.petForm.markAllAsTouched();
+      Object.keys(this.petForm.controls).forEach(key => {
+        const control = this.petForm.get(key);
+        control?.markAsTouched();
+        control?.markAsDirty();
+        control?.updateValueAndValidity();
+      });
+
+      alert('La información debe estar completa y correcta para ser enviada');
       return;
     }
 
@@ -154,6 +199,7 @@ export class Form implements OnInit {
         const imageUrl = await this.uploadToCloudinary();
         if (imageUrl) {
           this.petForm.patchValue({ image: imageUrl });
+          this.petForm.get('image')?.updateValueAndValidity();
         }
       }
 
@@ -192,3 +238,4 @@ export class Form implements OnInit {
     }
   }
 }
+

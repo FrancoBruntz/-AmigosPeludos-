@@ -1,199 +1,239 @@
 <div id="contenedorForm">
-<h2>Realizar donación</h2>
+  <h2>Realizar donación</h2>
 
-<div class="info-banner">
-  <h3>¿Para qué usamos las donaciones?</h3>
-  <p>
-    Con tu donación ayudás a cubrir:
-  </p>
-  <ul>
-    <li>🥣 Comida y alimentación diaria</li>
-    <li>💊 Pipetas, desparasitantes y medicación</li>
-    <li>🐾 Gastos veterinarios y urgencias</li>
-    <li>🏠 Mantenimiento del refugio</li>
-  </ul>
-</div>
-
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-  <!-- MONTO -->
-  <div class="form-group" [class.invalid]="isInvalid('amount')">
-    <label for="amount">Monto a donar ($)</label>
-    <input 
-      type="number" 
-      id="amount" 
-      formControlName="amount" 
-      placeholder="Ej: 2000"
-    >
-
-    @if (getControl('amount')?.touched && getControl('amount')?.errors) {
-      @if (hasError('amount', 'required')) {
-        <small class="error">El monto es obligatorio.</small>
-      }
-      @if (hasError('amount', 'min')) {
-        <small class="error">Debe ser mayor o igual a $100.</small>
-      }
-    }
+  <div class="info-banner">
+    <h3>¿Para qué usamos las donaciones?</h3>
+    <p>Con tu donación ayudás a cubrir:</p>
+    <ul>
+      <li>🥣 Comida y alimentación diaria</li>
+      <li>💊 Pipetas, desparasitantes y medicación</li>
+      <li>🐾 Gastos veterinarios y urgencias</li>
+      <li>🏠 Mantenimiento del refugio</li>
+    </ul>
   </div>
 
-  <!-- MÉTODO DE PAGO -->
-  <div class="form-group" [class.invalid]="isInvalid('method')">
-    <label for="method">Método de pago</label>
-    <select id="method" formControlName="method">
-      <option value="" disabled>Selecciona una opción</option>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-      @for (m of methods; track $index) {
-        <option [value]="m">{{ m }}</option>
+    <!-- MONTO -->
+    <div class="form-group" [class.invalid]="isInvalid('amount')">
+      <label for="amount">Monto a donar ($)</label>
+      <input
+        type="number"
+        id="amount"
+        formControlName="amount"
+        placeholder="Ej: 2000"
+      />
+
+      @if (getControl('amount')?.touched && getControl('amount')?.errors) {
+        @if (hasError('amount', 'required')) {
+          <small class="error">El monto es obligatorio.</small>
+        }
+        @if (hasError('amount', 'min')) {
+          <small class="error">Debe ser mayor o igual a $100.</small>
+        }
       }
-    </select>
-
-    @if (getControl('method')?.touched && getControl('method')?.invalid) {
-      <small class="error">Elegí un método de pago.</small>
-    }
-  </div>
-
-  <!-- TARJETA -->
-  @if (isCardMethod()) {
-    <fieldset class="section">
-      <legend>Datos de la tarjeta</legend>
-
-      <div class="form-group">
-        <label for="cardNumber">Número de tarjeta</label>
-        <input 
-          id="cardNumber"
-          type="text"
-          formControlName="cardNumber"
-          placeholder="XXXX-XXXX-XXXX-XXXX"
-        >
-      </div>
-
-      <div class="form-group">
-        <label for="cardHolder">Titular</label>
-        <input 
-          id="cardHolder"
-          type="text"
-          formControlName="cardHolder"
-          placeholder="Nombre y apellido"
-        >
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="expiration">Vencimiento</label>
-          <input 
-            id="expiration"
-            type="text"
-            formControlName="expiration"
-            placeholder="MM/AA"
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="cvv">CVV</label>
-          <input 
-            id="cvv"
-            type="password"
-            formControlName="cvv"
-            maxlength="4"
-            placeholder="***"
-          >
-        </div>
-      </div>
-    </fieldset>
-  }
-
-  <!-- TRANSFERENCIA -->
- @if (isTransferMethod()) {
-  <fieldset class="section">
-    <legend>Datos para transferencia</legend>
-
-    <p>
-      Realizá tu transferencia utilizando los siguientes datos del refugio:
-    </p>
-
-    <div class="transfer-info-box">
-      <p><strong>Alias:</strong> animales.peludos.refugio</p>
-      <p><strong>CBU:</strong> 0000003100045678912345</p>
     </div>
 
-    <p>
-      Una vez realizada la transferencia, no olvides guardar el comprobante.
-    </p>
-  </fieldset>
-}
+    <!-- MÉTODO DE PAGO -->
+    <div class="form-group" [class.invalid]="isInvalid('method')">
+      <label for="method">Método de pago</label>
+      <select id="method" formControlName="method">
+        <option value="" disabled>Selecciona una opción</option>
 
-  <!-- MENSAJE -->
-  <div class="form-group" [class.invalid]="isInvalid('message')">
-    <label for="message">Mensaje (opcional)</label>
-    <textarea
-      id="message"
-      rows="3"
-      formControlName="message"
-      placeholder="Escribí un mensaje para el refugio..."
-    ></textarea>
+        @for (m of methods; track $index) {
+          <option [value]="m">{{ m }}</option>
+        }
+      </select>
 
-    @if (hasError('message', 'maxlength')) {
-      <small class="error">Máximo 200 caracteres.</small>
-    }
-  </div>
+      @if (getControl('method')?.touched && getControl('method')?.invalid) {
+        <small class="error">Elegí un método de pago.</small>
+      }
+    </div>
 
-  <!-- RESUMEN DE VALIDACIÓN GENERAL -->
-  @if (form.invalid && form.touched) {
-    <p class="form-error-summary">
-      Revisá los campos marcados en rojo antes de continuar.
-    </p>
-  }
-
-  <!-- BOTÓN -->
-  <button type="submit" [disabled]="form.invalid">
-    Confirmar donación
-  </button>
-
-</form>
-
-<!-- PREVIEW / RESUMEN DE PAGO -->
-@if (form.valid) {
-  <section class="preview-card">
-    <h3>Resumen de tu donación</h3>
-
-    <p>
-      Vas a donar 
-      <strong>{{ getControl('amount')?.value | currency:'ARS':'symbol':'1.0-0' }}</strong>
-      mediante 
-      <strong>{{ getControl('method')?.value | titlecase }}</strong>.
-    </p>
-
+    <!-- TARJETA -->
     @if (isCardMethod()) {
+      <fieldset class="section">
+        <legend>Datos de la tarjeta</legend>
+
+        <div class="form-group">
+          <label for="cardNumber">Número de tarjeta</label>
+          <input
+            id="cardNumber"
+            type="text"
+            formControlName="cardNumber"
+            placeholder="XXXX-XXXX-XXXX-XXXX"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="cardHolder">Titular</label>
+          <input
+            id="cardHolder"
+            type="text"
+            formControlName="cardHolder"
+            placeholder="Nombre y apellido"
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expiration">Vencimiento</label>
+            <input
+              id="expiration"
+              type="text"
+              formControlName="expiration"
+              placeholder="MM/AA"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input
+              id="cvv"
+              type="password"
+              maxlength="4"
+              formControlName="cvv"
+              placeholder="***"
+            />
+          </div>
+        </div>
+      </fieldset>
+    }
+
+    <!-- TRANSFERENCIA -->
+    @if (isTransferMethod()) {
+      <fieldset class="section">
+        <legend>Datos para transferencia</legend>
+
+        <p>Realizá tu transferencia utilizando los siguientes datos del refugio:</p>
+
+        <div class="transfer-info-box">
+          <p><strong>Alias:</strong> animales.peludos.refugio</p>
+          <p><strong>CBU:</strong> 0000003100045678912345</p>
+        </div>
+
+        <p>Una vez realizada la transferencia, no olvides guardar el comprobante.</p>
+
+        <!-- COMPROBANTE -->
+        <div class="image-section">
+          <label>Comprobante de transferencia</label>
+
+          <div
+            class="drop-zone"
+            [class.hovering]="isHovering"
+            (click)="fileInput.click()"
+            (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave($event)"
+            (drop)="onDrop($event)"
+          >
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelected($event)"
+              style="display: none"
+              accept="image/*"
+            />
+
+            @if (!comprobantePreview) {
+              <div class="drop-text">
+                <p>Arrastrá el comprobante aquí o hacé clic para subir</p>
+                <small>JPG, PNG (hasta 5MB)</small>
+              </div>
+            } @else {
+              <div class="preview-container">
+                <img
+                  [src]="comprobantePreview"
+                  alt="Vista previa comprobante"
+                  class="preview-img"
+                />
+
+                <button
+                  type="button"
+                  (click)="clearComprobante(); $event.stopPropagation()"
+                  class="btn-remove"
+                >
+                  Cambiar comprobante
+                </button>
+              </div>
+            }
+          </div>
+
+          <!-- Campo oculto donde guardamos la URL de Cloudinary -->
+          <input type="hidden" formControlName="comprobanteUrl" />
+
+          <div class="error-space"></div>
+        </div>
+
+      </fieldset>
+    }
+
+    <!-- MENSAJE -->
+    <div class="form-group" [class.invalid]="isInvalid('message')">
+      <label for="message">Mensaje (opcional)</label>
+      <textarea
+        id="message"
+        rows="3"
+        formControlName="message"
+        placeholder="Escribí un mensaje para el refugio..."
+      ></textarea>
+
+      @if (hasError('message', 'maxlength')) {
+        <small class="error">Máximo 200 caracteres.</small>
+      }
+    </div>
+
+    <!-- RESUMEN DE VALIDACIÓN GENERAL -->
+    @if (form.invalid && form.touched) {
+      <p class="form-error-summary">
+        Revisá los campos marcados en rojo antes de continuar.
+      </p>
+    }
+
+    <!-- BOTÓN -->
+    <button type="submit" [disabled]="form.invalid || isUploading || (isTransferMethod() && !file)">
+      {{ isUploading ? 'Subiendo comprobante...' : 'Confirmar donación' }}
+    </button>
+
+  </form>
+
+  <!-- PREVIEW / RESUMEN DE PAGO -->
+  @if (form.valid) {
+    <section class="preview-card">
+      <h3>Resumen de tu donación</h3>
+
       <p>
-        La donación se procesará con la tarjeta 
+        Vas a donar 
         <strong>
-          terminada en {{
-            (getControl('cardNumber')?.value || '').slice(-4)
-          }}
+          {{ getControl('amount')?.value | currency:'ARS':'symbol':'1.0-0' }}
+        </strong>
+        mediante 
+        <strong>
+          {{ getControl('method')?.value | titlecase }}
         </strong>.
       </p>
-      @if (getControl('cardHolder')?.value) {
+
+      @if (isCardMethod()) {
         <p>
-          Titular: 
-          <strong>{{ getControl('cardHolder')?.value | titlecase }}</strong>
+          La donación se procesará con la tarjeta 
+          <strong>
+            {{ (getControl('cardNumber')?.value || '').slice(-4) }}
+          </strong>.
+        </p>
+
+        @if (getControl('cardHolder')?.value) {
+          <p>
+            Titular:
+            <strong>{{ getControl('cardHolder')?.value | titlecase }}</strong>
+          </p>
+        }
+      }
+
+      @if (getControl('message')?.value) {
+        <p>
+          Tu mensaje:
+          <em>"{{ getControl('message')?.value }}"</em>
         </p>
       }
-    }
-
-    @if (getControl('method')?.value === 'Efectivo') {
-      <p>
-        Podrás realizar la donación en efectivo 
-        al acercarte al refugio.
-      </p>
-    }
-
-    @if (getControl('message')?.value) {
-      <p>
-        Tu mensaje: 
-        <em>"{{ getControl('message')?.value }}"</em>
-      </p>
-    }
-  </section>
-}
-
+    </section>
+  }
 </div>

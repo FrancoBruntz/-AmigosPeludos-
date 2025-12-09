@@ -1,9 +1,9 @@
 :host {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 40px 20px;
+  align-items: center;
+  min-height: auto;
+  padding: 20px 12px;
   font-family: 'Poppins', system-ui, sans-serif;
   color: #ffc045;
   box-sizing: border-box;
@@ -17,8 +17,8 @@
   border: 1px solid #ddd;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   width: 100%;
-  max-width: 600px;
-  padding: 32px;
+  max-width: 500px !important;
+  padding: 16px 22px; 
   overflow: visible;
   position: relative;
 }
@@ -28,7 +28,7 @@
   text-align: center;
   color: #ffc045;
   font-size: 1.8rem;
-  margin-bottom: 24px;
+  margin-bottom: 18px; 
 }
 
 /* ===== CAMPOS DEL FORMULARIO ===== */
@@ -39,19 +39,19 @@ form {
 form div {
   display: flex;
   flex-direction: column;
-  margin-bottom: 18px;
+  margin-bottom: 8px; 
   position: relative;
   overflow: visible;
 }
 
 label {
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 2px; 
   color: #fcfbfb;
 }
 
-input[type="text"],
-input[type="number"],
+input[type='text'],
+input[type='number'],
 select,
 textarea {
   border: 1px solid #ccc;
@@ -67,8 +67,8 @@ select {
   z-index: 10;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
+input[type='text']:focus,
+input[type='number']:focus,
 select:focus,
 textarea:focus {
   outline: none;
@@ -76,63 +76,99 @@ textarea:focus {
   background-color: #fff;
 }
 
-/* ===== RADIO BUTTONS (TAMAÑO) ===== */
+/* ===== UNIDAD DE EDAD (radios debajo de edad) ===== */
+.age-unit-group {
+  margin-top: -4px;
+  margin-bottom: 8px;
+}
+
+.age-unit-group label {
+  margin-bottom: 4px;
+}
+
+.unit-options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.unit-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #fafafa;
+  font-weight: 400;
+}
+
+.unit-options input[type='radio'] {
+  accent-color: #ffc045;
+  transform: scale(1.05);
+}
+
+/* ===== RADIO BUTTONS TAMAÑO ===== */
 .size-group {
-  margin-bottom: 18px;
+  margin-top: 0;
+  margin-bottom: 8px; /* muy compacto */
 }
 
 .size-label {
   color: #ddd;
-  margin-bottom: 8px;
+  margin-bottom: 4px; /* menos espacio */
   font-weight: 600;
 }
 
+/* Radios en fila */
 .size-options {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .size-option {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   color: #fafafa;
 }
 
-.size-option input[type="radio"] {
+.size-option input[type='radio'] {
   accent-color: #ffc045;
-  transform: scale(1.2);
+  transform: scale(1.05);
 }
 
 /* ===== CHECKBOX ===== */
 .check-group {
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 8px;
 }
 
 .check-group label {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
-input[type="checkbox"] {
+
+input[type='checkbox'] {
   accent-color: #ffc045;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
-/* ===== MENSAJES DE ERROR CON ESPACIO FIJO ===== */
+/* ===== MENSAJE DE ERROR ===== */
 .error-space {
-  min-height: 5px;     /* espacio reservado */
-  height: 18px;
+  min-height: 5px;
+  height: 16px;
   display: flex;
   align-items: center;
 }
 
 .error-space p {
   color: #e76f51;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin: 0;
 }
 
@@ -145,8 +181,8 @@ textarea {
 .actions {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 10px;
+  margin-top: 16px; /* menos espacio */
 }
 
 .actions button {
@@ -179,21 +215,23 @@ textarea {
 /* ===================================================== */
 
 .image-section {
-  margin-top: 8px;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .image-section label {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 /* Recuadro de carga */
 .drop-zone {
   width: 100%;
   max-width: 100%;
-  height: 160px;
+  margin: 0 auto;
+  box-sizing: border-box;  
+  height: 150px; 
   border: 2px dashed #ffc045;
   border-radius: 10px;
   background-color: rgba(250, 250, 250, 0.9);
@@ -203,9 +241,9 @@ textarea {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 12px;
-  transition: background-color 0.2s ease, border-color 0.2s ease,
-    transform 0.15s ease;
+  padding-left: 4px;   
+  padding-right: 4px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
 .drop-zone.hovering {
@@ -217,7 +255,7 @@ textarea {
 .drop-text p {
   color: #333;
   margin: 0 0 4px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .drop-text small {
@@ -227,14 +265,14 @@ textarea {
 
 /* Vista previa */
 .preview-container {
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .preview-img {
@@ -243,6 +281,7 @@ textarea {
   object-fit: cover;
 }
 
+/* Botón eliminar imagen */
 .btn-remove {
   margin-top: 4px;
   padding: 6px 12px;
@@ -264,7 +303,7 @@ textarea {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
   #contenedorForm {
-    padding: 24px 16px;
+    padding: 20px 16px;
   }
 
   .actions {
@@ -274,4 +313,72 @@ textarea {
   .actions button {
     width: 100%;
   }
+}
+
+/* === radios de Unidad de edad === */
+.unit-options {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 14px;
+}
+
+.unit-options label {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  width: auto !important;     /* evita que ocupe toda la línea */
+  cursor: pointer;
+}
+
+.unit-options input[type="radio"] {
+  accent-color: #ffc045;
+  transform: scale(1.1);
+}
+
+
+/* === radios de Tamaño === */
+.size-options {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;  /* para que no se corte si no entra */
+}
+
+.size-option {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  width: auto !important;
+}
+
+.size-option input[type="radio"] {
+  accent-color: #ffc045;
+  transform: scale(1.1);
+}
+
+/* ======== RESTAURACIÓN DE ERROR MESSAGES ======== */
+
+/* contenedor donde aparece el mensaje */
+.error-space {
+  min-height: 18px !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-top: 2px !important;
+}
+
+/* estilo del mensaje */
+.error-space p {
+  color: #ff8a80 !important; /* rojo suave visible */
+  font-size: 0.85rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }

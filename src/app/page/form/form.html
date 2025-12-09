@@ -10,7 +10,7 @@
       <input type="text" id="name" formControlName="name" placeholder="Ingresa el nombre" />
       <div class="error-space">
         @if (petForm.controls['name'].errors?.['required'] && petForm.get('name')?.touched) {
-          <p>El campo es obligatorio</p>
+          <p>El nombre es obligatorio</p>
         }
       </div>
     </div>
@@ -26,7 +26,7 @@
       </select>
       <div class="error-space">
         @if (petForm.controls['type'].errors?.['required'] && petForm.get('type')?.touched) {
-          <p>El campo es obligatorio</p>
+          <p>El tipo es obligatorio</p>
         }
       </div>
     </div>
@@ -37,7 +37,7 @@
       <input type="number" id="age" formControlName="age" placeholder="Ingrese la edad" />
       <div class="error-space">
         @if (petForm.controls['age'].errors?.['required'] && petForm.get('age')?.touched) {
-          <p>El campo es obligatorio</p>
+          <p>La edad es obligatoria</p>
         }
       </div>
     </div>
@@ -57,7 +57,7 @@
 
       <div class="error-space">
         @if (petForm.controls['ageUnit']?.errors?.['required'] && petForm.get('ageUnit')?.touched) {
-          <p>El campo es obligatorio</p>
+          <p>La unidad es obligatoria</p>
         }
       </div>
     </div>
@@ -76,7 +76,7 @@
 
       <div class="error-space">
         @if (petForm.controls['size'].errors?.['required'] && petForm.get('size')?.touched) {
-          <p>El campo es obligatorio</p>
+          <p>El tamaño es obligatorio</p>
         }
       </div>
     </div>
@@ -92,7 +92,7 @@
       </select>
       <div class="error-space">
         @if (petForm.controls['sexo']?.errors?.['required'] && petForm.get('sexo')?.touched) {
-          <p>El campo es obligatorio</p>
+          <p>El sexo es obligatorio</p>
         }
       </div>
     </div>
@@ -103,7 +103,7 @@
       <input type="text" id="color" formControlName="color" placeholder="Ingresa el color" />
       <div class="error-space">
         @if (petForm.controls['color'].errors?.['required'] && petForm.get('color')?.touched) {
-          <p>El campo es obligatorio</p>
+          <p>El color es obligatorio</p>
         }
       </div>
     </div>
@@ -112,18 +112,17 @@
     <div class="check-group">
       <label for="castrado">El animal está castrado</label>
       <input type="checkbox" name="castrado" id="castrado" formControlName="castrado" />
-      <div class="error-space">
-        @if (petForm.controls['castrado'].errors?.['required'] && petForm.get('castrado')?.touched) {
-          <p>El campo es obligatorio</p>
-        }
-      </div>
     </div>
 
     <!-- OBSERVACIONES -->
     <div>
       <label for="notes">Observaciones</label>
       <textarea id="notes" formControlName="notes" rows="4"></textarea>
-      <div class="error-space"></div>
+      <div class="error-space">
+    @if (petForm.get('notes')?.hasError('maxlength') && petForm.get('notes')?.touched) {
+      <p>Máximo 100 caracteres</p>
+    }
+  </div>
     </div>
 
     <!-- IMAGEN -->
@@ -168,17 +167,25 @@
       </div>
 
       <input type="hidden" formControlName="image" />
-      <div class="error-space"></div>
-    </div>
+      <div class="error-space">
+        @if (petForm.controls['image']?.errors?.['required'] && petForm.get('image')?.touched) {
+          <p>La foto del animal es obligatoria</p>
+        }
+      </div>
+    </div> 
 
     <!-- BOTONES -->
     <div class="actions">
-      <button type="submit" [disabled]="petForm.invalid || isUploading">
+      <button type="submit" >
         @if (isUploading) { GUARDANDO... } @else { GUARDAR FORMULARIO }
       </button>
 
-      <button type="reset">LIMPIAR FORMULARIO</button>
+      <button type="button" (click)="onReset()">LIMPIAR FORMULARIO</button>
     </div>
 
   </form>
+
+
+
 </div>
+
