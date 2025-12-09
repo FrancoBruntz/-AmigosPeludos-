@@ -1322,6 +1322,15 @@
       "message": "djhd",
       "date": "2025-12-08T22:02:48.482Z",
       "comprobanteUrl": ""
+    },
+    {
+      "id": "01fd",
+      "userId": "46557309",
+      "amount": 100000,
+      "method": "Transferencia",
+      "message": "",
+      "date": "2025-12-09T01:06:27.112Z",
+      "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765242388/dwvpeu14db9j1xvgz7mh.jpg"
     }
   ],
   "comentarios": [
