@@ -1,16 +1,17 @@
-import { inject } from "@angular/core";
-import { CanMatchFn, Router } from "@angular/router";
-import { UserService } from "../component/user/user.service";
+import { CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { AuthService } from '../auth/auth-service';
 
-/*
-- Guard minimalista: si el usuario actual no es admin, redirige a home 
-- Usamos CanMatch para bloquear la coincidencia de la ruta
-*/
-
-export const adminGuard: CanMatchFn = () => {
-    const user = inject(UserService).getUser() // leemos el perfil actual
+export const adminGuard: CanActivateFn = (route, state) => {
+    const auth = inject(AuthService);
     const router = inject(Router);
 
-    // Si hay usuario y es admin , deja pasar, si no, redirige a '/'
-    return user?.isAdmin? true : router.parseUrl('/');
-}
+  if (auth.isLogIn() && auth.isAdmin()) {
+    return true;
+  }
+
+  // Si no es admin, lo mando al home (o donde quieras)
+  return router.createUrlTree(['/home']);
+
+
+};
