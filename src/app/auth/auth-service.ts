@@ -39,54 +39,62 @@ export class AuthService {
   });
   }
 
-  // ===== LOGIN =====
-  logIn(user: string, password: string) {
-    const requestParams = {
-      user: user,
-      password: password,
-    };
+// ===== LOGIN =====
+logIn(user: string, password: string) {
+  const requestParams = {
+    user: user,
+    password: password,
+  };
 
-    let params = new HttpParams({ fromObject: requestParams });
+  let params = new HttpParams({ fromObject: requestParams });
 
-    this.http.get<usuarios[]>(this.url, { params }).subscribe({
-      next: (data) => {
-        console.log('login data:', data);
-        if (data[0]) {
-          // Guardar en UserService para sincronizar
-          this.userService.saveCurrent({
-            id: data[0].id,
-            dni: data[0].user,
-            nombre: data[0].nombre ?? '',
-            apellido: data[0].apellido ?? '',
-            email: data[0].email ?? '',
-            telefono: data[0].telefono ?? '',
-            direccion: data[0].direccion ?? '',
-            isAdmin: data[0].isAdmin,
-            user: '',
-            password: ''
-          });
+  this.http.get<usuarios[]>(this.url, { params }).subscribe({
+    next: (data) => {
+      console.log('login data:', data);
 
-          this.currentUser.set(data[0]);
+      const u = data[0];
 
-          localStorage.setItem('user', data[0].user);
-          localStorage.setItem('isLogIn', JSON.stringify(true));
-          this.isLogIn.set(true);
+      if (u) {
+        // ✅ Guardar en UserService para sincronizar perfil completo
+        this.userService.saveCurrent({
+          id: u.id,
+          user: u.user,              // ahora sí guardamos el user real
+          password: u.password,      // y también el password
+          isAdmin: u.isAdmin,
 
-          localStorage.setItem('isAdmin', JSON.stringify(data[0].isAdmin));
-          this.isAdmin.set(data[0].isAdmin);
+          // dni: si existe en el JSON lo uso, si no uso el user como fallback
+          dni: u.dni ?? u.user,
 
-          alert('Inicio de sesión con éxito!');
-          this.router.navigateByUrl('/home');
-        } else {
-          alert('Usuario o contraseña incorrecta');
-        }
-      },
-      error: (e) => {
-        console.error(e);
+          nombre: u.nombre ?? '',
+          apellido: u.apellido ?? '',
+          email: u.email ?? '',
+          telefono: u.telefono ?? '',
+          direccion: u.direccion ?? ''
+          // favoritos y notificaciones quedan undefined por ahora (opcionales)
+        });
+
+        // Mantengo tu lógica previa de auth-service
+        this.currentUser.set(u);
+
+        localStorage.setItem('user', u.user);
+        localStorage.setItem('isLogIn', JSON.stringify(true));
+        this.isLogIn.set(true);
+
+        localStorage.setItem('isAdmin', JSON.stringify(u.isAdmin));
+        this.isAdmin.set(u.isAdmin);
+
+        alert('Inicio de sesión con éxito!');
+        this.router.navigateByUrl('/'); // o '/sobreellos' si preferís
+      } else {
         alert('Usuario o contraseña incorrecta');
-      },
-    });
-  }
+      }
+    },
+    error: (e) => {
+      console.error(e);
+      alert('Usuario o contraseña incorrecta');
+    },
+  });
+}
 
   // ===== LOGOUT =====
   logOut() {
