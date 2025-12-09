@@ -55,7 +55,8 @@
       <fieldset class="section">
         <legend>Datos de la tarjeta</legend>
 
-        <div class="form-group">
+        <!-- NÚMERO -->
+        <div class="form-group" [class.invalid]="isInvalid('cardNumber')">
           <label for="cardNumber">Número de tarjeta</label>
           <input
             id="cardNumber"
@@ -63,9 +64,20 @@
             formControlName="cardNumber"
             placeholder="XXXX-XXXX-XXXX-XXXX"
           />
+
+          @if (getControl('cardNumber')?.touched && getControl('cardNumber')?.errors) {
+            @if (hasError('cardNumber', 'required')) {
+              <small class="error">El número de tarjeta es obligatorio.</small>
+            }
+            @if (hasError('cardNumber', 'pattern')) {
+              <small class="error">Ingresá un número de tarjeta válido.</small>
+            }
+           
+          }
         </div>
 
-        <div class="form-group">
+        <!-- TITULAR -->
+        <div class="form-group" [class.invalid]="isInvalid('cardHolder')">
           <label for="cardHolder">Titular</label>
           <input
             id="cardHolder"
@@ -73,10 +85,23 @@
             formControlName="cardHolder"
             placeholder="Nombre y apellido"
           />
+
+          @if (getControl('cardHolder')?.touched && getControl('cardHolder')?.errors) {
+            @if (hasError('cardHolder', 'required')) {
+              <small class="error">El nombre del titular es obligatorio.</small>
+            }@else if (hasError('cardHolder', 'minlength')) {
+                <small class="error">Ingresá un nombre válido.</small>
+              } @else {
+                  <small class="error">El titular solo puede contener letras.</small>
+                }
+            }
         </div>
 
+        <!-- FILA EXP + CVV -->
         <div class="form-row">
-          <div class="form-group">
+
+          <!-- VENCIMIENTO -->
+          <div class="form-group" [class.invalid]="isInvalid('expiration')">
             <label for="expiration">Vencimiento</label>
             <input
               id="expiration"
@@ -84,18 +109,39 @@
               formControlName="expiration"
               placeholder="MM/AA"
             />
+
+            @if (getControl('expiration')?.touched && getControl('expiration')?.errors) {
+              @if (hasError('expiration', 'required')) {
+                <small class="error">La fecha de vencimiento es obligatoria.</small>
+              }
+              @if (hasError('expiration', 'pattern')) {
+                <small class="error">Usá el formato MM/AA, una fecha valida.</small>
+              }
+            }
           </div>
 
-          <div class="form-group">
+          <!-- CVV -->
+          <div class="form-group" [class.invalid]="isInvalid('cvv')">
             <label for="cvv">CVV</label>
             <input
               id="cvv"
               type="password"
-              maxlength="4"
+              maxlength="3"
               formControlName="cvv"
               placeholder="***"
             />
+
+            @if (getControl('cvv')?.touched && getControl('cvv')?.errors) {
+              @if (hasError('cvv', 'required')) {
+                <small class="error">El CVV es obligatorio.</small>
+              } @else {
+                <small class="error">El CVV debe tener 3 dígitos numéricos.</small>
+              }
+              
+              
+            }
           </div>
+
         </div>
       </fieldset>
     }
@@ -158,9 +204,7 @@
             }
           </div>
 
-          <!-- Campo oculto donde guardamos la URL de Cloudinary -->
           <input type="hidden" formControlName="comprobanteUrl" />
-
           <div class="error-space"></div>
         </div>
 
@@ -190,13 +234,16 @@
     }
 
     <!-- BOTÓN -->
-    <button type="submit" [disabled]="form.invalid || isUploading || (isTransferMethod() && !file)">
+    <button
+      type="submit"
+      [disabled]="form.invalid || isUploading || (isTransferMethod() && !file)"
+    >
       {{ isUploading ? 'Subiendo comprobante...' : 'Confirmar donación' }}
     </button>
 
   </form>
 
-  <!-- PREVIEW / RESUMEN DE PAGO -->
+  <!-- RESUMEN -->
   @if (form.valid) {
     <section class="preview-card">
       <h3>Resumen de tu donación</h3>

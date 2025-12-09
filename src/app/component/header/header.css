@@ -120,3 +120,23 @@ nav a.active-link {
   font-size: 0.7rem;
   margin-left: 4px;
 }
+
+.logo-header {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.title-link a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: black;
+}
+
+.title-link a:hover {
+  color: #ffcc70; /* tu naranja bonito */
+}

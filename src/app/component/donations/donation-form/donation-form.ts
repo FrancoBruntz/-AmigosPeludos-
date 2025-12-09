@@ -113,10 +113,12 @@ export class DonationForm implements OnInit {
         Validators.required,
         Validators.minLength(13),
         Validators.maxLength(19),
+        Validators.pattern(/^\d{13,19}$/),
       ]);
       cardHolder?.setValidators([
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(6),
+        Validators.pattern(/^[A-Za-zÁÉÍÓÚáéíóúÑñ]+( [A-Za-zÁÉÍÓÚáéíóúÑñ]+)$/)
       ]);
       expiration?.setValidators([
         Validators.required,
@@ -125,7 +127,8 @@ export class DonationForm implements OnInit {
       cvv?.setValidators([
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(4),
+        Validators.maxLength(3),
+        Validators.pattern(/^\d{3}$/),
       ]);
 
       // Comprobante NO requerido en tarjeta
@@ -137,9 +140,7 @@ export class DonationForm implements OnInit {
       expiration?.clearValidators();
       cvv?.clearValidators();
 
-      // Acá podríamos poner el comprobante como requerido,
-      // pero como se sube recién al confirmar, lo validamos
-      // manualmente en onSubmit y en el [disabled] del botón.
+     
       comprobanteUrl?.clearValidators();
     } else {
       // Ningún método seleccionado: limpiar todo
