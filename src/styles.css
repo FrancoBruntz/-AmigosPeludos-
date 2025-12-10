@@ -42,3 +42,25 @@ header, footer, main { position: relative; z-index: 1; }
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
 }
+
+/* SnackBar*/
+.snackbar-exito {
+  background: #4caf50 !important;
+  color: white !important;
+}
+
+.snackbar-error {
+  background: #e53935 !important;
+  color: white !important;
+}
+
+.snackbar-info {
+  background: #2196f3 !important;
+  color: black !important;
+}
+
+.snackbar-confirm {
+  background: #333;
+  color: #fff;
+  border-radius: 6px;
+}

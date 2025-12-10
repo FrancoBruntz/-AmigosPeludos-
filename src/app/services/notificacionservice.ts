@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import Notificacion, { TipoNotificacion } from '../models/notificacion';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,8 @@ export class NotificacionService {
   
   private http = inject(HttpClient);
   private base = 'http://localhost:3000/notificaciones';
+
+  private dialog = inject(MatDialog);
 
   // SIGNAL PRINCIPAL
   private _notificaciones = signal<Notificacion[]>([]);
@@ -25,11 +29,9 @@ export class NotificacionService {
 
   private _message = signal<string | null>(null);
 
-  // Canal para propagar entre pestañas (si está disponible)
   private channel?: BroadcastChannel;
 
-  constructor() {
-    // Inicializar listener para BroadcastChannel si está disponible
+  constructor(private snackBar: MatSnackBar) {
     try {
       if (typeof BroadcastChannel !== 'undefined') {
         this.channel = new BroadcastChannel('amigospeludos_notifs');
@@ -38,11 +40,8 @@ export class NotificacionService {
           this._notificaciones.update(curr => [created, ...curr]);
         };
       }
-    } catch (e) {
-      // ignore
-    }
+    } catch {}
 
-    // Fallback: escuchar storage events en otras pestañas
     if (typeof window !== 'undefined') {
       window.addEventListener('storage', (e: StorageEvent) => {
         if (e.key === 'amigospeludos_new_notif' && e.newValue) {
@@ -55,39 +54,35 @@ export class NotificacionService {
     }
   }
 
-  /**
-   * Devuelve el mensaje actual (para el template)
-   */
   message() {
     return this._message();
   }
 
-  /**
-   * Muestra un mensaje por 3 segundos
-   */
   show(text: string) {
     this._message.set(text);
+
+    this.snackBar.open(text, 'Cerrar', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['snackbar-info']
+    });
 
     setTimeout(() => {
       this._message.set(null);
     }, 3000);
   }
 
-  /**
-   * Limpia el mensaje (por si querés ocultarlo manualmente)
-   */
   clear() {
     this._message.set(null);
   }
 
-  
   cargarPorUsuario(dni: string) {
-      this.http
+    this.http
       .get<Notificacion[]>(`${this.base}?usuarioDNI=${encodeURIComponent(dni)}&_sort=-fechaCreacion`)
-      .subscribe(n => this._notificaciones.set(n)); // ⭐ ACTUALIZA SIGNAL
+      .subscribe(n => this._notificaciones.set(n));
   }
   
-  // Enviar notificación (cuando admin aprueba/rechaza)
   send(usuarioDNI: string, solicitudId: string, animalId: string, tipo: TipoNotificacion, mensaje: string, comentarios?: string) {
     const body: Omit<Notificacion, 'id'> = {
       usuarioDNI,
@@ -101,10 +96,8 @@ export class NotificacionService {
     };
     return this.http.post<Notificacion>(this.base, body).pipe(
       tap((created) => {
-        // preprend para mantener orden por fecha desc
         this._notificaciones.update(curr => [created, ...curr]);
 
-        // Propagar a otras pestañas del mismo origen para mostrar notificación en tiempo real
         try {
           if (typeof BroadcastChannel !== 'undefined') {
             if (!this.channel) {
@@ -113,27 +106,21 @@ export class NotificacionService {
             this.channel.postMessage(created);
           } else if (typeof window !== 'undefined') {
             localStorage.setItem('amigospeludos_new_notif', JSON.stringify(created));
-            // limpiar para no acumular
             setTimeout(() => localStorage.removeItem('amigospeludos_new_notif'), 500);
           }
         } catch (e) {
-          // no interrumpir si falla la propagación
           console.warn('Error propagando notificación entre pestañas', e);
         }
       })
     );
   }
 
-  // Obtener notificaciones de un usuario (por DNI)
   listByUser(dni: string) {
     return this.http.get<Notificacion[]>(
       `${this.base}?usuarioDNI=${encodeURIComponent(dni)}`
     );
   }
 
-   /**
-   * Marcar notificación como leída y actualizar signal (método seguro)
-   */
   markAsReadAndUpdate(id: string): Observable<Notificacion> {
     return this.http.patch<Notificacion>(`${this.base}/${id}`, { leida: true }).pipe(
       tap((updated) => {
@@ -142,9 +129,6 @@ export class NotificacionService {
     );
   }
 
-  /**
-   * Eliminar notificación y actualizar signal
-   */
   deleteAndUpdate(id: string): Observable<void> {
     return this.http.delete<void>(`${this.base}/${id}`).pipe(
       tap(() => {
@@ -153,21 +137,54 @@ export class NotificacionService {
     );
   }
 
-
-  // Marcar notificación como leída
   markAsRead(id: string) {
     return this.http.patch<Notificacion>(`${this.base}/${id}`, { leida: true });
   }
 
-  // Eliminar notificación
   delete(id: string) {
     return this.http.delete(`${this.base}/${id}`);
   }
 
-  // Obtener todas las notificaciones de un usuario y ordenarlas por fecha desc
   listByUserSorted(dni: string) {
     return this.http.get<Notificacion[]>(
       `${this.base}?usuarioDNI=${encodeURIComponent(dni)}&_sort=-fechaCreacion`
     );
+  }
+
+  mostrarSnackbar(mensaje: string, tipo: 'exito' | 'error' | 'info' = 'info') {
+    let panelClass = '';
+
+    switch (tipo) {
+      case 'exito':
+        panelClass = 'snackbar-exito';
+        break;
+      case 'error':
+        panelClass = 'snackbar-error';
+        break;
+      default:
+        panelClass = 'snackbar-info';
+    }
+
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: [panelClass]
+    });
+  }
+
+  // CONFIRM CON CANCELAR / ACEPTAR
+  confirmar(mensaje: string): Promise<boolean> {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '380px',
+      disableClose: true,
+      data: { mensaje }
+    });
+
+    return new Promise(resolve => {
+      dialogRef.afterClosed().subscribe(result => {
+        resolve(!!result);
+      });
+    });
   }
 }

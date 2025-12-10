@@ -9,6 +9,9 @@ import { CommonModule } from '@angular/common';
 import { TipoVivienda } from '../../../models/solicitud';
 import { Petsservice } from '../../../services/petsservice';
 import Pets from '../../../models/pets';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-request-form',
@@ -26,81 +29,72 @@ export class RequestForm {
   private notifService = inject(NotificacionService);
   private auth = inject(AuthService);
   private userService = inject(UserService);
-  private petsService = inject(Petsservice); 
+  private petsService = inject(Petsservice);
+  private snack = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
 
-  // ===== Formulario de solicitud de adopción =====
   form = this.fb.group({
-    tipoVivienda: ['', Validators.required],          // casa / depto
-    tienePatio: [false],                              // checkbox
-    tieneMascotas: [false],                           // checkbox
-    detalleMascotas: [''],                            // opcional
-    viveConNinos: [false],                            // checkbox
+    tipoVivienda: ['', Validators.required],
+    tienePatio: [false],
+    tieneMascotas: [false],
+    detalleMascotas: [''],
+    viveConNinos: [false],
     mensaje: ['', [Validators.required, Validators.minLength(10)]],
-    aceptaCompromiso: [false, Validators.requiredTrue] // compromiso refugio
+    aceptaCompromiso: [false, Validators.requiredTrue]
   });
 
-  // Chequear que el perfil tenga los datos para solicitar adopcion 
   private perfilIncompleto(): boolean {
     const user = this.userService.getUser();
+    if (!user) return true;
 
-    if(!user){
-      return true;
-     }
+    const campos = [
+      user.nombre,
+      user.apellido,
+      user.email,
+      user.telefono,
+      user.direccion
+    ];
 
-    const camposObligatorios = [
-       user.nombre,
-       user.apellido,
-       user.email,
-       user.telefono,
-       user.direccion
-     ];
-
-    // si algun campo esta vacio, undefinded o solo espacios => perfil incompleto
-    return camposObligatorios.some(campo => !campo || campo.toString().trim() === '');
+    return campos.some(campo => !campo || campo.toString().trim() === '');
   }
 
-  // Tomamos :animalId desde la URL 
   get animalId(): string {
     return String(this.route.snapshot.paramMap.get('animalId'));
   }
 
   submit() {
-    // Validación del formulario
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    // Verifico usuario logueado: soporte tanto user.dni como user.user (db.json puede guardar el dni en 'user')
     const currentUser = this.userService.getUser();
     const dni = currentUser?.dni ?? currentUser?.user ?? null;
 
     if (!dni) {
-      alert('Debes iniciar sesion!');
+      this.snack.open('Debes iniciar sesión', 'Cerrar', { duration: 3000 });
       this.router.navigateByUrl('/login');
       return;
     }
 
     if (this.perfilIncompleto()) {
-      const quiereCompletar = confirm(
-        'Tu perfil está incompleto (faltan datos como nombre, apellido, email, teléfono o dirección).\n\n' +
-        '¿Querés completarlo ahora?'
-      );
+      const ref = this.dialog.open(ConfirmDialogComponent, {
+        data: { mensaje: 'Tu perfil está incompleto. ¿Querés completarlo ahora?' }
+      });
 
-    if (quiereCompletar) {
-      // a completar el perfil.
-      this.router.navigateByUrl('/user/profile');
-    }
+      ref.afterClosed().subscribe(res => {
+        if (res) this.router.navigateByUrl('/user/profile');
+      });
 
       return;
     }
 
-    // Evitar duplicadas "pendientes" del mismo usuario para el mismo animal
     this.solicitudes.fetchUserRequestForAnimal(this.animalId, dni).subscribe({
       next: (list) => {
         const yaPendiente = list.some(s => s.estado === 'pendiente');
+
         if (yaPendiente) {
-          alert('Ya tenes una solicitud pendiente para este animal.');
+          this.snack.open('Ya tenés una solicitud pendiente para este animal', 'Cerrar', { duration: 3500 });
           return;
         }
 
@@ -125,40 +119,31 @@ export class RequestForm {
         ).subscribe({
           next: (created) => {
 
-            // Traemos los pets para obtener el nombre del animal
             this.petsService.getPet().subscribe({
               next: (pets: Pets[]) => {
                 const pet = pets.find(p => p.id === this.animalId);
                 const nombreAnimal = pet?.name || `animal #${this.animalId}`;
-
                 const adminMsg = `Nueva solicitud de ${dni} para ${nombreAnimal}`;
 
-                this.notifService
-                  .send('admin', created.id, this.animalId, 'comentario' as any, adminMsg)
-                  .subscribe({
-                    error: () => console.warn('No se pudo notificar al admin')
-                  });
+                this.notifService.send('admin', created.id, this.animalId, 'comentario' as any, adminMsg).subscribe();
               },
-              
               error: () => {
-                // Si falla cargar los pets, al menos mandamos algo con el id
                 const adminMsg = `Nueva solicitud de ${dni} para animal #${this.animalId}`;
-                this.notifService
-                  .send('admin', created.id, this.animalId, 'comentario' as any, adminMsg)
-                  .subscribe({
-                    error: () => console.warn('No se pudo notificar al admin')
-                  });
+                this.notifService.send('admin', created.id, this.animalId, 'comentario' as any, adminMsg).subscribe();
               }
             });
 
-            alert('Solicitud enviada.');
+            this.snack.open('Solicitud enviada con éxito', 'OK', { duration: 3000 });
             this.router.navigateByUrl('/mis-solicitudes');
-           },
-          error: (e) => alert('Error al enviar la solicitud: ' + e)
+          },
+          error: () => {
+            this.snack.open('Error al enviar la solicitud', 'Cerrar', { duration: 3500 });
+          }
         });
       },
-      error: (e) => alert('No se pudo validar solicitudes previas: ' + e)
+      error: () => {
+        this.snack.open('No se pudo validar solicitudes previas', 'Cerrar', { duration: 3500 });
+      }
     });
   }
-
 }

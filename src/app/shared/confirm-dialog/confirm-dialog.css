@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  font-family: 'Poppins', system-ui, sans-serif;
+  padding: 8px 12px;
+}
+
+/* Contenido */
+mat-dialog-content {
+  font-size: 15px;
+  color: #333;
+  padding-top: 8px;
+  padding-bottom: 10px;
+}
+
+/* Acciones */
+mat-dialog-actions {
+  padding-top: 12px;
+  gap: 12px;
+}
+
+/* Botones */
+button[mat-button].btn-cancel {
+  min-width: 110px;
+  border: 1px solid #d1d5db;
+  background: transparent;
+  color: #333;
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+}
+
+button[mat-button].btn-cancel:hover {
+  background: #f3f4f6;
+  transform: translateY(-1px);
+}
+
+/* Botón aceptar (primario) */
+button[mat-raised-button].btn-accept {
+  min-width: 110px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: none; /* opcional: mantiene look plano */
+}
+
+/* Si querés borde en el botón primario también */
+button[mat-raised-button].btn-accept {
+  border: 1px solid rgba(16, 185, 129, 0.12);
+}
+
+/* Ajustes para accesibilidad/contraste */
+button[mat-button], button[mat-raised-button] {
+  font-weight: 600;
+  font-size: 0.95rem;
+}

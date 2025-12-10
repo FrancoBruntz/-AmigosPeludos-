@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { Donationsservice } from '../../../services/donationsservice';
 import { Donation } from '../../../models/donation';
 import { AuthService } from '../../../auth/auth-service';
 import axios from 'axios';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-donation-form',
@@ -15,6 +16,7 @@ import axios from 'axios';
   styleUrls: ['./donation-form.css'],
 })
 export class DonationForm implements OnInit {
+
   form!: FormGroup;
 
   methods = ['Tarjeta', 'Transferencia'];
@@ -22,13 +24,11 @@ export class DonationForm implements OnInit {
   readonly transferAlias = 'animales.peludos.refugio';
   readonly transferCbu = '0000003100045678912345';
 
-  // Comprobante
   file: File | null = null;
   comprobantePreview: string | null = null;
   isUploading = false;
   isHovering = false;
 
-  // Cloudinary
   readonly CLOUD_NAME = 'dwynrzhcx';
   readonly UPLOAD_PRESET = 'imgdonations';
 
@@ -36,47 +36,39 @@ export class DonationForm implements OnInit {
     private fb: FormBuilder,
     private donationsServ: Donationsservice,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private snack: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    // Chequeo de login
     if (!this.authService.isLogIn()) {
-      alert('Para realizar una donación debés iniciar sesión.');
+      this.snack.open('Debés iniciar sesión para donar.', 'Cerrar', { duration: 3500 });
       this.router.navigate(['/login']);
       return;
     }
 
-    // Crear formulario
     this.form = this.fb.group({
       amount: [null, [Validators.required, Validators.min(1000)]],
       method: ['', [Validators.required]],
       message: ['', [Validators.maxLength(200)]],
 
-      // TARJETA
       cardNumber: [''],
       cardHolder: [''],
       expiration: [''],
       cvv: [''],
 
-      // TRANSFERENCIA
       alias: [this.transferAlias],
       cbu: [this.transferCbu],
-
-      // URL del comprobante en Cloudinary
       comprobanteUrl: [''],
     });
 
-    // Ajustar validaciones según método elegido
     this.form.get('method')?.valueChanges.subscribe((method) => {
       this.configureValidatorsForMethod(method);
     });
 
-    // Por si ya viniera seteado algo
     this.configureValidatorsForMethod(this.form.get('method')?.value);
   }
 
-  // ===== Helpers método =====
   isCardMethod(): boolean {
     return this.form.get('method')?.value === 'Tarjeta';
   }
@@ -99,7 +91,6 @@ export class DonationForm implements OnInit {
     return !!(control && control.touched && control.hasError(error));
   }
 
-  // ===== Validadores condicionales según método =====
   private configureValidatorsForMethod(method: string | null | undefined) {
     const cardNumber = this.form.get('cardNumber');
     const cardHolder = this.form.get('cardHolder');
@@ -108,22 +99,24 @@ export class DonationForm implements OnInit {
     const comprobanteUrl = this.form.get('comprobanteUrl');
 
     if (method === 'Tarjeta') {
-      // Requerir datos de tarjeta
       cardNumber?.setValidators([
         Validators.required,
         Validators.minLength(13),
         Validators.maxLength(19),
         Validators.pattern(/^\d{13,19}$/),
       ]);
+
       cardHolder?.setValidators([
         Validators.required,
         Validators.minLength(6),
         Validators.pattern(/^[A-Za-zÁÉÍÓÚáéíóúÑñ]+( [A-Za-zÁÉÍÓÚáéíóúÑñ]+)$/)
       ]);
+
       expiration?.setValidators([
         Validators.required,
-        Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/), // MM/AA
+        Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/),
       ]);
+
       cvv?.setValidators([
         Validators.required,
         Validators.minLength(3),
@@ -131,19 +124,9 @@ export class DonationForm implements OnInit {
         Validators.pattern(/^\d{3}$/),
       ]);
 
-      // Comprobante NO requerido en tarjeta
       comprobanteUrl?.clearValidators();
-    } else if (method === 'Transferencia') {
-      // Datos de tarjeta NO requeridos
-      cardNumber?.clearValidators();
-      cardHolder?.clearValidators();
-      expiration?.clearValidators();
-      cvv?.clearValidators();
 
-     
-      comprobanteUrl?.clearValidators();
-    } else {
-      // Ningún método seleccionado: limpiar todo
+    } else if (method === 'Transferencia') {
       cardNumber?.clearValidators();
       cardHolder?.clearValidators();
       expiration?.clearValidators();
@@ -157,8 +140,6 @@ export class DonationForm implements OnInit {
     cvv?.updateValueAndValidity({ emitEvent: false });
     comprobanteUrl?.updateValueAndValidity({ emitEvent: false });
   }
-
-  // ================== COMPROBANTE: FILE + DRAG & DROP ==================
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -185,19 +166,16 @@ export class DonationForm implements OnInit {
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
-    event.stopPropagation();
     this.isHovering = true;
   }
 
   onDragLeave(event: DragEvent) {
     event.preventDefault();
-    event.stopPropagation();
     this.isHovering = false;
   }
 
   onDrop(event: DragEvent) {
     event.preventDefault();
-    event.stopPropagation();
     this.isHovering = false;
 
     const files = event.dataTransfer?.files;
@@ -206,8 +184,6 @@ export class DonationForm implements OnInit {
     }
   }
 
-  // ================== CLOUDINARY ==================
-
   private async uploadToCloudinary(): Promise<string | null> {
     if (!this.file) return null;
 
@@ -215,30 +191,23 @@ export class DonationForm implements OnInit {
     formData.append('file', this.file);
     formData.append('upload_preset', this.UPLOAD_PRESET);
 
-    try {
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${this.CLOUD_NAME}/image/upload`,
-        formData
-      );
-      return response.data.secure_url as string;
-    } catch (error) {
-      console.error('Error subiendo comprobante:', error);
-      throw error;
-    }
+    const response = await axios.post(
+      `https://api.cloudinary.com/v1_1/${this.CLOUD_NAME}/image/upload`,
+      formData
+    );
+
+    return response.data.secure_url as string;
   }
 
-  // ================== SUBMIT ==================
-
   async onSubmit(): Promise<void> {
-    // Validaciones de Angular
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.snack.open('Revisá los campos marcados.', 'Cerrar', { duration: 3500 });
       return;
     }
 
-    // Validaciones extra según método
     if (this.isTransferMethod() && !this.file) {
-      alert('Para confirmar una donación por transferencia debés adjuntar el comprobante.');
+      this.snack.open('Debés adjuntar el comprobante.', 'Cerrar', { duration: 3500 });
       return;
     }
 
@@ -254,16 +223,16 @@ export class DonationForm implements OnInit {
         this.form.get('cardHolder')?.markAsTouched();
         this.form.get('expiration')?.markAsTouched();
         this.form.get('cvv')?.markAsTouched();
-        alert('Completá correctamente todos los datos de la tarjeta.');
+
+        this.snack.open('Completá correctamente los datos de la tarjeta.', 'Cerrar', { duration: 3500 });
         return;
       }
     }
 
-    // Obtener usuario logueado
     const currentUserId = this.authService.getCurrentUsername();
 
     if (!currentUserId) {
-      alert('Debés iniciar sesión para realizar una donación.');
+      this.snack.open('Debés iniciar sesión.', 'Cerrar', { duration: 3500 });
       this.router.navigate(['/login']);
       return;
     }
@@ -271,7 +240,6 @@ export class DonationForm implements OnInit {
     this.isUploading = true;
 
     try {
-      // Subir comprobante si se cargó uno (solo tiene sentido en transferencia)
       if (this.file) {
         const url = await this.uploadToCloudinary();
         if (url) {
@@ -293,17 +261,18 @@ export class DonationForm implements OnInit {
       this.donationsServ.addDonation(donation).subscribe({
         next: () => {
           this.isUploading = false;
-          alert('Donación confirmada con éxito. ¡Gracias por tu donación! 🐶💛');
+          this.snack.open('Donación confirmada con éxito.', 'Cerrar', { duration: 3500 });
           this.router.navigate(['/mis-donaciones']);
         },
         error: () => {
           this.isUploading = false;
-          alert('Ocurrió un error al registrar la donación.');
+          this.snack.open('Error al registrar la donación.', 'Cerrar', { duration: 3500 });
         },
       });
+
     } catch (error) {
       this.isUploading = false;
-      alert('Error al subir el comprobante. Intentá nuevamente.');
+      this.snack.open('Error al subir el comprobante.', 'Cerrar', { duration: 3500 });
     }
   }
 }

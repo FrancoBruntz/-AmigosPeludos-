@@ -80,6 +80,12 @@
       "email": "lucoppari12@gmail.com",
       "telefono": "2235860417",
       "direccion": "catamarca"
+    },
+    {
+      "id": "eb20",
+      "user": "33333333",
+      "password": "333333",
+      "isAdmin": false
     }
   ],
   "pets": [
@@ -120,7 +126,7 @@
       "castrado": true,
       "notes": "Amante de la comida",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1763261165/ddrz4vucah6j6fxljp6j.jpg",
-      "activo": true
+      "activo": false
     },
     {
       "id": "9cf0",
@@ -424,6 +430,20 @@
       "notes": "",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1765240660/n0uor9iuump2h8vgjokz.jpg",
       "activo": true
+    },
+    {
+      "id": "8ec8",
+      "name": "arbol",
+      "type": "Gato",
+      "age": 5,
+      "ageUnit": "años",
+      "size": "Grande",
+      "sexo": "Macho",
+      "color": "negro",
+      "castrado": false,
+      "notes": "",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1765392155/b98cov7gubek79qagdhg.jpg",
+      "activo": true
     }
   ],
   "solicitudes": [
@@ -531,13 +551,14 @@
       "animalId": "198b",
       "solicitanteUser": "32556010",
       "fecha": "2025-11-20T02:06:22.284Z",
-      "estado": "pendiente",
+      "estado": "rechazada",
       "mensaje": "Me gustaria poder darle un espacio de amor ",
       "tipoVivienda": "casa",
       "tienePatio": true,
       "tieneMascotas": false,
       "viveConNinos": false,
-      "aceptaCompromiso": true
+      "aceptaCompromiso": true,
+      "comentarios": ""
     },
     {
       "id": "4718",
@@ -811,27 +832,59 @@
       "animalId": "d6f7",
       "solicitanteUser": "46557309",
       "fecha": "2025-12-07T21:17:17.746Z",
-      "estado": "pendiente",
+      "estado": "aprobada",
       "mensaje": "aaaaaaaaaaaaa",
       "tipoVivienda": "casa",
       "tienePatio": true,
       "tieneMascotas": false,
       "viveConNinos": false,
-      "aceptaCompromiso": true
+      "aceptaCompromiso": true,
+      "comentarios": "aprobadisimo"
+    },
+    {
+      "id": "1789",
+      "animalId": "c587",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-10T18:54:41.761Z",
+      "estado": "rechazada",
+      "mensaje": "necesito ese arbol",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": true,
+      "viveConNinos": true,
+      "aceptaCompromiso": true,
+      "comentarios": "lola"
+    },
+    {
+      "id": "5a4d",
+      "animalId": "c587",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-10T19:24:01.136Z",
+      "estado": "rechazada",
+      "mensaje": "necesito esooooo",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": true,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "mmm"
+    },
+    {
+      "id": "9bc1",
+      "animalId": "c587",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-10T19:25:03.651Z",
+      "estado": "aprobada",
+      "mensaje": "asdasdsdadsas",
+      "tipoVivienda": "departamento",
+      "tienePatio": true,
+      "tieneMascotas": true,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": "todavia no"
     }
   ],
   "notificaciones": [
-    {
-      "id": "908e",
-      "usuarioDNI": "46112136",
-      "solicitudId": "b1f5",
-      "animalId": "d6f7",
-      "tipo": "aprobada",
-      "mensaje": "¡Felicidades! Tu solicitud fue aprobada. El refugio se pondrá en contacto.",
-      "comentarios": "",
-      "leida": false,
-      "fechaCreacion": "2025-11-16T19:48:45.885Z"
-    },
     {
       "id": "f0ea",
       "usuarioDNI": "11111111",
@@ -842,17 +895,6 @@
       "comentarios": "Xica esta bajo control medico, por el momento no puede ser adoptada",
       "leida": true,
       "fechaCreacion": "2025-11-17T12:04:24.819Z"
-    },
-    {
-      "id": "d6ca",
-      "usuarioDNI": "46112136",
-      "solicitudId": "9e7e",
-      "animalId": "a394",
-      "tipo": "aprobada",
-      "mensaje": "¡Felicidades! Tu solicitud fue aprobada. El refugio se pondrá en contacto.",
-      "comentarios": "Felicitaciones! Ya son familia",
-      "leida": false,
-      "fechaCreacion": "2025-11-17T12:05:06.189Z"
     },
     {
       "id": "41a3",
@@ -927,17 +969,6 @@
       "fechaCreacion": "2025-12-02T03:19:52.435Z"
     },
     {
-      "id": "042e",
-      "usuarioDNI": "46112136",
-      "solicitudId": "4718",
-      "animalId": "9cf0",
-      "tipo": "aprobada",
-      "mensaje": "¡Felicidades! Tu solicitud para Lex fue aprobada. El refugio se pondrá en contacto.",
-      "comentarios": "Esperamos que lo cuides mucho. ",
-      "leida": false,
-      "fechaCreacion": "2025-12-02T03:20:36.866Z"
-    },
-    {
       "id": "e806",
       "usuarioDNI": "admin",
       "solicitudId": "0086",
@@ -948,17 +979,6 @@
       "fechaCreacion": "2025-12-02T04:05:11.222Z"
     },
     {
-      "id": "04d6",
-      "usuarioDNI": "46112136",
-      "solicitudId": "0086",
-      "animalId": "d6f7",
-      "tipo": "aprobada",
-      "mensaje": "¡Felicidades! Tu solicitud para Atenea fue aprobada. El refugio se pondrá en contacto.",
-      "comentarios": "Espero que la ames como se lo merece.",
-      "leida": false,
-      "fechaCreacion": "2025-12-02T04:05:40.787Z"
-    },
-    {
       "id": "2581",
       "usuarioDNI": "admin",
       "solicitudId": "51e7",
@@ -967,17 +987,6 @@
       "mensaje": "Nueva solicitud de 46112136 para Xica",
       "leida": true,
       "fechaCreacion": "2025-12-02T04:12:16.704Z"
-    },
-    {
-      "id": "8075",
-      "usuarioDNI": "46112136",
-      "solicitudId": "51e7",
-      "animalId": "1",
-      "tipo": "aprobada",
-      "mensaje": "¡Felicidades! Tu solicitud para Xica fue aprobada. El refugio se pondrá en contacto.",
-      "comentarios": "Es tuya.",
-      "leida": false,
-      "fechaCreacion": "2025-12-02T04:12:39.410Z"
     },
     {
       "id": "a651",
@@ -1000,17 +1009,6 @@
       "fechaCreacion": "2025-12-02T23:47:00.443Z"
     },
     {
-      "id": "cb5c",
-      "usuarioDNI": "46112136",
-      "solicitudId": "5aa3",
-      "animalId": "9cf0",
-      "tipo": "aprobada",
-      "mensaje": "¡Felicidades! Tu solicitud para Lex fue aprobada. El refugio se pondrá en contacto.",
-      "comentarios": "todo tuyo es re pesado",
-      "leida": false,
-      "fechaCreacion": "2025-12-02T23:47:32.604Z"
-    },
-    {
       "id": "80ba",
       "usuarioDNI": "admin",
       "solicitudId": "3e9a",
@@ -1019,17 +1017,6 @@
       "mensaje": "Nueva solicitud de 46112136 para arbol",
       "leida": true,
       "fechaCreacion": "2025-12-03T00:02:04.086Z"
-    },
-    {
-      "id": "4d33",
-      "usuarioDNI": "46112136",
-      "solicitudId": "3e9a",
-      "animalId": "c587",
-      "tipo": "aprobada",
-      "mensaje": "¡Felicidades! Tu solicitud para arbol fue aprobada. El refugio se pondrá en contacto.",
-      "comentarios": "siuu",
-      "leida": false,
-      "fechaCreacion": "2025-12-03T00:02:28.391Z"
     },
     {
       "id": "20f8",
@@ -1092,17 +1079,6 @@
       "mensaje": "Nueva solicitud de 46112136 para Ambar",
       "leida": true,
       "fechaCreacion": "2025-12-04T20:09:17.914Z"
-    },
-    {
-      "id": "d245",
-      "usuarioDNI": "46112136",
-      "solicitudId": "54d3",
-      "animalId": "e08d",
-      "tipo": "aprobada",
-      "mensaje": "¡Felicidades! Tu solicitud para Ambar fue aprobada. El refugio se pondrá en contacto.",
-      "comentarios": "",
-      "leida": false,
-      "fechaCreacion": "2025-12-04T20:09:59.158Z"
     },
     {
       "id": "51ea",
@@ -1199,17 +1175,6 @@
       "fechaCreacion": "2025-12-05T23:57:27.337Z"
     },
     {
-      "id": "9211",
-      "usuarioDNI": "46112136",
-      "solicitudId": "70bc",
-      "animalId": "8974",
-      "tipo": "aprobada",
-      "mensaje": "¡Felicidades! Tu solicitud para Mantecol fue aprobada. El refugio se pondrá en contacto.",
-      "comentarios": "Cuidalo mucho.",
-      "leida": false,
-      "fechaCreacion": "2025-12-05T23:57:57.563Z"
-    },
-    {
       "id": "2f65",
       "usuarioDNI": "11111111",
       "solicitudId": "9e49",
@@ -1263,14 +1228,46 @@
       "fechaCreacion": "2025-12-06T00:45:21.526Z"
     },
     {
-      "id": "f7ee",
-      "usuarioDNI": "admin",
-      "solicitudId": "e517",
-      "animalId": "fd21",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 39555661 para Charly",
+      "id": "6b75",
+      "usuarioDNI": "46557309",
+      "solicitudId": "9bdf",
+      "animalId": "d6f7",
+      "tipo": "aprobada",
+      "mensaje": "¡Felicidades! Tu solicitud para Atenea fue aprobada. El refugio se pondrá en contacto.",
+      "comentarios": "aprobadisimo",
       "leida": false,
-      "fechaCreacion": "2025-12-07T19:31:52.856Z"
+      "fechaCreacion": "2025-12-10T18:54:00.924Z"
+    },
+    {
+      "id": "af51",
+      "usuarioDNI": "admin",
+      "solicitudId": "5a4d",
+      "animalId": "c587",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para arbol",
+      "leida": false,
+      "fechaCreacion": "2025-12-10T19:24:01.152Z"
+    },
+    {
+      "id": "c19a",
+      "usuarioDNI": "46112136",
+      "solicitudId": "5a4d",
+      "animalId": "c587",
+      "tipo": "rechazada",
+      "mensaje": "Lamentablemente, tu solicitud para arbol fue rechazada.",
+      "comentarios": "mmm",
+      "leida": false,
+      "fechaCreacion": "2025-12-10T19:24:32.409Z"
+    },
+    {
+      "id": "3336",
+      "usuarioDNI": "admin",
+      "solicitudId": "9bc1",
+      "animalId": "c587",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para arbol",
+      "leida": false,
+      "fechaCreacion": "2025-12-10T19:25:03.670Z"
     }
   ],
   "donations": [
@@ -1331,14 +1328,27 @@
       "message": "",
       "date": "2025-12-09T01:06:27.112Z",
       "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765242388/dwvpeu14db9j1xvgz7mh.jpg"
+    },
+    {
+      "id": "e832",
+      "userId": "46112136",
+      "amount": 123331,
+      "method": "Tarjeta",
+      "message": "qqwddaasdasd",
+      "date": "2025-12-10T15:06:09.933Z",
+      "comprobanteUrl": ""
+    },
+    {
+      "id": "b9f2",
+      "userId": "46112136",
+      "amount": 1233,
+      "method": "Transferencia",
+      "message": "asdasafsggdhdfh ",
+      "date": "2025-12-10T18:03:19.678Z",
+      "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765389798/rr3py0roxnruo2kv50bm.jpg"
     }
   ],
   "comentarios": [
-    {
-      "id": "1",
-      "nombre": "Sofia Torti",
-      "text": "Amo los animales, muy lindo refugio"
-    },
     {
       "id": "1763404872300",
       "nombre": "Ceci Bogos",

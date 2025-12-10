@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth/auth-service';
 import { NotificacionService } from '../services/notificacionservice';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -34,27 +35,40 @@ export class Login implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
-      const { dni, password } = this.loginForm.value;
-
-      console.log(dni,password)
-      this.authService.logIn(dni, password);
-      
-      setTimeout(() => {
-         const user = this.authService.currentUser();
-        if (user) {
-          this.notifService.cargarPorUsuario(user.user);
-  }
-}, 150);
-      
-    } else {
+    if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      alert('Por favor, completá todos los campos correctamente.');
+      
+      this.notifService.mostrarSnackbar(
+        'Por favor, completá todos los campos correctamente.',
+        'error'
+      );
+
+      return;
     }
+
+    const { dni, password } = this.loginForm.value;
+    this.authService.logIn(dni, password);
+
+    // Esperamos un instante para que el servicio actualice el usuario
+    setTimeout(() => {
+      const user = this.authService.currentUser();
+      if (user) {
+        this.notifService.cargarPorUsuario(user.user);
+
+        this.notifService.mostrarSnackbar(
+          'Inicio de sesión exitoso.',
+          'exito'
+        );
+      } else {
+        this.notifService.mostrarSnackbar(
+          'DNI o contraseña incorrectos.',
+          'error'
+        );
+      }
+    }, 150);
   }
 
   irARegistro(): void {
     this.router.navigate(['/register']);
   }
 }
-

@@ -52,6 +52,7 @@ export const routes: Routes = [
   { path: 'donar', component: DonationForm, canMatch: [authGuard] },
   { path: 'mis-donaciones', component: MyDonations, canMatch: [authGuard] },
 
+  { path: 'sobreellos', component: List, canMatch: [authGuard] },
   // RUTAS SOLO ADMIN
   { path: 'sobreellos', component: List, canMatch: [adminGuard] },
   { path: 'agregarpets', component: Form, canMatch: [adminGuard] },

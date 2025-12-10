@@ -29,11 +29,7 @@ export class Header  {
     }
 
 
-  logout(){
-    if(confirm("Seguro que desea cerrar sesion?")){
-      this.auth.logOut();
-      this.router.navigateByUrl("/home")
-    }
-    
+  logout() {
+    this.auth.logOut(); 
   }
 }

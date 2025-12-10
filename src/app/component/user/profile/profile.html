@@ -7,60 +7,70 @@
     <div class="row">
       <label>DNI</label>
       <input type="text" formControlName="dni" readonly>
+      <div class="error-container"></div>
     </div>
 
     <!-- Nombre -->
     <div class="row">
       <label>Nombre</label>
       <input type="text" formControlName="nombre">
-      @if (form.controls['nombre'].errors?.['required'] && form.controls['nombre'].touched) {
-        <p class="error-msg">El nombre es obligatorio</p>
-      }
+      <div class="error-container">
+        @if (form.controls['nombre'].errors?.['required'] && form.controls['nombre'].touched) {
+          <p class="error-msg">El nombre es obligatorio</p>
+        }
+      </div>
     </div>
 
     <!-- Apellido -->
     <div class="row">
       <label>Apellido</label>
       <input type="text" formControlName="apellido">
-      @if (form.controls['apellido'].errors?.['required'] && form.controls['apellido'].touched) {
-        <p class="error-msg">El apellido es obligatorio</p>
-      }
+      <div class="error-container">
+        @if (form.controls['apellido'].errors?.['required'] && form.controls['apellido'].touched) {
+          <p class="error-msg">El apellido es obligatorio</p>
+        }
+      </div>
     </div>
 
     <!-- Email -->
     <div class="row">
       <label>Email</label>
       <input type="email" formControlName="email">
-      @if (form.controls['email'].errors?.['required'] && form.controls['email'].touched) {
-        <p class="error-msg">El email es obligatorio</p>
-      }
-      @if (form.controls['email'].errors?.['email'] && form.controls['email'].touched) {
-        <p class="error-msg">Email inválido</p>
-      }
+      <div class="error-container">
+        @if (form.controls['email'].errors?.['required'] && form.controls['email'].touched) {
+          <p class="error-msg">El email es obligatorio</p>
+        }
+        @if (form.controls['email'].errors?.['email'] && form.controls['email'].touched) {
+          <p class="error-msg">Email inválido</p>
+        }
+      </div>
     </div>
 
     <!-- Teléfono -->
     <div class="row">
       <label>Teléfono</label>
       <input type="text" formControlName="telefono">
-      @if (form.controls['telefono'].errors?.['required'] && form.controls['telefono'].touched) {
-        <p class="error-msg">El teléfono es obligatorio</p>
-      }
-      @if (form.controls['telefono'].errors?.['pattern'] && form.controls['telefono'].touched) {
-        <p class="error-msg">Ingrese un teléfono válido</p>
-      }
+      <div class="error-container">
+        @if (form.controls['telefono'].errors?.['required'] && form.controls['telefono'].touched) {
+          <p class="error-msg">El teléfono es obligatorio</p>
+        }
+        @if (form.controls['telefono'].errors?.['pattern'] && form.controls['telefono'].touched) {
+          <p class="error-msg">Ingrese un teléfono válido</p>
+        }
+      </div>
     </div>
 
     <!-- Dirección -->
     <div class="row">
       <label>Dirección</label>
       <input type="text" formControlName="direccion">
-      @if (form.controls['direccion'].errors?.['required'] && form.controls['direccion'].touched) {
-        <p class="error-msg">La dirección es obligatoria</p>
-      }
+      <div class="error-container">
+        @if (form.controls['direccion'].errors?.['required'] && form.controls['direccion'].touched) {
+          <p class="error-msg">La dirección es obligatoria</p>
+        }
+      </div>
     </div>
 
-    <!-- Botón -->
     <div class="buttons">
       <button type="submit" [disabled]="form.invalid">Guardar Cambios</button>
     </div>
@@ -68,7 +78,6 @@
   </form>
 </section>
 
-<!-- Si no hay usuario -->
 <div *ngIf="!user()">
   <p>No hay usuario logueado. <a routerLink="/login">Iniciá sesión</a></p>
 </div>

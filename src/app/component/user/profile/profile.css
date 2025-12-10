@@ -6,15 +6,7 @@
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-left: 6px solid #ffc045; /* azul suave como solicitudes */
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  border-left: 6px solid #ffc045;
 }
 
 h2 {
@@ -44,7 +36,6 @@ h2 {
   border-radius: 8px;
   font-size: 1rem;
   background: #fafafa;
-  transition: border-color 0.2s ease;
 }
 
 .row input:focus {
@@ -53,13 +44,25 @@ h2 {
   background: #fff;
 }
 
-/* Campo solo-lectura */
-.row input[readonly] {
-  background: #eee;
-  cursor: not-allowed;
+/* ===== ERROR FIJO sin mover el formulario ===== */
+.error-container {
+  position: relative;
+  height: 18px;         /* espacio fijo */
+  margin-top: 2px;
 }
 
-/* ===== BOTONES ===== */
+.error-msg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #d9534f;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  line-height: 18px;
+}
+
 .buttons {
   margin-top: 25px;
   display: flex;
@@ -78,10 +81,9 @@ h2 {
   transition: all 0.2s ease-in-out;
 }
 
-/* Guardar cambios */
 .buttons button[type="submit"] {
   background-color: #ffc045;
-  color: rgb(4, 1, 1);
+  color: #000;
 }
 
 .buttons button[type="submit"]:hover {
@@ -89,54 +91,8 @@ h2 {
   transform: scale(1.03);
 }
 
-.buttons button[type="button"]:hover {
-  background-color: #c82333;
-  transform: scale(1.03);
-}
-
-/* Deshabilitado */
 button[disabled] {
   background-color: #aaa !important;
   cursor: not-allowed;
   transform: none;
-}
-
-/* ===== MENSAJE SI NO HAY USUARIO ===== */
-div p {
-  text-align: center;
-  margin-top: 20px;
-}
-
-div a {
-  color: #4a90e2;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-div a:hover {
-  text-decoration: underline;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 480px) {
-  .profile-card {
-    padding: 20px;
-  }
-
-  .buttons {
-    flex-direction: column;
-  }
-
-  .buttons button {
-    width: 100%;
-  }
-}
-
-
-/* ===== MENSAJES DE ERROR ===== */
-.error-msg {
-  color: #d9534f;        /* rojo suave */
-  font-size: 0.9rem;
-  margin-top: 6px;
-  font-weight: 600;
 }

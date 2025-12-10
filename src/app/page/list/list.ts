@@ -1,44 +1,37 @@
-import { Component, OnInit, signal, Signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import Pets from '../../models/pets';
 import { Petsservice } from '../../services/petsservice';
 import { AuthService } from '../../auth/auth-service';
 import { FavoriteService } from '../../services/favorite.service';
-
+import { NotificacionService } from '../../services/notificacionservice';
 
 @Component({
   selector: 'app-list',
-  imports: [ RouterLink,FormsModule],
+  imports: [RouterLink, FormsModule],
   templateUrl: './list.html',
   styleUrl: './list.css',
 })
-export class List implements OnInit{
+export class List implements OnInit {
 
-  // lista que se muestra en pantalla
   pets = signal<Pets[]>([]);
-
-  // lista completa 
   private allPets: Pets[] = [];
-
-  // filtro de algun tipo
   selectedType: '' | 'Perro' | 'Gato' = '';
-
-  // toggle historial (true = inactivos/adoptados)
   protected showOnlyAvailable = false;
 
   constructor(
     private listaPets: Petsservice,
     private router: Router,
-    protected auth: AuthService, 
-    private favoriteService : FavoriteService
+    protected auth: AuthService,
+    private favoriteService: FavoriteService,
+    private notifService: NotificacionService
   ) {}
 
   ngOnInit() {
     this.loadActivePets();
   }
 
-  // aplica filtro de perro o gato a la lista de animales
   applyFilter() {
     let filtrados = this.allPets;
 
@@ -49,33 +42,30 @@ export class List implements OnInit{
     this.pets.set([...filtrados]);
   }
 
-  // Animales activos (disponibles)
   private loadActivePets() {
     this.listaPets.getPetActivos().subscribe({
-      next: (data) => { 
-        this.allPets = data;  // guardar lista completa
-        this.applyFilter();   // aplicar filtro si existe
+      next: (data) => {
+        this.allPets = data;
+        this.applyFilter();
       },
       error: (e) => {
-        alert('Algo salió mal ' + e);
+        this.notifService.mostrarSnackbar('Hubo un error cargando los animales.', 'error');
       }
     });
   }
 
-  // Animales inactivos (historial / adoptados)
   private loadInactivePets() {
     this.listaPets.getPetInactives().subscribe({
       next: (data) => {
-        this.allPets = data;  // guardar lista completa
-        this.applyFilter();   // aplicar filtro si existe
+        this.allPets = data;
+        this.applyFilter();
       },
       error: (e) => {
-        alert('Algo salió mal ' + e);
+        this.notifService.mostrarSnackbar('Hubo un error cargando los animales.', 'error');
       }
     });
   }
 
-  // Toggle historial (solo admin)
   onToggle(checked: boolean) {
     this.showOnlyAvailable = checked;
     if (checked) {
@@ -85,32 +75,33 @@ export class List implements OnInit{
     }
   }
 
-  cambiarEstadoPet(id: string, estado : boolean) {
+  async cambiarEstadoPet(id: string, estado: boolean) {
+    let mensaje = estado
+      ? '¿Desea dar de alta este animal?'
+      : '¿Desea dar de baja este animal?';
 
-    let mensaje = " ";
-    if(!estado){
-      mensaje = "¿Desea dar de baja este animal?"
-    } else{
-      mensaje = "¿Desea dar de alta este animal?"
-    }
+    const confirmar = await this.notifService.confirmar(mensaje);
 
-    if (confirm(mensaje)) {
-      this.listaPets.cambiarActivoPet(id, estado ).subscribe({
-        next: () => {
-          // recargar según vista actual
-          this.showOnlyAvailable ? this.loadInactivePets() : this.loadActivePets();
-          this.router.navigateByUrl('/sobreellos');
-        },
-        error: (e) => {
-          alert('Algo salió mal ' + e);
-        }
-      });
-    }
+    if (!confirmar) return;
+
+    this.listaPets.cambiarActivoPet(id, estado).subscribe({
+      next: () => {
+        this.showOnlyAvailable ? this.loadInactivePets() : this.loadActivePets();
+        this.router.navigateByUrl('/sobreellos');
+
+        this.notifService.mostrarSnackbar(
+          estado ? 'Animal dado de alta.' : 'Animal dado de baja.',
+          'exito'
+        );
+      },
+      error: () => {
+        this.notifService.mostrarSnackbar('Hubo un error procesando la operación.', 'error');
+      }
+    });
   }
 
   agregarFavorito(pet: Pets) {
-  this.favoriteService.addFavorite(pet);
-  alert(pet.name + " fue agregado a favoritos 🩷");
-}
-
+    this.favoriteService.addFavorite(pet);
+    this.notifService.mostrarSnackbar(`${pet.name} fue agregado a favoritos 🩷`, 'exito');
+  }
 }

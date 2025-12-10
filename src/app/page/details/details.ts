@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import Pets from '../../models/pets';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Petsservice } from '../../services/petsservice';
 import { AuthService } from '../../auth/auth-service';
-import { Location, DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
 import { Solicitudesservice } from '../../services/solicitudesservice';
 import Solicitud from '../../models/solicitud';
 import { UserService, UserProfile } from '../../component/user/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-details',
@@ -19,6 +22,9 @@ export class Details implements OnInit {
   pets?: Pets;
   solicitudAprobada?: Solicitud;
   adoptante?: UserProfile;
+
+  private snack = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
 
   constructor(
     private petsService: Petsservice,
@@ -36,12 +42,13 @@ export class Details implements OnInit {
       next: (data) => {
         this.pets = data;
 
-        // Si está adoptado, cargar datos de adopción
         if (data.activo === false) {
           this.cargarDatosDeAdopcion(data.id);
         }
       },
-      error: (e) => alert('Algo salió mal: ' + e),
+      error: () => {
+        this.snack.open('Error al cargar el animal', 'Cerrar', { duration: 3000 });
+      },
     });
   }
 
@@ -65,11 +72,23 @@ export class Details implements OnInit {
 
   borrarPets(id: string) {
     if (!this.pets?.id) return;
-    if (!confirm('¿Está seguro de eliminar el animal?')) return;
 
-    this.petsService.deletePet(id).subscribe({
-      next: () => alert('Eliminado con éxito'),
-      error: (e) => alert('Error al eliminar: ' + e),
+    const ref = this.dialog.open(ConfirmDialogComponent, {
+      data: { mensaje: '¿Está seguro de eliminar el animal?' }
+    });
+
+    ref.afterClosed().subscribe(confirmado => {
+      if (!confirmado) return;
+
+      this.petsService.deletePet(id).subscribe({
+        next: () => {
+          this.snack.open('Eliminado con éxito', 'OK', { duration: 3000 });
+          this.location.back();
+        },
+        error: () => {
+          this.snack.open('Error al eliminar', 'Cerrar', { duration: 3000 });
+        },
+      });
     });
   }
 
