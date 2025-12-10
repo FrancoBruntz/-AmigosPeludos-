@@ -64,3 +64,5 @@ header, footer, main { position: relative; z-index: 1; }
   color: #fff;
   border-radius: 6px;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

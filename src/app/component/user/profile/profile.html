@@ -62,11 +62,11 @@
 
     <!-- Dirección -->
     <div class="row">
-      <label>Dirección</label>
+      <label>Ciudad</label>
       <input type="text" formControlName="direccion">
       <div class="error-container">
         @if (form.controls['direccion'].errors?.['required'] && form.controls['direccion'].touched) {
-          <p class="error-msg">La dirección es obligatoria</p>
+          <p class="error-msg">La ciudad es obligatoria</p>
         }
       </div>
     </div>
