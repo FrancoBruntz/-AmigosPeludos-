@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 *{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
+
 /* ===== Fondo general de toda la página (blur) ===== */
 html, body {
   margin: 0;
@@ -13,37 +14,38 @@ main {
   margin-top: 6vh; /* altura del header */
 }
 
-
 :root{
-  /* cambiá la ruta al archivo que quieras usar */
   --page-bg: url("/assets/fondo.webp");
 }
 
 body::before{
   content: "";
-  position: fixed;         /* cubre todo y no se mueve al hacer scroll */
+  position: fixed;
   inset: 0;
   background-image: var(--page-bg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(2px);      /* nivel de desenfoque del fondo */
-  transform: scale(1.08);  /* evita bordes duros del blur */
-  z-index: -1;             /* queda detrás de TODO el contenido */
-  pointer-events: none;    /* no bloquea clics */
+  filter: blur(2px);
+  transform: scale(1.08);
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* (opcional) si querés asegurar la superposición del contenido */
-header, footer, main { position: relative; z-index: 1; }
-
+/* asegurar superposición */
+header, footer, main { 
+  position: relative; 
+  z-index: 1; 
+}
 
 #contenedor{
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 }
 
-/* SnackBar*/
+/* ===== SNACKBAR CORREGIDO ===== */
+
 .snackbar-exito {
   background: #4caf50 !important;
   color: white !important;
@@ -56,11 +58,127 @@ header, footer, main { position: relative; z-index: 1; }
 
 .snackbar-info {
   background: #2196f3 !important;
-  color: black !important;
+  color: white !important;
 }
 
 .snackbar-confirm {
-  background: #333;
-  color: #fff;
+  background: #333 !important;
+  color: #fff !important;
   border-radius: 6px;
+}
+
+/* ========================================================================= */
+/*    BOTÓN "CERRAR" — VERSIÓN DEFINITIVA QUE ANULA A MATERIAL COMPLETO      */
+/* ========================================================================= */
+
+/* Base general */
+.mat-mdc-snack-bar-action,
+.mdc-button,
+.mat-mdc-button {
+  background-color: #ffc045 !important; /* Amarillo */
+  color: #000 !important;               /* Negro */
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  padding: 4px 12px !important;
+  transition: none !important;
+
+  /* Esto ANULA los colores automáticos de Material */
+  --mdc-text-button-label-text-color: #000 !important;
+  --mdc-text-button-hover-label-text-color: #000 !important;
+
+  --mdc-outlined-button-label-text-color: #000 !important;
+  --mdc-filled-button-label-text-color: #000 !important;
+
+  --mdc-filled-button-container-color: #ffc045 !important;
+  --mdc-filled-button-hover-container-color: #000 !important;
+
+  --mdc-text-button-hover-state-layer-color: transparent !important;
+  --mdc-text-button-focus-state-layer-color: transparent !important;
+  --mdc-text-button-pressed-state-layer-color: transparent !important;
+}
+
+/* Texto interno */
+.mat-mdc-snack-bar-action .mdc-button__label,
+.mdc-button__label {
+  color: inherit !important;
+}
+
+/* Hover */
+.mat-mdc-snack-bar-action:hover,
+.mdc-button:hover,
+.mat-mdc-button:hover {
+  background-color: #000 !important;   /* Negro */
+  color: #ffc045 !important;           /* Amarillo */
+}
+
+/* Hover del texto real */
+.mat-mdc-snack-bar-action:hover .mdc-button__label,
+.mdc-button:hover .mdc-button__label {
+  color: #ffc045 !important;
+}
+
+/* Anular ripple */
+.mdc-button__ripple {
+  background: transparent !important;
+  opacity: 0 !important;
+  display: none !important;
+}
+
+
+
+/* ==== CONFIRM GLOBAL ESTILO APP ==== */
+
+.mat-mdc-dialog-container {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-radius: 16px !important;
+  padding: 1.4rem 1.6rem !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25) !important;
+  text-align: center;
+  font-family: 'Poppins', system-ui, sans-serif !important;
+}
+
+.mat-mdc-dialog-container h2 {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #222 !important;
+  margin-bottom: 1rem !important;
+}
+
+.mat-mdc-dialog-actions {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  margin-top: 1rem !important;
+}
+
+/* Cancelar ROJO */
+.mat-mdc-dialog-actions .btn-cancel {
+  background-color: #e63946 !important;
+  color: white !important;
+  box-shadow: 0 3px 8px rgba(230, 57, 70, 0.45) !important;
+  border-radius: 12px !important;
+  padding: 10px 18px !important;
+  font-weight: 700 !important;
+  transition: 0.25s ease !important;
+}
+
+.mat-mdc-dialog-actions .btn-cancel:hover {
+  background-color: #c92733 !important;
+  transform: scale(1.07);
+}
+
+/* Aceptar AMARILLO */
+.mat-mdc-dialog-actions .btn-accept {
+  background-color: #ffc045 !important;
+  color: #000 !important;
+  box-shadow: 0 3px 8px rgba(255, 192, 69, 0.45) !important;
+  border-radius: 12px !important;
+  padding: 10px 18px !important;
+  font-weight: 700 !important;
+  transition: 0.25s ease !important;
+}
+
+.mat-mdc-dialog-actions .btn-accept:hover {
+  background-color: #ffcc70 !important;
+  transform: scale(1.07);
 }

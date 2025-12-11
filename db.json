@@ -444,6 +444,20 @@
       "notes": "",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1765392155/b98cov7gubek79qagdhg.jpg",
       "activo": true
+    },
+    {
+      "id": "9405",
+      "name": "arbolin",
+      "type": "Perro",
+      "age": 5,
+      "ageUnit": "meses",
+      "size": "Mediano",
+      "sexo": "Hembra",
+      "color": "negro",
+      "castrado": false,
+      "notes": "",
+      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1765412662/ln3muqu4rvc6rmg1b5uf.jpg",
+      "activo": true
     }
   ],
   "solicitudes": [
@@ -882,6 +896,33 @@
       "viveConNinos": false,
       "aceptaCompromiso": true,
       "comentarios": "todavia no"
+    },
+    {
+      "id": "0fc7",
+      "animalId": "fd21",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-11T00:15:12.511Z",
+      "estado": "rechazada",
+      "mensaje": "adsasdasdasdasd",
+      "tipoVivienda": "casa",
+      "tienePatio": true,
+      "tieneMascotas": true,
+      "viveConNinos": false,
+      "aceptaCompromiso": true,
+      "comentarios": ""
+    },
+    {
+      "id": "e126",
+      "animalId": "fd21",
+      "solicitanteUser": "46112136",
+      "fecha": "2025-12-11T01:18:05.561Z",
+      "estado": "pendiente",
+      "mensaje": "adasdasdads",
+      "tipoVivienda": "departamento",
+      "tienePatio": true,
+      "tieneMascotas": true,
+      "viveConNinos": false,
+      "aceptaCompromiso": true
     }
   ],
   "notificaciones": [
@@ -1268,6 +1309,37 @@
       "mensaje": "Nueva solicitud de 46112136 para arbol",
       "leida": false,
       "fechaCreacion": "2025-12-10T19:25:03.670Z"
+    },
+    {
+      "id": "f05e",
+      "usuarioDNI": "admin",
+      "solicitudId": "0fc7",
+      "animalId": "fd21",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para Charly",
+      "leida": false,
+      "fechaCreacion": "2025-12-11T00:15:12.531Z"
+    },
+    {
+      "id": "b07c",
+      "usuarioDNI": "46112136",
+      "solicitudId": "0fc7",
+      "animalId": "fd21",
+      "tipo": "rechazada",
+      "mensaje": "Lamentablemente, tu solicitud para Charly fue rechazada.",
+      "comentarios": "",
+      "leida": false,
+      "fechaCreacion": "2025-12-11T00:18:40.162Z"
+    },
+    {
+      "id": "a4ee",
+      "usuarioDNI": "admin",
+      "solicitudId": "e126",
+      "animalId": "fd21",
+      "tipo": "comentario",
+      "mensaje": "Nueva solicitud de 46112136 para Charly",
+      "leida": false,
+      "fechaCreacion": "2025-12-11T01:18:05.588Z"
     }
   ],
   "donations": [
@@ -1346,6 +1418,15 @@
       "message": "asdasafsggdhdfh ",
       "date": "2025-12-10T18:03:19.678Z",
       "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765389798/rr3py0roxnruo2kv50bm.jpg"
+    },
+    {
+      "id": "b5ab",
+      "userId": "46112136",
+      "amount": 12323,
+      "method": "Transferencia",
+      "message": "12412421414asasdasd",
+      "date": "2025-12-11T00:13:05.929Z",
+      "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765411985/t0pmtz8jo7q3ofqmkccf.jpg"
     }
   ],
   "comentarios": [
