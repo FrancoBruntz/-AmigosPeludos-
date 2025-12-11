@@ -29,17 +29,27 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  align-items: center;
 }
 
+/* ✅ CORRECCIÓN: ancho mínimo para el texto */
 .hero-text {
-  flex: 1 1 350px;
+  flex: 1 1 400px;
+  min-width: 400px;
   text-align: center;
 }
 
+/* ✅ CORRECCIÓN: evitar que las letras se monten/corten raro */
 .hero-text h1 {
   font-size: 2rem;
   color: #ffcc70;
   margin-bottom: 15px;
+  line-height: 1.2;        /* separación vertical cómoda */
+  word-break: keep-all;    /* no corta palabras letra por letra */
+  white-space: normal;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-text p {
@@ -174,6 +184,11 @@ body {
     flex-direction: column;
   }
 
+  /* ✅ en mobile que el texto pueda ocupar todo el ancho */
+  .hero-text {
+    min-width: 100%;
+  }
+
   .hero-img img {
     width: 100%;
     height: auto;
@@ -184,4 +199,3 @@ body {
     max-width: 300px;
   }
 }
-
