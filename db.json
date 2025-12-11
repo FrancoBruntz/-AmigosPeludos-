@@ -69,6 +69,12 @@
       "email": "lucoppari12@gmail.com",
       "telefono": "2235860417",
       "direccion": "catamarca"
+    },
+    {
+      "id": "c77b",
+      "user": "44891896",
+      "password": "12345678",
+      "isAdmin": false
     }
   ],
   "pets": [
