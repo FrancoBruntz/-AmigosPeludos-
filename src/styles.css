@@ -66,6 +66,7 @@ header, footer, main {
   color: #fff !important;
   border-radius: 6px;
 }
+<<<<<<< HEAD
 
 /* ========================================================================= */
 /*    BOTÓN "CERRAR" — VERSIÓN DEFINITIVA QUE ANULA A MATERIAL COMPLETO      */
@@ -182,3 +183,7 @@ header, footer, main {
   background-color: #ffcc70 !important;
   transform: scale(1.07);
 }
+=======
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+>>>>>>> b4060b30d7dc8f1ff81cf3ca36e0e551e509ad11
