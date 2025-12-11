@@ -69,6 +69,12 @@
       "email": "lucoppari12@gmail.com",
       "telefono": "2235860417",
       "direccion": "catamarca"
+    },
+    {
+      "id": "c77b",
+      "user": "44891896",
+      "password": "12345678",
+      "isAdmin": false
     }
   ],
   "pets": [
@@ -373,20 +379,6 @@
       "activo": true
     },
     {
-      "id": "c587",
-      "name": "arbol",
-      "type": "Gato",
-      "age": 5,
-      "ageUnit": "meses",
-      "size": "Mediano",
-      "sexo": "Hembra",
-      "color": "negro",
-      "castrado": true,
-      "notes": "",
-      "image": "",
-      "activo": false
-    },
-    {
       "id": "1a4d",
       "name": "Lobito",
       "type": "Perro",
@@ -455,20 +447,6 @@
       "notes": "Le encanta correr y jugar mucho",
       "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1765407031/mrwc3dlscv2ytphkdcih.jpg",
       "activo": true
-    },
-    {
-      "id": "9405",
-      "name": "arbolin",
-      "type": "Perro",
-      "age": 5,
-      "ageUnit": "meses",
-      "size": "Mediano",
-      "sexo": "Hembra",
-      "color": "negro",
-      "castrado": false,
-      "notes": "",
-      "image": "https://res.cloudinary.com/dc7ucvbtu/image/upload/v1765412662/ln3muqu4rvc6rmg1b5uf.jpg",
-      "activo": true
     }
   ],
   "solicitudes": [
@@ -496,260 +474,8 @@
       "tienePatio": true,
       "tieneMascotas": false,
       "viveConNinos": false,
-
       "aceptaCompromiso": true,
       "comentarios": ""
-    },
-    {
-      "id": "be37",
-      "animalId": "b600",
-      "solicitanteUser": "11111111",
-      "fecha": "2025-12-04T20:05:12.789Z",
-      "estado": "aprobada",
-      "mensaje": "Amo los perritos.",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "17:05"
-    },
-    {
-      "id": "62e9",
-      "animalId": "e0ba",
-      "solicitanteUser": "11111111",
-      "fecha": "2025-12-04T20:08:04.228Z",
-      "estado": "aprobada",
-      "mensaje": "Amo los animales.",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": ""
-    },
-    {
-      "id": "54d3",
-      "animalId": "e08d",
-      "solicitanteUser": "46112136",
-      "fecha": "2025-12-04T20:09:16.553Z",
-      "estado": "aprobada",
-      "mensaje": "La amo con todo mi corazon.",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": ""
-    },
-    {
-      "id": "14df",
-      "animalId": "4d64",
-      "solicitanteUser": "11111111",
-      "fecha": "2025-12-04T20:21:20.478Z",
-      "estado": "aprobada",
-      "mensaje": "Amooooooooooo.",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": ""
-    },
-    {
-      "id": "bb0b",
-      "animalId": "1552",
-      "solicitanteUser": "11111111",
-      "fecha": "2025-12-05T12:50:29.693Z",
-      "estado": "aprobada",
-      "mensaje": "Amo a Quesito.",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "Cuidalo."
-    },
-    {
-      "id": "29a0",
-      "animalId": "0bcb",
-      "solicitanteUser": "11111111",
-      "fecha": "2025-12-05T14:40:01.248Z",
-      "estado": "aprobada",
-      "mensaje": "Te amo Forulais",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "Espero que lo cuides y lo ames como se merece."
-    },
-    {
-      "id": "9e49",
-      "animalId": "198b",
-      "solicitanteUser": "11111111",
-      "fecha": "2025-12-05T23:56:44.287Z",
-      "estado": "aprobada",
-      "mensaje": "Amo el mantecol.",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "Cuidalo mucho."
-    },
-    {
-      "id": "70bc",
-      "animalId": "8974",
-      "solicitanteUser": "46112136",
-      "fecha": "2025-12-05T23:57:23.154Z",
-      "estado": "aprobada",
-      "mensaje": "Lo amooooooo.",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "Cuidalo mucho."
-    },
-    {
-      "id": "f50f",
-      "animalId": "a2d2",
-      "solicitanteUser": "11111111",
-      "fecha": "2025-12-06T00:33:08.352Z",
-      "estado": "aprobada",
-      "mensaje": "Lo amoooooo.",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "Cuidalo nena."
-    },
-    {
-      "id": "bd26",
-      "animalId": "1f4f",
-      "solicitanteUser": "11111111",
-      "fecha": "2025-12-06T00:44:56.738Z",
-      "estado": "aprobada",
-      "mensaje": "lñskaflkvSÑD",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": ""
-    },
-    {
-      "id": "e517",
-      "animalId": "fd21",
-      "solicitanteUser": "39555661",
-      "fecha": "2025-12-07T19:31:47.246Z",
-      "estado": "cancelada",
-      "mensaje": "siiiiiiiiiiiiiiiiii",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": true,
-      "viveConNinos": true,
-      "aceptaCompromiso": true,
-      "comentarios": "Cancelada por el usuario"
-    },
-    {
-      "id": "7292",
-      "animalId": "d6f7",
-      "solicitanteUser": "46557309",
-      "fecha": "2025-12-07T21:03:48.211Z",
-      "estado": "aprobada",
-      "mensaje": "la quiero es mia",
-      "tipoVivienda": "departamento",
-      "tienePatio": false,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "esta bien quedatela"
-    },
-    {
-      "id": "9bdf",
-      "animalId": "d6f7",
-      "solicitanteUser": "46557309",
-      "fecha": "2025-12-07T21:17:17.746Z",
-      "estado": "aprobada",
-      "mensaje": "aaaaaaaaaaaaa",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": false,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "aprobadisimo"
-    },
-    {
-      "id": "1789",
-      "animalId": "c587",
-      "solicitanteUser": "46112136",
-      "fecha": "2025-12-10T18:54:41.761Z",
-      "estado": "rechazada",
-      "mensaje": "necesito ese arbol",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": true,
-      "viveConNinos": true,
-      "aceptaCompromiso": true,
-      "comentarios": "lola"
-    },
-    {
-      "id": "5a4d",
-      "animalId": "c587",
-      "solicitanteUser": "46112136",
-      "fecha": "2025-12-10T19:24:01.136Z",
-      "estado": "rechazada",
-      "mensaje": "necesito esooooo",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": true,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "mmm"
-    },
-    {
-      "id": "9bc1",
-      "animalId": "c587",
-      "solicitanteUser": "46112136",
-      "fecha": "2025-12-10T19:25:03.651Z",
-      "estado": "aprobada",
-      "mensaje": "asdasdsdadsas",
-      "tipoVivienda": "departamento",
-      "tienePatio": true,
-      "tieneMascotas": true,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": "todavia no"
-    },
-    {
-      "id": "0fc7",
-      "animalId": "fd21",
-      "solicitanteUser": "46112136",
-      "fecha": "2025-12-11T00:15:12.511Z",
-      "estado": "rechazada",
-      "mensaje": "adsasdasdasdasd",
-      "tipoVivienda": "casa",
-      "tienePatio": true,
-      "tieneMascotas": true,
-      "viveConNinos": false,
-      "aceptaCompromiso": true,
-      "comentarios": ""
-    },
-    {
-      "id": "e126",
-      "animalId": "fd21",
-      "solicitanteUser": "46112136",
-      "fecha": "2025-12-11T01:18:05.561Z",
-      "estado": "pendiente",
-      "mensaje": "adasdasdads",
-      "tipoVivienda": "departamento",
-      "tienePatio": true,
-      "tieneMascotas": true,
-      "viveConNinos": false,
-      "aceptaCompromiso": true
     }
   ],
   "notificaciones": [
@@ -771,70 +497,7 @@
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 46112136 para Mono",
       "leida": false,
-
       "fechaCreacion": "2025-12-10T18:54:00.924Z"
-    },
-    {
-      "id": "af51",
-      "usuarioDNI": "admin",
-      "solicitudId": "5a4d",
-      "animalId": "c587",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 46112136 para arbol",
-      "leida": false,
-      "fechaCreacion": "2025-12-10T19:24:01.152Z"
-    },
-    {
-      "id": "c19a",
-      "usuarioDNI": "46112136",
-      "solicitudId": "5a4d",
-      "animalId": "c587",
-      "tipo": "rechazada",
-      "mensaje": "Lamentablemente, tu solicitud para arbol fue rechazada.",
-      "comentarios": "mmm",
-      "leida": false,
-      "fechaCreacion": "2025-12-10T19:24:32.409Z"
-    },
-    {
-      "id": "3336",
-      "usuarioDNI": "admin",
-      "solicitudId": "9bc1",
-      "animalId": "c587",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 46112136 para arbol",
-      "leida": false,
-      "fechaCreacion": "2025-12-10T19:25:03.670Z"
-    },
-    {
-      "id": "f05e",
-      "usuarioDNI": "admin",
-      "solicitudId": "0fc7",
-      "animalId": "fd21",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 46112136 para Charly",
-      "leida": false,
-      "fechaCreacion": "2025-12-11T00:15:12.531Z"
-    },
-    {
-      "id": "b07c",
-      "usuarioDNI": "46112136",
-      "solicitudId": "0fc7",
-      "animalId": "fd21",
-      "tipo": "rechazada",
-      "mensaje": "Lamentablemente, tu solicitud para Charly fue rechazada.",
-      "comentarios": "",
-      "leida": false,
-      "fechaCreacion": "2025-12-11T00:18:40.162Z"
-    },
-    {
-      "id": "a4ee",
-      "usuarioDNI": "admin",
-      "solicitudId": "e126",
-      "animalId": "fd21",
-      "tipo": "comentario",
-      "mensaje": "Nueva solicitud de 46112136 para Charly",
-      "leida": false,
-      "fechaCreacion": "2025-12-11T01:18:05.588Z"
     }
   ],
   "donations": [
@@ -855,84 +518,6 @@
       "message": "Me encanta poder ayudarlos",
       "date": "2025-12-10T22:36:53.152Z",
       "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765406213/cuoxi4wfpbnago61mzjo.jpg"
-    },
-    {
-      "id": "95ff",
-      "userId": "46112136",
-      "amount": 10000,
-      "method": "Transferencia",
-
-      "message": "Espero que los animalitos puedan comer un rico pollito con esta donacion",
-      "date": "2025-11-17T11:58:10.649Z"
-    },
-    {
-      "id": "e5d9",
-      "userId": "26057834",
-      "amount": 8000,
-      "method": "Tarjeta",
-      "message": "Para esas criaturitas hermosas",
-      "date": "2025-11-20T00:46:01.887Z"
-    },
-    {
-      "id": "1f16",
-      "userId": "46112136",
-      "amount": 300103,
-      "method": "Transferencia",
-      "message": "siu",
-      "date": "2025-12-03T02:41:52.950Z"
-    },
-    {
-      "id": "099a",
-      "userId": "46112136",
-      "amount": 2300,
-      "method": "Transferencia",
-      "message": "",
-      "date": "2025-12-03T02:47:57.462Z"
-    },
-    {
-      "id": "5815",
-      "userId": "39555661",
-      "amount": 10000,
-      "method": "Transferencia",
-      "message": "djhd",
-      "date": "2025-12-08T22:02:48.482Z",
-      "comprobanteUrl": ""
-    },
-    {
-      "id": "01fd",
-      "userId": "46557309",
-      "amount": 100000,
-      "method": "Transferencia",
-      "message": "",
-      "date": "2025-12-09T01:06:27.112Z",
-      "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765242388/dwvpeu14db9j1xvgz7mh.jpg"
-    },
-    {
-      "id": "e832",
-      "userId": "46112136",
-      "amount": 123331,
-      "method": "Tarjeta",
-      "message": "qqwddaasdasd",
-      "date": "2025-12-10T15:06:09.933Z",
-      "comprobanteUrl": ""
-    },
-    {
-      "id": "b9f2",
-      "userId": "46112136",
-      "amount": 1233,
-      "method": "Transferencia",
-      "message": "asdasafsggdhdfh ",
-      "date": "2025-12-10T18:03:19.678Z",
-      "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765389798/rr3py0roxnruo2kv50bm.jpg"
-    },
-    {
-      "id": "b5ab",
-      "userId": "46112136",
-      "amount": 12323,
-      "method": "Transferencia",
-      "message": "12412421414asasdasd",
-      "date": "2025-12-11T00:13:05.929Z",
-      "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765411985/t0pmtz8jo7q3ofqmkccf.jpg"
     }
   ],
   "comentarios": [
