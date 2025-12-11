@@ -18,8 +18,8 @@
       "id": "c016",
       "nombre": "Sofia",
       "apellido": "Torti",
-      "email": "SofiaTorti@gmail.com",
-      "telefono": "22334534564",
+      "email": "sofitorti22@gmail.com",
+      "telefono": "2235035857",
       "direccion": "mar del plata",
       "dni": "46112136"
     },
@@ -496,7 +496,7 @@
       "tienePatio": true,
       "tieneMascotas": false,
       "viveConNinos": false,
-<<<<<<< HEAD
+
       "aceptaCompromiso": true,
       "comentarios": ""
     },
@@ -749,8 +749,6 @@
       "tienePatio": true,
       "tieneMascotas": true,
       "viveConNinos": false,
-=======
->>>>>>> b4060b30d7dc8f1ff81cf3ca36e0e551e509ad11
       "aceptaCompromiso": true
     }
   ],
@@ -773,7 +771,7 @@
       "tipo": "comentario",
       "mensaje": "Nueva solicitud de 46112136 para Mono",
       "leida": false,
-<<<<<<< HEAD
+
       "fechaCreacion": "2025-12-10T18:54:00.924Z"
     },
     {
@@ -837,9 +835,6 @@
       "mensaje": "Nueva solicitud de 46112136 para Charly",
       "leida": false,
       "fechaCreacion": "2025-12-11T01:18:05.588Z"
-=======
-      "fechaCreacion": "2025-12-10T22:54:15.148Z"
->>>>>>> b4060b30d7dc8f1ff81cf3ca36e0e551e509ad11
     }
   ],
   "donations": [
@@ -866,7 +861,7 @@
       "userId": "46112136",
       "amount": 10000,
       "method": "Transferencia",
-<<<<<<< HEAD
+
       "message": "Espero que los animalitos puedan comer un rico pollito con esta donacion",
       "date": "2025-11-17T11:58:10.649Z"
     },
@@ -938,11 +933,6 @@
       "message": "12412421414asasdasd",
       "date": "2025-12-11T00:13:05.929Z",
       "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765411985/t0pmtz8jo7q3ofqmkccf.jpg"
-=======
-      "message": "Todavia no cobre el aguinaldo PERO ME HACE FELIZ PODER AYUDARLOS",
-      "date": "2025-12-10T22:37:24.887Z",
-      "comprobanteUrl": "https://res.cloudinary.com/dwynrzhcx/image/upload/v1765406245/ojc937hlpgtg5byfaw6a.jpg"
->>>>>>> b4060b30d7dc8f1ff81cf3ca36e0e551e509ad11
     }
   ],
   "comentarios": [
